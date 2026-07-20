@@ -1,0 +1,649 @@
+/* ==========================================================================
+   THEME: CINEMATIC IMMERSIVE
+   A dark, editorial, full-bleed identity for premium brands — architecture,
+   hospitality, automotive, outdoor, and creative-agency work. Near-black
+   grounds, warm champagne-bronze signal color, tall serif display type,
+   and glass-panel components replace the light, editorial-minimal look
+   of Modern Minimal.
+
+   HTML IS NOT MODIFIED. This file only overrides tokens and restyles the
+   existing classes from base.css / components.css. Swapping the <link>
+   in index.html between theme files is the only change required.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap");
+
+:root {
+  /* ---- Colors: near-black ground, warm bronze signal ---- */
+  --primary: #050505;              /* deepest black — dark sections, footer */
+  --primary-contrast: #f3efe6;
+  --secondary: #c8a15e;            /* champagne bronze — the one accent */
+  --secondary-contrast: #0c0b09;
+  --background: #0b0b0c;           /* charcoal-black page ground */
+  --surface: rgba(255, 255, 255, 0.035); /* glass panel fill */
+  --text: #f3efe6;                 /* warm white */
+  --muted: #a39a8c;
+  --accent: #c8a15e;
+  --border: rgba(243, 239, 230, 0.1);
+
+  /* ---- Typography: tall serif display + light grotesque body ---- */
+  --heading-font: "Cormorant Garamond", "Times New Roman", serif;
+  --body-font: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Jost", sans-serif;
+  --heading-scale: 1.15;
+  --heading-weight: 600;
+  --body-weight: 300;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-wide: 0.22em;
+
+  /* ---- Components ---- */
+  --radius: 2px;                   /* cinematic crops read sharp, not soft */
+  --radius-sm: 2px;
+  --radius-full: 2px;              /* buttons go rectangular, not pill */
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 30px 70px rgba(0, 0, 0, 0.6);
+  --transition: 320ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--background);
+  font-weight: var(--body-weight);
+}
+
+p {
+  font-weight: 300;
+}
+
+h1, h2, h3, h4 {
+  font-weight: var(--heading-weight);
+}
+
+::selection {
+  background: var(--secondary);
+  color: var(--secondary-contrast);
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — wide-tracked utility label, no dot bullet (quieter, editorial)
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.eyebrow::before {
+  background: var(--secondary);
+  border-radius: 0;
+  width: 22px;
+  height: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION DIVIDER — thin bronze rule, no diamond (this theme's own motif
+   lives in the hero and card treatments instead)
+   -------------------------------------------------------------------------- */
+.section-divider {
+  color: transparent;
+}
+
+.section-divider::before,
+.section-divider::after {
+  background: var(--border);
+  max-width: 400px;
+}
+
+.section-divider span {
+  border-radius: 0;
+  transform: rotate(0deg) scale(1.4, 0.4);
+  background: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — high-contrast, rectangular, understated hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  padding: 1em 2em;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: var(--secondary-contrast);
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: #ddb877;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(200, 161, 94, 0.25);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(243, 239, 230, 0.35);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text);
+  background: rgba(243, 239, 230, 0.06);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — permanent glass over a dark page (no scroll-state JS hook
+   exists in the engine, so the header is tuned to read well at every
+   scroll position rather than only "over hero")
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.65), rgba(5, 5, 5, 0.25));
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(243, 239, 230, 0.08);
+}
+
+.nav-logo {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.nav-logo::before {
+  content: none;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(243, 239, 230, 0.85);
+}
+
+.nav-links a::after {
+  background: var(--secondary);
+}
+
+@media (max-width: 860px) {
+  .nav-links {
+    background: #08080a;
+  }
+}
+
+.nav-toggle span {
+  background: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   HERO — full-bleed cinematic landing moment
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--spacing-xl);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero .container {
+  display: block;
+  text-align: center;
+  max-width: 760px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content .eyebrow {
+  color: var(--secondary);
+  justify-content: center;
+}
+
+.hero-content h1 {
+  font-size: calc(4.2rem * var(--heading-scale) / 1.15);
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-block: var(--spacing-md);
+}
+
+.hero-content p {
+  color: rgba(243, 239, 230, 0.75);
+  margin-inline: auto;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.hero-actions {
+  justify-content: center;
+}
+
+.hero-meta {
+  justify-content: center;
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  border-top: 1px solid rgba(243, 239, 230, 0.14);
+  width: 100%;
+}
+
+.hero-meta strong {
+  color: var(--text);
+  font-size: 1.7rem;
+}
+
+.hero-meta span {
+  color: rgba(243, 239, 230, 0.55);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+/* Full-bleed background layer built from the existing hero-media/img-frame
+   markup — no new elements, just repositioned to cover the section. */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media .img-frame {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background: var(--primary);
+}
+
+.hero-media img,
+.hero-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: heroKenBurns 14s ease-out forwards;
+}
+
+/* Dark cinematic overlay for legibility: bottom-weighted gradient plus a
+   soft top gradient so the transparent header reads clearly too. */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.55) 0%,
+    rgba(5, 5, 5, 0.25) 30%,
+    rgba(5, 5, 5, 0.55) 78%,
+    rgba(5, 5, 5, 0.92) 100%
+  );
+}
+
+.hero::after {
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Staggered entrance for the hero copy, independent of the scroll-triggered
+   [data-reveal] system (the hero is always in view on load). */
+.hero [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-content > * {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroFadeUp 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content > .eyebrow { animation-delay: 200ms; }
+.hero-content > h1 { animation-delay: 380ms; }
+.hero-content > p { animation-delay: 560ms; }
+.hero-content > .hero-actions { animation-delay: 740ms; }
+.hero-content > .hero-meta { animation-delay: 900ms; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media img,
+  .hero-media video {
+    animation: none;
+  }
+  .hero-content > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100vh;
+  }
+  .hero-content h1 {
+    font-size: calc(2.6rem * var(--heading-scale) / 1.15);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT — cinematic crop with slow-zoom hover
+   -------------------------------------------------------------------------- */
+.about {
+  background: var(--background);
+}
+
+.about-media .img-frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.about-media .img-frame img {
+  transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-media .img-frame:hover img {
+  transform: scale(1.06);
+}
+
+.about-body h2 {
+  font-size: calc(2.6rem * var(--heading-scale) / 1.15);
+}
+
+.about-stats {
+  border-top-color: rgba(243, 239, 230, 0.14);
+}
+
+.about-stats strong {
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES / CARDS — floating glass panels
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 161, 94, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-icon {
+  background: rgba(200, 161, 94, 0.12);
+  color: var(--secondary);
+  border-radius: 0;
+  border: 1px solid rgba(200, 161, 94, 0.25);
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.features {
+  background: var(--background);
+}
+
+.feature-icon {
+  background: transparent;
+  border: 1px solid rgba(200, 161, 94, 0.35);
+  color: var(--secondary);
+  border-radius: 0;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-size: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — cinematic masonry feeling via the existing wide/tall classes
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: 4px;
+}
+
+.gallery-grid .img-frame {
+  border-radius: 0;
+  position: relative;
+}
+
+.gallery-grid .img-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.gallery-grid .img-frame:hover::after {
+  opacity: 1;
+}
+
+.gallery-grid .img-frame img {
+  transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1), filter var(--transition);
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: scale(1.08);
+  filter: saturate(1) contrast(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — large editorial quote treatment
+   -------------------------------------------------------------------------- */
+.testimonials {
+  background: var(--primary);
+}
+
+.testimonial {
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(243, 239, 230, 0.16);
+  padding: var(--spacing-lg) var(--spacing-xs);
+  position: relative;
+}
+
+.testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  font-family: var(--heading-font);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--secondary);
+  opacity: 0.6;
+}
+
+.testimonial-rating {
+  color: var(--secondary);
+  margin-top: var(--spacing-md);
+}
+
+.testimonial blockquote {
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.testimonial-author strong {
+  color: var(--text);
+  font-family: var(--heading-font);
+  font-size: 1.05rem;
+}
+
+.testimonial-author span {
+  color: var(--muted);
+}
+
+.testimonial-avatar {
+  border-radius: 0;
+  border: 1px solid rgba(243, 239, 230, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — minimal elegant accordion
+   -------------------------------------------------------------------------- */
+.faq {
+  background: var(--background);
+}
+
+.faq-list {
+  border-top-color: rgba(243, 239, 230, 0.16);
+}
+
+.faq-item {
+  border-bottom-color: rgba(243, 239, 230, 0.16);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+}
+
+.faq-answer p {
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — bronze-bordered glass slab on black
+   -------------------------------------------------------------------------- */
+.cta {
+  background: linear-gradient(155deg, rgba(200, 161, 94, 0.1), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(200, 161, 94, 0.25);
+  border-radius: var(--radius);
+}
+
+.cta h2 {
+  font-size: calc(2.6rem * var(--heading-scale) / 1.15);
+}
+
+.cta .btn-secondary {
+  border-color: rgba(243, 239, 230, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — premium dark form
+   -------------------------------------------------------------------------- */
+.contact {
+  background: var(--background);
+}
+
+.contact-info-item .card-icon {
+  background: transparent;
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+}
+
+.form-field label {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.form-field input,
+.form-field textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(243, 239, 230, 0.16);
+  color: var(--text);
+  border-radius: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+}
+
+.form-note {
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: #000000;
+  border-top: 1px solid rgba(243, 239, 230, 0.08);
+}
+
+.footer-top {
+  border-bottom-color: rgba(243, 239, 230, 0.1);
+}
+
+.footer-brand .nav-logo::before {
+  content: none;
+}
+
+.footer-social a {
+  border-radius: 0;
+}
+
+.footer-col h4 {
+  color: var(--secondary);
+  font-weight: 500;
+}

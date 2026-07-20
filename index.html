@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northline &mdash; Your Trusted Local Service Provider</title>
+  <meta name="description" content="Northline delivers reliable, professional service backed by a local team you can count on. Book a consultation today." />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link id="theme-link" rel="stylesheet" href="css/modern-minimal.css" id="theme-stylesheet" />
+</head>
+<body>
+  <script>
+    const themes = [
+      "modern-minimal",
+      "cinematic-immersive",
+      "editorial-heritage",
+      "friendly-local",
+      "industrial-trades"
+    ]
+
+    function switchTheme(){
+      const theme = document.getElementById("theme-link");
+
+      var currTheme = theme.getAttribute("href").slice(4, -4);
+      console.log(currTheme);
+      const ind = themes.indexOf(currTheme.trim().toLowerCase());
+
+      if (ind != null) {
+        theme.setAttribute("href", `css/${themes[(ind + 1) % themes.length]}.css`);
+      }
+    }
+  </script>
+
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER / NAVIGATION ================= -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="#home" class="nav-logo">Northline</a>
+
+      <ul class="nav-links" data-nav-links>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <!-- <li><a href="#contact" class="btn btn-primary">Get a Quote</a></li> -->
+      </ul>
+
+      <div class="nav-cta">
+        <!-- <a href="#contact" class="btn btn-secondary">Log in</a> -->
+        <a href="#contact" class="btn btn-primary">Get a Quote</a>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span><button style="color: grey" onclick="switchTheme();">Thème</button>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero section" id="home">
+      <div class="container">
+        <div class="hero-content" data-reveal>
+          <span class="eyebrow">Locally owned &amp; operated</span>
+          <h1>Your trusted local service provider</h1>
+          <p>
+            We help homeowners and businesses get things done right the first time &mdash;
+            on schedule, on budget, and backed by a team that actually picks up the phone.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Request a Quote</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <strong>12+</strong>
+              <span>Years in business</span>
+            </div>
+            <div>
+              <strong>1,400+</strong>
+              <span>Projects completed</span>
+            </div>
+            <div>
+              <strong>4.9/5</strong>
+              <span>Average rating</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media" data-reveal>
+          <div class="img-frame" style="--ratio: 1/1;">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Crect width='800' height='800' fill='%23e9e9e4'/%3E%3Cpath d='M300 460l70-90 60 70 90-120 110 140H300z' fill='%23c8c8bf'/%3E%3Ccircle cx='330' cy='330' r='36' fill='%23c8c8bf'/%3E%3C/svg%3E"
+              alt="Placeholder hero photo — swap with a real photo of your team or work"
+              width="800" height="800" loading="eager" fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="section-divider"><span></span></div></div>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-media" data-reveal>
+          <div class="img-frame" style="--ratio: 4/5;">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 800'%3E%3Crect width='640' height='800' fill='%23eeeee9'/%3E%3Crect x='120' y='500' width='400' height='200' fill='%23d2d2c8'/%3E%3Ccircle cx='320' cy='340' r='110' fill='%23d2d2c8'/%3E%3C/svg%3E"
+              alt="Placeholder team photo — swap with a real photo of your staff or workspace"
+              width="640" height="800" loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="about-body" data-reveal>
+          <span class="eyebrow">About us</span>
+          <h2>Built on craftsmanship, run on accountability</h2>
+          <p>
+            We started as a two-person crew with a simple idea: treat every client's project
+            like it's our own. Today we're a full team, but that standard hasn't changed &mdash;
+            clear communication, fair pricing, and work that holds up.
+          </p>
+          <p>
+            Every job starts with a real conversation about what you need, followed by a
+            written estimate with no surprise line items. We show up when we say we will.
+          </p>
+
+          <div class="about-stats">
+            <div>
+              <strong>98%</strong>
+              <span>Client satisfaction</span>
+            </div>
+            <div>
+              <strong>24hr</strong>
+              <span>Average response time</span>
+            </div>
+            <div>
+              <strong>15</strong>
+              <span>Certified specialists</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="services section" id="services">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">What we do</span>
+          <h2>Services built around your needs</h2>
+          <p>From first consultation to final walkthrough, every service is scoped, priced, and delivered with the same standard of care.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 2.4-2.4Z"/><path d="M15 5l4 4"/></svg>
+            </div>
+            <h3>Consultation &amp; Planning</h3>
+            <p>A clear, on-site assessment and written plan before any work begins &mdash; no guesswork, no surprises.</p>
+          </article>
+
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+            </div>
+            <h3>Scheduled Service</h3>
+            <p>Flexible booking with real-time confirmation, so you always know exactly when we'll arrive.</p>
+          </article>
+
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3>Maintenance Plans</h3>
+            <p>Ongoing care packages that catch small issues early and keep everything running smoothly.</p>
+          </article>
+
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z"/></svg>
+            </div>
+            <h3>Emergency Response</h3>
+            <p>Priority dispatch for urgent situations, with a team that answers the phone &mdash; day or night.</p>
+          </article>
+
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 19V9l6-4 6 4v10"/><path d="M10 19v-6h4v6"/></svg>
+            </div>
+            <h3>Installation &amp; Upgrades</h3>
+            <p>Modern equipment and materials installed by certified specialists, with full documentation.</p>
+          </article>
+
+          <article class="card" data-reveal>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+            </div>
+            <h3>Consulting &amp; Audits</h3>
+            <p>A second opinion or full assessment when you need clear, unbiased expertise on your side.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features section section--tight">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Why clients choose us</span>
+          <h2>The details that make the difference</h2>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="feature" data-reveal>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h4>Licensed &amp; insured</h4>
+              <p>Every technician is fully certified, so you're protected on every visit.</p>
+            </div>
+          </div>
+
+          <div class="feature" data-reveal>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <div>
+              <h4>On-time, every time</h4>
+              <p>We schedule realistically and communicate immediately if anything changes.</p>
+            </div>
+          </div>
+
+          <div class="feature" data-reveal>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-3 8-6.5 8-11a8 8 0 0 0-16 0c0 4.5 4 8 8 11Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Local team</h4>
+              <p>Based in your community, so response times stay short and accountability stays high.</p>
+            </div>
+          </div>
+
+          <div class="feature" data-reveal>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+            </div>
+            <div>
+              <h4>Transparent pricing</h4>
+              <p>Written estimates up front, with no hidden fees added after the job starts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">Recent work</span>
+          <h2>A look at what we've delivered</h2>
+        </div>
+
+        <div class="gallery-grid" data-reveal>
+          <div class="img-frame gallery-item--wide gallery-item--tall">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Crect width='800' height='800' fill='%23e3e3dc'/%3E%3Ccircle cx='400' cy='400' r='150' fill='%23cbcbc0'/%3E%3C/svg%3E" alt="Completed project example" loading="lazy" width="800" height="800" />
+          </div>
+          <div class="img-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23e9e9e4'/%3E%3Crect x='100' y='100' width='200' height='200' fill='%23d2d2c8'/%3E%3C/svg%3E" alt="Completed project example" loading="lazy" width="400" height="400" />
+          </div>
+          <div class="img-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23ececE6'/%3E%3Cpath d='M60 340 200 100l140 240Z' fill='%23d2d2c8'/%3E%3C/svg%3E" alt="Completed project example" loading="lazy" width="400" height="400" />
+          </div>
+          <div class="img-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23e6e6e0'/%3E%3Ccircle cx='200' cy='200' r='90' fill='%23cfcfc5'/%3E%3C/svg%3E" alt="Completed project example" loading="lazy" width="400" height="400" />
+          </div>
+          <div class="img-frame gallery-item--wide">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23e9e9e3'/%3E%3Crect x='250' y='90' width='300' height='220' fill='%23d0d0c6'/%3E%3C/svg%3E" alt="Completed project example" loading="lazy" width="800" height="400" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="testimonials section" id="testimonials">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">Client stories</span>
+          <h2>What people say after working with us</h2>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="testimonial" data-reveal>
+            <div class="testimonial-rating" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <blockquote>"They explained everything up front and the final bill matched the estimate exactly. That alone earned our repeat business."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d8d8cf'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23b7b7ab'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23b7b7ab'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
+              </div>
+              <div>
+                <strong>Marc-Andr&eacute; L.</strong>
+                <span>Homeowner, Longueuil</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial" data-reveal>
+            <div class="testimonial-rating" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <blockquote>"Fast response when we had an urgent issue on a weekend. Professional from the first call to the final walkthrough."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dedecf'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23bcbca8'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23bcbca8'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
+              </div>
+              <div>
+                <strong>Sarah K.</strong>
+                <span>Business owner, Sherbrooke</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial" data-reveal>
+            <div class="testimonial-rating" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <blockquote>"We've used three different providers over the years. This team is the only one we've kept coming back to."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e3e3d6'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23c2c2b2'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23c2c2b2'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
+              </div>
+              <div>
+                <strong>&Eacute;milie T.</strong>
+                <span>Property manager, Qu&eacute;bec City</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq section" id="faq">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">Questions</span>
+          <h2>Frequently asked questions</h2>
+        </div>
+
+        <div class="faq-list" data-reveal>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How quickly can you start a project?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>Most projects can begin within one to two weeks of your signed estimate, and we offer priority scheduling for urgent situations.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you provide free estimates?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. Every estimate is free, on-site when needed, and provided in writing before any work is scheduled.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Are you licensed and insured?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>Our entire team is fully licensed and insured, and documentation is available on request for any project.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What areas do you serve?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>We serve the greater metro area and surrounding communities within roughly a 45-minute radius. Contact us to confirm your location.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What forms of payment do you accept?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>We accept all major cards, e-transfer, and offer financing options for larger projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CALL TO ACTION ================= -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta" data-reveal>
+          <h2>Ready to get started?</h2>
+          <p>Tell us about your project and we'll get back to you with a clear, no-obligation quote within one business day.</p>
+          <div class="cta-actions">
+            <a href="#contact" class="btn btn-primary">Request a Quote</a>
+            <a href="tel:+15145550123" class="btn btn-secondary">Call (514) 555-0123</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="contact-info" data-reveal>
+          <span class="eyebrow">Get in touch</span>
+          <h2>Let's talk about your project</h2>
+          <p>Reach out directly or fill out the form and we'll respond within one business day.</p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8 10.3a16 16 0 0 0 6 6l1.5-1.5a2 2 0 0 1 2-.4c1 .3 2 .5 3 .6a2 2 0 0 1 1.5 2Z"/></svg>
+              </div>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+15145550123">(514) 555-0123</a>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:hello@northline.example">hello@northline.example</a>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-3 8-6.5 8-11a8 8 0 0 0-16 0c0 4.5 4 8 8 11Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <strong>Address</strong>
+                <span>1450 Rue Principale, Montr&eacute;al, QC</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              </div>
+              <div>
+                <strong>Hours</strong>
+                <span>Mon&ndash;Fri, 8am&ndash;6pm &bull; Emergency service 24/7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" data-reveal aria-label="Contact form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="service">Service needed</label>
+            <input type="text" id="service" name="service" placeholder="e.g. Consultation, Maintenance, Emergency" />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <p class="form-note">We respond to every inquiry within one business day.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo">Northline</a>
+          <p>Reliable, professional service for homes and businesses across the region.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 13v3"/></svg></a>
+          </div>
+        </div>
+
+        <nav class="footer-col" aria-label="Site">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-label="Services">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Consultation</a></li>
+            <li><a href="#services">Scheduled Service</a></li>
+            <li><a href="#services">Maintenance Plans</a></li>
+            <li><a href="#services">Emergency Response</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+15145550123">(514) 555-0123</a></li>
+            <li><a href="mailto:hello@northline.example">hello@northline.example</a></li>
+            <li><a href="#contact">Get a quote</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> Northline. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

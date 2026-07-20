@@ -1,0 +1,106 @@
+/* ==========================================================================
+   THEME: MODERN MINIMAL
+   Premium, editorial, restrained. Serif display type paired with a
+   quiet grotesque body face; a deep ink ground, warm paper background,
+   and a single confident teal signal color used sparingly for action
+   and emphasis. No gradients, no heavy shadows, no decoration that
+   doesn't earn its place.
+
+   Swapping this file for another theme is the ONLY thing required to
+   change the visual identity of the site — index.html never changes.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --primary: #14161b;          /* ink — dark sections, headings-on-dark */
+  --primary-contrast: #f7f7f4;
+  --secondary: #1f6f63;        /* signal teal — primary actions, links */
+  --secondary-contrast: #ffffff;
+  --background: #f7f7f4;       /* warm paper, not cream */
+  --surface: #ffffff;
+  --text: #14161b;
+  --muted: #6a6f76;
+  --accent: #c9a227;           /* muted gold — ratings, small highlights */
+  --border: rgba(20, 22, 27, 0.1);
+
+  /* Typography */
+  --heading-font: "Fraunces", Georgia, serif;
+  --body-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Inter", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 600;
+  --body-weight: 400;
+
+  /* Components */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(20, 22, 27, 0.04), 0 10px 30px rgba(20, 22, 27, 0.05);
+  --shadow-hover: 0 6px 16px rgba(20, 22, 27, 0.07), 0 20px 48px rgba(20, 22, 27, 0.09);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Signature detail: a hairline "rule + diamond" divider used to separate
+   major sections instead of a hard line or empty gap — the one recurring
+   motif that ties the page together, echoing the eyebrow dot above.
+   -------------------------------------------------------------------------- */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  color: var(--border);
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+  max-width: 220px;
+}
+
+.section-divider span {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--secondary);
+  flex-shrink: 0;
+}
+
+/* Cards read flatter and more editorial in this theme: hairline border
+   carries the shape, shadow only appears on hover as a lift. */
+.card {
+  box-shadow: none;
+}
+
+/* Hero heading gets slightly tighter tracking at large sizes for the
+   editorial-serif feel referenced from Stripe/Linear-style headers. */
+.hero-content h1 {
+  letter-spacing: -0.03em;
+}
+
+/* Nav logo mark: a small teal square ahead of the wordmark instead of
+   a generic icon placeholder. */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.nav-logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--secondary);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.footer-brand .nav-logo::before {
+  background: var(--accent);
+}

@@ -1,0 +1,504 @@
+/* ==========================================================================
+   THEME: INDUSTRIAL TRADES
+   A durable, no-nonsense identity for electricians, plumbers, contractors,
+   and construction/renovation companies. Concrete off-white and charcoal,
+   a single safety-orange signal, bold condensed uppercase type, structured
+   blocks instead of soft cards, and a diagonal cut under the hero instead
+   of a soft fade.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled. Desktop-only
+   offsets are reset in this file's own mobile media queries.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Colors: charcoal, concrete, safety orange, safety yellow ---- */
+  --primary: #1c1f22;              /* charcoal — dark sections, footer */
+  --primary-contrast: #f3f2ef;
+  --secondary: #d9541f;            /* safety orange — primary actions */
+  --secondary-contrast: #ffffff;
+  --background: #f1f0eb;           /* concrete off-white */
+  --surface: #ffffff;
+  --text: #1c1f22;
+  --muted: #5c6167;
+  --accent: #f0b323;               /* safety yellow — numerals, ratings */
+  --border: rgba(28, 31, 34, 0.16);
+
+  /* ---- Typography: bold condensed headings, technical body ---- */
+  --heading-font: "Oswald", "Arial Narrow", sans-serif;
+  --body-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Oswald", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --letter-spacing-tight: 0em;
+  --letter-spacing-wide: 0.14em;
+
+  /* ---- Components ---- */
+  --radius: 4px;
+  --radius-sm: 3px;
+  --radius-full: 4px;              /* buttons stay rectangular */
+  --shadow: 0 1px 0 rgba(28, 31, 34, 0.05), 0 12px 24px rgba(28, 31, 34, 0.08);
+  --shadow-hover: 0 1px 0 rgba(28, 31, 34, 0.06), 0 18px 36px rgba(28, 31, 34, 0.12);
+  --transition: 180ms ease;
+  --transition-slow: 420ms ease;
+}
+
+body {
+  background: var(--background);
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — bold tag with a solid block marker, not a soft dot
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.eyebrow::before {
+  border-radius: 0;
+  width: 16px;
+  height: 8px;
+  background: var(--secondary);
+}
+
+.section-divider span {
+  border-radius: 0;
+  transform: rotate(0deg) scale(2, 0.5);
+  background: var(--secondary);
+}
+
+.section-divider::before,
+.section-divider::after {
+  background: var(--text);
+  opacity: 0.15;
+  max-width: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — strong, rectangular, high contrast
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  font-family: var(--utility-font);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  padding: 0.95em 1.9em;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: var(--secondary-contrast);
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: #c14a19;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(217, 84, 31, 0.35);
+}
+
+.btn-secondary {
+  border: 2px solid var(--text);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — solid, opaque, no glass
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 3px solid var(--text);
+  backdrop-filter: none;
+}
+
+.nav-logo {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.nav-logo::before {
+  border-radius: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--secondary);
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 500;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-links a::after {
+  background: var(--secondary);
+  height: 2px;
+}
+
+@media (max-width: 860px) {
+  .nav-links {
+    background: var(--surface);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — powerful contractor landing page with a diagonal cut
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: var(--primary);
+  padding-block: calc(var(--spacing-xl) * 1.3) calc(var(--spacing-xl) * 1.6);
+  overflow: hidden;
+}
+
+.hero-content .eyebrow {
+  color: var(--accent);
+}
+
+.hero-content .eyebrow::before {
+  background: var(--accent);
+}
+
+.hero-content h1 {
+  color: var(--primary-contrast);
+  font-size: calc(3.6rem * var(--heading-scale));
+  line-height: 1.02;
+}
+
+.hero-content p {
+  color: rgba(243, 242, 239, 0.72);
+  font-weight: 400;
+}
+
+.hero-meta {
+  border-top: 1px solid rgba(243, 242, 239, 0.18);
+  padding-top: var(--spacing-lg);
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  color: var(--accent);
+  font-size: 1.8rem;
+}
+
+.hero-meta span {
+  color: rgba(243, 242, 239, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+}
+
+.hero-media .img-frame {
+  border-radius: var(--radius);
+  border: 4px solid var(--secondary);
+}
+
+/* Diagonal separator cut into the bottom of the hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 64px;
+  background: var(--background);
+  clip-path: polygon(0 100%, 100% 40%, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 900px) {
+  .hero::after {
+    height: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border-radius: var(--radius);
+  border: 4px solid var(--text);
+}
+
+.about-body h2 {
+  font-size: calc(2.4rem * var(--heading-scale));
+}
+
+.about-stats {
+  border-top: 2px solid var(--text);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+  font-size: 2rem;
+}
+
+.about-stats span {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — structured catalog with big bold numerals
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  max-width: 880px;
+  margin-inline: auto;
+  gap: 0;
+  counter-reset: service;
+  border-top: 2px solid var(--text);
+}
+
+.services .card {
+  counter-increment: service;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--text);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-md) var(--spacing-xs);
+}
+
+.services .card:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(217, 84, 31, 0.05);
+}
+
+.services .card::before {
+  content: counter(service, decimal-leading-zero);
+  grid-row: 1 / -1;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--secondary);
+  line-height: 1;
+}
+
+.services .card-icon {
+  display: none;
+}
+
+.services .card h3 {
+  grid-column: 2;
+  font-size: 1.3rem;
+  margin-bottom: 2px;
+}
+
+.services .card p {
+  grid-column: 2;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 560px) {
+  .services .card {
+    grid-template-columns: 60px 1fr;
+  }
+  .services .card::before {
+    font-size: 1.6rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES — company strengths, blocky
+   -------------------------------------------------------------------------- */
+.feature {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--secondary);
+  padding: var(--spacing-md);
+}
+
+.feature-icon {
+  background: var(--primary);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — project portfolio feeling
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: 6px;
+}
+
+.gallery-grid .img-frame {
+  border-radius: var(--radius-sm);
+}
+
+.gallery-grid .img-frame img {
+  filter: grayscale(0.5) contrast(1.05);
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: scale(1.04);
+  filter: grayscale(0) contrast(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — client references
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--secondary);
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--body-font);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.testimonial-avatar {
+  border-radius: var(--radius-sm);
+}
+
+.testimonial-author strong {
+  font-family: var(--heading-font);
+  text-transform: uppercase;
+  font-size: 0.92rem;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  text-transform: none;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION
+   -------------------------------------------------------------------------- */
+.cta {
+  border-radius: var(--radius);
+  border-top: 4px solid var(--secondary);
+}
+
+.cta h2 {
+  font-size: calc(2.4rem * var(--heading-scale));
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — conversion-first
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.contact-info-item:first-child {
+  border-left: 4px solid var(--secondary);
+}
+
+.contact-info-item .card-icon {
+  background: var(--primary);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.contact-info-item strong {
+  font-family: var(--heading-font);
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+.contact-info-item a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--secondary);
+  border-radius: var(--radius);
+}
+
+.form-field label {
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  border-radius: var(--radius-sm);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.footer-brand .nav-logo::before {
+  background: var(--secondary);
+}
+
+.footer-col h4 {
+  color: var(--accent);
+  font-family: var(--heading-font);
+}
+
+.footer-social a {
+  border-radius: var(--radius-sm);
+}
