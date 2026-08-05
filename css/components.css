@@ -82,6 +82,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Acts as a guaranteed MINIMUM gap between logo / links / cta even when
+     justify-content: space-between would otherwise let them collide —
+     this is what keeps longer translated labels (French, German, etc.)
+     from crowding the logo or the button. */
+  gap: clamp(1rem, 3vw, 2.5rem);
 }
 
 .nav-logo {
@@ -89,12 +94,20 @@
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: var(--letter-spacing-tight);
+  /* Never let the logo get compressed to make room for the links. */
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  /* Fluid instead of fixed: contracts gracefully as available width drops
+     (e.g. longer localized labels) instead of overflowing or crowding
+     the logo/button before the mobile breakpoint kicks in. */
+  gap: clamp(1.25rem, 2vw, var(--spacing-lg));
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 
 .nav-links a {
@@ -103,6 +116,7 @@
   color: var(--text);
   position: relative;
   padding-block: 4px;
+  white-space: nowrap;
 }
 
 .nav-links a::after {
@@ -124,6 +138,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -152,7 +167,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 980px) {
   .nav-links {
     position: fixed;
     inset: var(--header-height) 0 0 0;
