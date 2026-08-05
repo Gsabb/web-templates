@@ -58,8 +58,20 @@
   display: flex;
   align-items: center;
   background: color-mix(in srgb, var(--background) 88%, transparent);
-  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
+}
+
+/* backdrop-filter lives on a pseudo-element, not .site-header itself,
+   because filter/backdrop-filter on an element creates a containing
+   block for any position:fixed descendants (like the mobile .nav-links
+   panel), which breaks its viewport-relative `inset`. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav {
@@ -86,7 +98,7 @@
 }
 
 .nav-links a {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text);
   position: relative;
@@ -160,9 +172,12 @@
 
   .nav-links a {
     width: 100%;
-    padding: var(--spacing-sm) var(--container-padding);
+    padding: 10px var(--container-padding);
     font-size: 1.1rem;
-    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a::after {
+    bottom: 8px;
   }
 
   .nav-links .btn {

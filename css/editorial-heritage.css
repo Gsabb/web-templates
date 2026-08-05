@@ -127,7 +127,11 @@ h1, h2, h3, h4 {
 .site-header {
   background: color-mix(in srgb, var(--background) 92%, transparent);
   border-bottom: 1px solid var(--border);
+}
+
+.site-header::before {
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .nav-logo {

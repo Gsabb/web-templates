@@ -108,8 +108,8 @@ h1, h2, h3, h4 {
   letter-spacing: 0.04em;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 0.82rem;
-  padding: 1em 2em;
+  font-size: 0.8rem;
+  padding: 1em 1em;
 }
 
 .btn-primary {
@@ -142,8 +142,20 @@ h1, h2, h3, h4 {
    -------------------------------------------------------------------------- */
 .site-header {
   background: linear-gradient(to bottom, rgba(5, 5, 5, 0.65), rgba(5, 5, 5, 0.25));
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(243, 239, 230, 0.08);
+}
+
+/* backdrop-filter lives on a pseudo-element, not .site-header itself,
+   because filter/backdrop-filter on an element creates a containing
+   block for any position:fixed descendants (like the mobile .nav-links
+   panel), which breaks its viewport-relative `inset`. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .nav-logo {
