@@ -89,14 +89,12 @@
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
 }
 
 .nav-logo::before {
   content: "";
   width: 10px;
   height: 10px;
-  background: var(--secondary);
   border-radius: 2px;
   flex-shrink: 0;
 }

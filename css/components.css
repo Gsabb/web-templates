@@ -99,6 +99,10 @@
   white-space: nowrap;
 }
 
+.nav-logo img {
+  max-width: 4rem;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -139,6 +143,12 @@
   align-items: center;
   gap: var(--spacing-sm);
   flex-shrink: 0;
+}
+
+/* This duplicate CTA lives inside the mobile drawer only — on desktop the
+   persistent .nav-cta button already covers it. */
+.nav-links-cta {
+  display: none;
 }
 
 .nav-toggle {
@@ -199,12 +209,25 @@
     margin: var(--spacing-sm) var(--container-padding);
   }
 
+  .nav-links-cta {
+    display: block;
+  }
+
+  /* The header row on mobile only has room for the theme toggle and the
+     hamburger — the primary CTA moves into the drawer above (.nav-links-cta)
+     so nothing gets pushed off-screen and clipped by the page's
+     overflow-x: hidden. */
+  .nav-cta > .btn-primary {
+    display: none;
+  }
+
   .nav-cta .btn-secondary {
     display: none;
   }
 
   .nav-toggle {
     display: flex;
+    flex-shrink: 0;
   }
 }
 
