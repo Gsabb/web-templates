@@ -1,0 +1,559 @@
+/* ==========================================================================
+   THEME: SWISS DESIGN
+   International Typographic Style: pure white ground, ink-black type, a
+   single confident red signal color, one grotesque typeface used for
+   everything, zero shadows, zero gradients, zero rounded corners. Hierarchy
+   comes entirely from scale, weight, alignment, and thin rules — never
+   from decoration.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, plus the new
+   .team-* classes shipped alongside the Team section in components.css.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&display=swap");
+
+:root {
+  /* ---- Colors: paper white, ink black, one red signal ---- */
+  --primary: #0d0d0d;               /* ink — dark sections, footer */
+  --primary-contrast: #ffffff;
+  --secondary: #e2231a;             /* Swiss red — actions, rules, numerals */
+  --secondary-contrast: #ffffff;
+  --background: #ffffff;
+  --surface: #ffffff;
+  --text: #0d0d0d;
+  --muted: #5a5a5a;
+  --accent: #e2231a;
+  --border: rgba(13, 13, 13, 0.18);
+
+  /* ---- Typography: one grotesque family, weight carries the hierarchy ---- */
+  --heading-font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body-font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --utility-font: "Archivo", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 900;
+  --body-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-wide: 0.14em;
+
+  /* ---- Components: flat, no radius, no shadow ---- */
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-full: 0px;
+  --shadow: none;
+  --shadow-hover: none;
+  --transition: 150ms ease;
+  --transition-slow: 300ms ease;
+}
+
+body {
+  background: var(--background);
+}
+
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — a red square marker, monospaced tracking
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text);
+  margin: 1em 0em;
+}
+
+.eyebrow::before {
+  border-radius: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--secondary);
+}
+
+.section-divider {
+  height: 3px;
+  background: var(--text);
+  display: block;
+}
+
+.section-divider::before,
+.section-divider::after,
+.section-divider span {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — flat rectangles, invert on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0;
+  font-family: var(--utility-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: var(--text);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--text);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — flat white bar, heavy rule beneath it
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: #fff;
+  border-bottom: 3px solid var(--text);
+}
+
+.site-header::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.nav-links a::after {
+  background: var(--secondary);
+  height: 3px;
+}
+
+@media (max-width: 980px) {
+  .nav-links {
+    background: #fff;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — oversized left-aligned type block, image cropped hard right
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: var(--spacing-xl) calc(var(--spacing-xl) * 0.6);
+}
+
+.hero .container {
+  align-items: end;
+}
+
+.hero-content .eyebrow {
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-content h1 {
+  font-size: calc(4.6rem * var(--heading-scale));
+  letter-spacing: -0.03em;
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  padding-top: var(--spacing-md);
+  border-top: 3px solid var(--text);
+  max-width: 40ch;
+}
+
+.hero-actions {
+  margin-top: var(--spacing-lg);
+}
+
+.hero-meta {
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-md);
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  font-weight: 900;
+  color: var(--secondary);
+  font-size: 2rem;
+}
+
+.hero-meta span {
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-media .img-frame {
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-content h1 {
+    font-size: calc(2.8rem * var(--heading-scale));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border-radius: 0;
+  filter: grayscale(1);
+}
+
+.about-body h2 {
+  font-size: calc(3rem * var(--heading-scale));
+}
+
+.about-stats {
+  border-top: 3px solid var(--text);
+}
+
+.about-stats strong {
+  font-weight: 900;
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a numbered spec sheet, no cards, no boxes
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  gap: 0;
+  counter-reset: service;
+  border-top: 3px solid var(--text);
+}
+
+.services .card {
+  counter-increment: service;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-lg) 0;
+  transition: background var(--transition);
+}
+
+.services .card:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(226, 35, 26, 0.04);
+}
+
+.services .card::before {
+  content: counter(service, decimal-leading-zero);
+  font-family: var(--heading-font);
+  font-weight: 900;
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--text);
+}
+
+.services .card-icon {
+  display: none;
+}
+
+.services .card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+  border-bottom: 3px solid var(--secondary);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.services .card p {
+  max-width: 60ch;
+}
+
+@media (max-width: 640px) {
+  .services .card {
+    grid-template-columns: 70px 1fr;
+    gap: var(--spacing-md);
+  }
+  .services .card::before {
+    font-size: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES — a flat two-column rule list
+   -------------------------------------------------------------------------- */
+.features .grid-2 {
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.feature {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--spacing-lg);
+}
+
+.feature-icon {
+  background: var(--text);
+  color: #fff;
+  border-radius: 0;
+}
+
+.feature h4 {
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — grayscale portraits, bold caps names, red role rule
+   -------------------------------------------------------------------------- */
+.team-member {
+  text-align: left;
+}
+
+.team-photo {
+  border-radius: 0;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.team-photo:hover {
+  filter: grayscale(0) contrast(1.05);
+}
+
+.team-info h3 {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.team-role {
+  font-family: var(--utility-font);
+  color: var(--secondary);
+  border-top: 2px solid var(--secondary);
+  padding-top: 6px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — strict grid, grayscale until hover
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: 2px;
+}
+
+.gallery-grid .img-frame {
+  border-radius: 0;
+}
+
+.gallery-grid .img-frame img {
+  filter: grayscale(1);
+  transition: filter var(--transition-slow), transform var(--transition-slow);
+}
+
+.gallery-grid .img-frame:hover img {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — a rule, a huge quote mark, and caps attribution
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: transparent;
+  border: none;
+  border-top: 3px solid var(--text);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-lg) 0 0;
+  position: relative;
+}
+
+.testimonial-rating {
+  display: none;
+}
+
+.testimonial::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--heading-font);
+  font-weight: 900;
+  font-size: 4rem;
+  color: var(--secondary);
+  line-height: 1;
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-transform: none;
+}
+
+.testimonial-avatar {
+  display: none;
+}
+
+.testimonial-author strong {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.testimonial-author span {
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — rule-separated, plus/minus marker
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top: 3px solid var(--text);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — solid black block, oversized red button
+   -------------------------------------------------------------------------- */
+.cta {
+  border-radius: 0;
+}
+
+.cta h2 {
+  font-size: calc(3rem * var(--heading-scale));
+}
+
+.cta .btn-primary {
+  font-size: 1rem;
+  padding: 1.1em 2.4em;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — underline-style typographic form
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-sm);
+}
+
+.contact-info-item .card-icon {
+  display: none;
+}
+
+.contact-info-item strong {
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.contact-info-item a,
+.contact-info-item span {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.contact-form {
+  border-radius: 0;
+  border: none;
+  border-top: 3px solid var(--text);
+  padding-top: var(--spacing-lg);
+}
+
+.form-field label {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.form-field input,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER — solid ink, white type, hairline rules between columns
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+}
+
+.footer-brand .nav-logo {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--secondary);
+}
+
+.footer-col h4 {
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.footer-social a {
+  border-radius: 0;
+}

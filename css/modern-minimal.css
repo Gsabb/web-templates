@@ -102,3 +102,46 @@
 .footer-brand .nav-logo::before {
   background: var(--accent);
 }
+
+/* --------------------------------------------------------------------------
+   TEAM — added on top of the Team section's shared base styling to give
+   it the same quiet, editorial identity as the rest of this theme: a
+   hairline card that lifts on hover (like .card), and the diamond motif
+   from the section divider reused as a small marker before each role.
+   -------------------------------------------------------------------------- */
+.team-member {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.team-member:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: transparent;
+}
+
+.team-photo {
+  border-radius: var(--radius-sm);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+}
+
+.team-role {
+  position: relative;
+  padding-left: 14px;
+}
+
+.team-role::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%) rotate(45deg);
+  background: var(--secondary);
+}

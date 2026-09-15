@@ -515,3 +515,35 @@ h1, h2, h3, h4 {
 .footer-social a {
   border-radius: 50%;
 }
+
+/* --------------------------------------------------------------------------
+   TEAM — added on top of the Team section's shared base styling: a solid
+   offset "matted" frame behind each portrait (the same idea as the hero's
+   gold-framed image, done with a box-shadow so it isn't clipped by the
+   photo's own overflow:hidden), plus a caption rule under the role.
+   -------------------------------------------------------------------------- */
+.team-member {
+  padding-bottom: var(--spacing-sm);
+}
+
+.team-photo {
+  box-shadow: 10px 10px 0 var(--accent);
+  margin-bottom: var(--spacing-md);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+}
+
+.team-role {
+  font-family: var(--utility-font);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+  margin-top: 2px;
+}

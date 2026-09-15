@@ -661,3 +661,45 @@ h1, h2, h3, h4 {
   color: var(--secondary);
   font-weight: 500;
 }
+
+/* --------------------------------------------------------------------------
+   TEAM — added on top of the Team section's shared base styling: the same
+   glass-panel treatment as .card, with the slow zoom-on-hover used on the
+   About photo, and an italic serif caption echoing the testimonial quotes.
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: var(--spacing-lg);
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.team-member:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 161, 94, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.team-photo img {
+  transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-member:hover .team-photo img {
+  transform: scale(1.08);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+}
+
+.team-role {
+  display: block;
+  font-style: italic;
+  border-top: 1px solid rgba(243, 239, 230, 0.16);
+  padding-top: 6px;
+  margin-top: 4px;
+  color: var(--secondary);
+}

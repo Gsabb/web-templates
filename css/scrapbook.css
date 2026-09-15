@@ -1,0 +1,529 @@
+/* ==========================================================================
+   THEME: SCRAPBOOK
+   A handmade, corkboard-and-craft-table identity: kraft paper backgrounds,
+   polaroid-framed photography, washi-tape corners, dashed hand-cut borders,
+   and a marker-pen display face paired with a typewriter utility face.
+   Everything reads like it was cut, taped, and pinned up by a person —
+   never a template.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, plus the new
+   .team-* classes shipped alongside the Team section in components.css.
+   Desktop-only rotation/offsets are eased back on mobile so nothing
+   overlaps or clips awkwardly at narrow widths.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Special+Elite&family=Nunito:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Colors: kraft paper, terracotta tape, sage tape, ink ---- */
+  --primary: #33261b;              /* dark roast ink — footer, dark accents */
+  --primary-contrast: #f6ecd6;
+  --secondary: #b5482f;            /* terracotta washi tape — actions, links */
+  --secondary-contrast: #fff8ec;
+  --background: #efe4c8;           /* kraft paper */
+  --surface: #fffaf0;              /* lighter card/photo-mat paper */
+  --text: #33261b;
+  --muted: #7a6a52;
+  --accent: #52745f;               /* sage washi tape — second accent */
+  --border: rgba(51, 38, 27, 0.22);
+
+  /* ---- Typography: marker headline, typewriter labels, soft body ---- */
+  --heading-font: "Caveat", "Comic Sans MS", cursive;
+  --body-font: "Nunito", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Special Elite", "Courier New", monospace;
+  --heading-scale: 1.15;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --letter-spacing-tight: 0em;
+  --letter-spacing-wide: 0.06em;
+
+  /* ---- Components: near-flat corners (paper), soft matte shadow ---- */
+  --radius: 4px;
+  --radius-sm: 3px;
+  --radius-full: 999px;
+  --shadow: 0 2px 0 rgba(51, 38, 27, 0.06), 0 14px 26px rgba(51, 38, 27, 0.14);
+  --shadow-hover: 0 3px 0 rgba(51, 38, 27, 0.08), 0 20px 36px rgba(51, 38, 27, 0.18);
+  --transition: 220ms ease;
+  --transition-slow: 500ms ease;
+}
+
+body {
+  background:
+    radial-gradient(rgba(51, 38, 27, 0.05) 1px, transparent 1.4px) 0 0 / 14px 14px,
+    var(--background);
+}
+
+h1, h2, h3, h4 {
+  font-weight: var(--heading-weight);
+}
+
+p {
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — looks like a rubber ink stamp, tilted
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  border: 1.5px dashed var(--secondary);
+  padding: 0.3em 0.8em;
+  border-radius: var(--radius-sm);
+  transform: rotate(-1.5deg);
+}
+
+.eyebrow::before {
+  content: none;
+}
+
+.section-divider {
+  position: relative;
+  height: 2px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  background-image: repeating-linear-gradient(to right, var(--muted) 0 8px, transparent 8px 14px);
+  background-color: transparent;
+  height: 2px;
+  max-width: 260px;
+}
+
+.section-divider span {
+  border-radius: 50%;
+  transform: none;
+  background: var(--secondary);
+  width: 9px;
+  height: 9px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — stamped labels, dashed outline, playful tilt on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  font-family: var(--body-font);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: var(--secondary-contrast);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) rotate(-1.5deg);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+  border: 2px dashed var(--text);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  transform: rotate(1.5deg);
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — a strip of tape holding the header to the page
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 2px dashed var(--border);
+}
+
+.site-header::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--heading-font);
+  font-size: 1.7rem;
+}
+
+.nav-logo img {
+  filter: sepia(0.15);
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-size: 0.78rem;
+}
+
+.nav-links a::after {
+  background: var(--secondary);
+  height: 2px;
+}
+
+@media (max-width: 980px) {
+  .nav-links {
+    background: var(--surface);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PHOTO TREATMENT — every .img-frame becomes a taped polaroid print
+   -------------------------------------------------------------------------- */
+.img-frame {
+  border: 10px solid var(--surface);
+  border-bottom-width: 30px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+}
+
+.img-frame::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -14px;
+  width: 68px;
+  height: 24px;
+  background: var(--accent);
+  opacity: 0.8;
+  transform: rotate(-42deg);
+  z-index: 2;
+  box-shadow: 0 1px 3px rgba(51, 38, 27, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   HERO — pinned photo, hand-lettered headline
+   -------------------------------------------------------------------------- */
+.hero-content h1 {
+  font-size: calc(4rem * var(--heading-scale));
+  color: var(--text);
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  color: var(--secondary);
+}
+
+.hero-media {
+  transform: rotate(-1.2deg);
+}
+
+@media (max-width: 900px) {
+  .hero-media {
+    transform: rotate(-0.6deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT — a taped-in photo next to a handwritten note
+   -------------------------------------------------------------------------- */
+.about-media {
+  transform: rotate(1.4deg);
+}
+
+.about-body h2 {
+  font-size: calc(2.8rem * var(--heading-scale));
+}
+
+.about-stats {
+  border-top: 2px dashed var(--border);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+  font-size: 2.1rem;
+}
+
+@media (max-width: 900px) {
+  .about-media {
+    transform: rotate(0.6deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — index cards pinned at a slight tilt, alternating direction
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--secondary);
+  box-shadow: 0 2px 3px rgba(51, 38, 27, 0.3);
+}
+
+.card:nth-child(3n+1) { transform: rotate(-1.2deg); }
+.card:nth-child(3n+2) { transform: rotate(0.8deg); }
+.card:nth-child(3n+3) { transform: rotate(-0.4deg); }
+
+.card:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.card-icon {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+  font-size: 1.7rem;
+}
+
+@media (max-width: 640px) {
+  .card:nth-child(3n+1),
+  .card:nth-child(3n+2),
+  .card:nth-child(3n+3) {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES — a handwritten checklist
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: transparent;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  color: var(--text);
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — corkboard portraits, alternating tilt, tape corners inherited
+   from .img-frame above
+   -------------------------------------------------------------------------- */
+.team-member:nth-child(odd) { transform: rotate(-1.4deg); }
+.team-member:nth-child(even) { transform: rotate(1.1deg); }
+
+.team-member:hover {
+  transform: rotate(0deg);
+}
+
+.team-photo {
+  border-radius: var(--radius-sm);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.team-role {
+  font-family: var(--utility-font);
+  color: var(--secondary);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .team-member:nth-child(odd),
+  .team-member:nth-child(even) {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — a memory board, tape alternating colors per photo
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: var(--spacing-md);
+}
+
+.gallery-grid .img-frame:nth-child(3n+1) { transform: rotate(-1.5deg); }
+.gallery-grid .img-frame:nth-child(3n+2) { transform: rotate(1deg); }
+.gallery-grid .img-frame:nth-child(3n+3) { transform: rotate(-0.5deg); }
+
+.gallery-grid .img-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  z-index: 3;
+}
+
+.gallery-grid .img-frame:nth-child(even)::before {
+  background: var(--secondary);
+}
+
+@media (max-width: 640px) {
+  .gallery-grid .img-frame {
+    transform: rotate(0deg) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — postcards with a stamped quote mark
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  position: relative;
+}
+
+.testimonial:nth-child(odd) { transform: rotate(-1deg); }
+.testimonial:nth-child(even) { transform: rotate(0.8deg); }
+
+.testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: -4px;
+  right: 16px;
+  font-family: var(--heading-font);
+  font-size: 3.5rem;
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.testimonial-avatar {
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--border);
+}
+
+@media (max-width: 640px) {
+  .testimonial:nth-child(odd),
+  .testimonial:nth-child(even) {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — a hand-checked list
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top: 2px dashed var(--border);
+}
+
+.faq-item {
+  border-bottom: 2px dashed var(--border);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — a big taped-up sign
+   -------------------------------------------------------------------------- */
+.cta {
+  border: 2px dashed rgba(246, 236, 214, 0.3);
+  transform: rotate(-0.6deg);
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+  font-size: calc(3rem * var(--heading-scale));
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — a note pinned to the board
+   -------------------------------------------------------------------------- */
+.contact-info-item .card-icon {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  transform: rotate(0.5deg);
+}
+
+.form-field input,
+.form-field textarea {
+  background: var(--background);
+  border: 1.5px dashed var(--border);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+  border-style: solid;
+}
+
+@media (max-width: 900px) {
+  .contact-form {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+  border-top: 6px dashed rgba(246, 236, 214, 0.2);
+}
+
+.footer-brand .nav-logo {
+  font-family: var(--heading-font);
+  font-size: 1.8rem;
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--secondary);
+  flex-shrink: 0;
+}
+
+.footer-col h4 {
+  font-family: var(--utility-font);
+  font-weight: 400;
+  color: var(--secondary);
+}
+
+.footer-social a {
+  border-radius: 50%;
+  border-style: dashed;
+}

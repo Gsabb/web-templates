@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QualitéSûr &mdash; Laboratoire d'&eacute;talonnage et de certification</title>
+  <title>GabaritNova &mdash; Laboratoire d'&eacute;talonnage industriel</title>
   <meta name="description" content="QualitéSûr est un laboratoire d'&eacute;talonnage offrant des services d'&eacute;talonnage et de certification en m&eacute;trologie pour instruments m&eacute;caniques, &eacute;lectriques, de pression et dimensionnels. Demandez une &eacute;valuation." />
 
   <link rel="stylesheet" href="css/base.css" />
@@ -13,26 +13,26 @@
 <body>
   <script>
     const themes = [
-      "modern-minimal",
-      "cinematic-immersive",
-      "editorial-heritage",
-      "friendly-local",
-      "industrial-trades"
+      { slug: "modern-minimal", label: "Modern Minimal" },
+      { slug: "cinematic-immersive", label: "Cinematic Immersive" },
+      { slug: "editorial-heritage", label: "Editorial Heritage" },
+      { slug: "friendly-local", label: "Friendly Local" },
+      { slug: "industrial-trades", label: "Industrial Trades" },
+      { slug: "scrapbook", label: "Scrapbook" },
+      { slug: "glassmorphism", label: "Glassmorphism" },
+      { slug: "swiss-design", label: "Swiss Design" }
     ]
 
     function switchTheme(){
       const theme = document.getElementById("theme-link");
       const button = document.getElementById("theme-button");
 
-      var currTheme = theme.getAttribute("href").slice(4, -4);
-      console.log(currTheme);
-      const ind = themes.indexOf(currTheme.trim().toLowerCase());
+      const currSlug = theme.getAttribute("href").slice(4, -4).trim().toLowerCase();
+      const ind = themes.findIndex(t => t.slug === currSlug);
 
-      if (ind != null) {
-        newInd = (ind + 1) % themes.length
-        theme.setAttribute("href", `css/${themes[newInd]}.css`);
-        button.textContent = `Thème ${newInd + 1}`
-      }
+      const newInd = (ind >= 0 ? ind + 1 : 0) % themes.length;
+      theme.setAttribute("href", `css/${themes[newInd].slug}.css`);
+      button.textContent = themes[newInd].label;
     }
   </script>
 
@@ -43,22 +43,23 @@
   <header class="site-header">
     <nav class="nav" aria-label="Primary">
       <div class="nav-logo">
-        <img src="img/logo.png"/>
-        <a href="#home">QualitéSûr</a>
+        <img src="img/base.png"/>
+        <a href="#home">GabaritNova</a>
       </div>
       <ul class="nav-links" data-nav-links>
         <li><a href="#about">À propos</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#team">Notre équipe</a></li>
         <li><a href="#gallery">Nos installations</a></li>
         <li><a href="#testimonials">Témoignages</a></li>
         <li><a href="#faq">Questions</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="nav-links-cta"><a href="#contact" class="btn btn-primary">Demandez une évaluation</a></li>
+        <li class="nav-links-cta"><a href="#contact" class="btn btn-primary">Demandez une soumission</a></li>
       </ul>
 
       <div class="nav-cta">
-        <a href="#contact" class="btn btn-primary">Demandez une évaluation</a>
-        <button id="theme-button" style="color: grey; margin: -10px;" onclick="switchTheme();">Thème 1</button>
+        <a href="#contact" class="btn btn-primary">Demandez une soumission</a>
+        <button id="theme-button" style="color: grey; margin: -10px;" onclick="switchTheme();">Modern Minimal</button>
         <button class="nav-toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -71,28 +72,28 @@
     <section class="hero section" id="home">
       <div class="container">
         <div class="hero-content" data-reveal>
-          <span class="eyebrow">Laboratoire d'étalonnage &mdash; Sherbrooke, QC</span>
-          <h1>Votre laboratoire d'étalonnage de confiance</h1>
+          <span class="eyebrow">Entreprise exemple &mdash; Villemodèle, QC</span>
+          <h1>Un laboratoire modèle pour vos besoins de mesure</h1>
           <p>
-            Nous offrons un service rapide de vérification et de réparation, toutes marques confondues.
-            Vos instruments vous sont retournés avec un certificat d'étalonnage et une étiquette d'identification personnalisée.
+            Ce contenu est un exemple de présentation pour une entreprise fictive de métrologie.
+            Utilisez cette section pour résumer vos délais, votre approche qualité et la remise de vos certificats.
           </p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Demandez une évaluation</a>
+            <a href="#contact" class="btn btn-primary">Demandez une soumission</a>
             <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
           </div>
           <div class="hero-meta">
             <div>
-              <strong>30+</strong>
-              <span>Années d'expérience</span>
+              <strong>15+</strong>
+              <span>Années d'expertise technique</span>
             </div>
             <div>
-              <strong>4</strong>
-              <span>Domaines de métrologie couverts</span>
+              <strong>6</strong>
+              <span>Domaines de service couverts</span>
             </div>
             <div>
-              <strong>100%</strong>
-              <span>Certificats traçables NIST/CNRC</span>
+              <strong>99%</strong>
+              <span>Dossiers livrés dans les délais</span>
             </div>
           </div>
         </div>
@@ -126,30 +127,28 @@
 
         <div class="about-body" data-reveal>
           <span class="eyebrow">À propos de nous</span>
-          <h2>Fondée sur la précision, portée par la rigueur</h2>
+          <h2>Conçue pour la précision, pensée pour les équipes terrain</h2>
           <p>
-            QualitéSûr est un laboratoire d'étalonnage offrant des services d'étalonnage et de certification.
-            La gamme étendue de nos services en métrologie, l'excellence de notre expertise et l'intégrité
-            de notre personnel technique font de nous une entreprise de référence en notre domaine.
+            GabaritNova est une entreprise fictive utilisée comme exemple de site vitrine B2B.
+            Remplacez ce texte par votre histoire, vos accréditations et vos engagements de service.
           </p>
           <p>
-            Nous calibrons et réparons une grande gamme d'instruments d'essai et de mesure. Nos spécialistes
-            en instrumentation ont l'expérience nécessaire pour répondre à vos besoins dans de nombreux
-            domaines industriels et scientifiques.
+            Décrivez ici vos principaux équipements, votre couverture régionale et vos secteurs clients.
+            Ce paragraphe sert de modèle pour présenter votre équipe, vos méthodes et vos standards qualité.
           </p>
 
           <div class="about-stats">
             <div>
-              <strong>NIST/CNRC</strong>
-              <span>Certificats traçables</span>
+              <strong>ISO 17025</strong>
+              <span>Référentiel de laboratoire</span>
             </div>
             <div>
-              <strong>24h</strong>
-              <span>Délai de réponse moyen</span>
+              <strong>48h</strong>
+              <span>Délai de réponse type</span>
             </div>
             <div>
-              <strong>4</strong>
-              <span>Domaines de métrologie couverts</span>
+              <strong>3</strong>
+              <span>Unités de service</span>
             </div>
           </div>
         </div>
@@ -161,8 +160,8 @@
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
           <span class="eyebrow">Ce que nous faisons</span>
-          <h2>Des services taillés pour vos besoins en métrologie</h2>
-          <p>De la première évaluation à la remise du certificat, chaque service est évalué, chiffré et livré avec le même souci du détail.</p>
+          <h2>Des services exemples adaptables à votre offre</h2>
+          <p>Utilisez ces cartes pour présenter vos prestations principales, vos délais, et vos niveaux d'accompagnement client.</p>
         </div>
 
         <div class="grid grid-3">
@@ -170,48 +169,48 @@
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 2.4-2.4Z"/><path d="M15 5l4 4"/></svg>
             </div>
-            <h3>Étalonnage &amp; Certification</h3>
-            <p>Un service d'étalonnage accrédité pour un très grand nombre d'équipements, avec certificat traçable au NIST ou au CNRC.</p>
+            <h3>Étalonnage de production</h3>
+            <p>Service type pour instruments d'atelier avec rapport normalisé et historique de conformité.</p>
           </article>
 
           <article class="card" data-reveal>
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
             </div>
-            <h3>Réparation &amp; Maintenance</h3>
-            <p>Vérification et réparation rapides de toutes marques, pour garantir la fiabilité de vos instruments.</p>
+            <h3>Maintenance préventive</h3>
+            <p>Programme planifié pour réduire les arrêts imprévus et prolonger la durée de vie des appareils.</p>
           </article>
 
           <article class="card" data-reveal>
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <h3>Unité Mobile</h3>
-            <p>Un service d'étalonnage directement sur votre site, pour réduire les interruptions de production.</p>
+            <h3>Intervention sur site</h3>
+            <p>Déplacement d'une équipe technique pour traiter les équipements critiques directement chez le client.</p>
           </article>
 
           <article class="card" data-reveal>
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z"/></svg>
             </div>
-            <h3>Instruments Mécaniques</h3>
-            <p>Duromètres, cellules de charge, balances, clés dynamométriques, dynamomètres et plus encore.</p>
+            <h3>Mesures mécaniques</h3>
+            <p>Exemple de famille d'équipements: couples, charges, forces et instruments de pesée industrielle.</p>
           </article>
 
           <article class="card" data-reveal>
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 19V9l6-4 6 4v10"/><path d="M10 19v-6h4v6"/></svg>
             </div>
-            <h3>Instruments Électriques &amp; Électroniques</h3>
-            <p>Multimètres, oscilloscopes, mégohmètres, wattmètres, calibrateurs de procédés et plus encore.</p>
+            <h3>Mesures électriques</h3>
+            <p>Exemple de couverture: multimètres, générateurs, enregistreurs et chaînes de mesure de procédé.</p>
           </article>
 
           <article class="card" data-reveal>
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
             </div>
-            <h3>Dimensionnel, Pression &amp; Température</h3>
-            <p>Pieds à coulisse, micromètres, manomètres, thermomètres et sondes de tous types.</p>
+            <h3>Pression et température</h3>
+            <p>Exemple d'offre combinée pour capteurs, manomètres, sondes et instruments dimensionnels.</p>
           </article>
         </div>
       </div>
@@ -222,7 +221,7 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">Pourquoi nous choisir</span>
-          <h2>Les détails qui font la différence</h2>
+          <h2>Les points forts d'une offre bien présentée</h2>
         </div>
 
         <div class="grid grid-2">
@@ -231,8 +230,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
             <div>
-              <h4>Accrédité et traçable</h4>
-              <p>Chaque certificat est traçable au NIST ou au CNRC, pour une conformité assurée.</p>
+              <h4>Processus documenté</h4>
+              <p>Chaque intervention suit un protocole clair, prêt à être adapté à vos normes internes.</p>
             </div>
           </div>
 
@@ -241,8 +240,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
             </div>
             <div>
-              <h4>Rapide et fiable</h4>
-              <p>Nous planifions de façon réaliste et communiquons immédiatement en cas de changement.</p>
+              <h4>Délais maîtrisés</h4>
+              <p>Les échéanciers sont planifiés à l'avance avec mises à jour régulières auprès des clients.</p>
             </div>
           </div>
 
@@ -251,8 +250,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-3 8-6.5 8-11a8 8 0 0 0-16 0c0 4.5 4 8 8 11Z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <h4>Équipe locale</h4>
-              <p>Basés à Sherbrooke, nous offrons des délais de réponse courts et une grande proximité.</p>
+              <h4>Présence régionale</h4>
+              <p>Une équipe locale fictive permet une prise en charge rapide et un suivi de proximité.</p>
             </div>
           </div>
 
@@ -261,10 +260,83 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
             </div>
             <div>
-              <h4>Soumissions transparentes</h4>
-              <p>Des évaluations écrites, sans frais cachés ajoutés après le début du mandat.</p>
+              <h4>Tarification lisible</h4>
+              <p>Les devis types sont structurés pour présenter clairement options, délais et conditions.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TEAM ================= -->
+    <section class="team section section--tight" id="team">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">Notre équipe</span>
+          <h2>Une équipe fictive à personnaliser</h2>
+          <p>Cette section modèle présente des profils types pour illustrer votre structure d'équipe et vos expertises.</p>
+        </div>
+
+        <div class="grid grid-4">
+          <article class="team-member" data-reveal>
+            <div class="team-photo img-frame" style="--ratio: 1/1;">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23d8d8cf'/%3E%3Ccircle cx='150' cy='118' r='54' fill='%23b7b7ab'/%3E%3Cellipse cx='150' cy='276' rx='92' ry='68' fill='%23b7b7ab'/%3E%3C/svg%3E"
+                alt="Portrait de Sylvain Roy"
+                width="300" height="300" loading="lazy"
+              />
+            </div>
+            <div class="team-info">
+              <h3>Alexandre Martin</h3>
+              <span class="team-role">Direction des opérations</span>
+              <p>Pilote les priorités clients, les indicateurs de qualité et la coordination des équipes techniques.</p>
+            </div>
+          </article>
+
+          <article class="team-member" data-reveal>
+            <div class="team-photo img-frame" style="--ratio: 1/1;">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23dedecf'/%3E%3Ccircle cx='150' cy='118' r='54' fill='%23bcbca8'/%3E%3Cellipse cx='150' cy='276' rx='92' ry='68' fill='%23bcbca8'/%3E%3C/svg%3E"
+                alt="Portrait de Chantal Bergeron"
+                width="300" height="300" loading="lazy"
+              />
+            </div>
+            <div class="team-info">
+              <h3>Claire Dufresne</h3>
+              <span class="team-role">Responsable assurance qualité</span>
+              <p>Supervise la conformité documentaire et la cohérence des procédures de vérification.</p>
+            </div>
+          </article>
+
+          <article class="team-member" data-reveal>
+            <div class="team-photo img-frame" style="--ratio: 1/1;">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23e3e3d6'/%3E%3Ccircle cx='150' cy='118' r='54' fill='%23c2c2b2'/%3E%3Cellipse cx='150' cy='276' rx='92' ry='68' fill='%23c2c2b2'/%3E%3C/svg%3E"
+                alt="Portrait de Marc-Olivier Tremblay"
+                width="300" height="300" loading="lazy"
+              />
+            </div>
+            <div class="team-info">
+              <h3>Nicolas Gagnon</h3>
+              <span class="team-role">Technicien principal, mesures électriques</span>
+              <p>Prend en charge les diagnostics avancés et la validation des instruments de banc d'essai.</p>
+            </div>
+          </article>
+
+          <article class="team-member" data-reveal>
+            <div class="team-photo img-frame" style="--ratio: 1/1;">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23e9e9e0'/%3E%3Ccircle cx='150' cy='118' r='54' fill='%23c8c8ba'/%3E%3Cellipse cx='150' cy='276' rx='92' ry='68' fill='%23c8c8ba'/%3E%3C/svg%3E"
+                alt="Portrait de Isabelle Fontaine"
+                width="300" height="300" loading="lazy"
+              />
+            </div>
+            <div class="team-info">
+              <h3>Émilie Royer</h3>
+              <span class="team-role">Technicienne, service terrain</span>
+              <p>Intervient directement en usine pour limiter les arrêts et sécuriser la reprise rapide des opérations.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -273,8 +345,8 @@
     <section class="gallery section" id="gallery">
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
-          <span class="eyebrow">Nos réalisations</span>
-          <h2>Un aperçu de notre travail</h2>
+          <span class="eyebrow">Galerie exemple</span>
+          <h2>Un aperçu visuel de vos interventions</h2>
         </div>
 
         <div class="gallery-grid" data-reveal>
@@ -301,8 +373,8 @@
     <section class="testimonials section" id="testimonials">
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
-          <span class="eyebrow">Témoignages clients</span>
-          <h2>Ce que nos clients disent de nous</h2>
+          <span class="eyebrow">Avis de clients fictifs</span>
+          <h2>Exemples de témoignages à adapter</h2>
         </div>
 
         <div class="grid grid-3">
@@ -314,14 +386,14 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
             </div>
-            <blockquote>Nos équipements sont toujours calibrés à temps, avec des certificats clairs et une traçabilité impeccable. Un vrai partenaire pour notre service qualité.</blockquote>
+            <blockquote>Le modèle de service est clair, les délais annoncés sont réalistes et la documentation est facile à intégrer à notre système qualité.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d8d8cf'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23b7b7ab'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23b7b7ab'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
               </div>
               <div>
-                <strong>Jean-Pierre R.</strong>
-                <span>Responsable qualité, Sherbrooke</span>
+                <strong>Louis M.</strong>
+                <span>Chef qualité, Centre-du-Québec</span>
               </div>
             </div>
           </article>
@@ -334,14 +406,14 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
             </div>
-            <blockquote>Le service mobile nous permet de faire étalonner nos instruments sans arrêter la production. Rapide et professionnel à chaque visite.</blockquote>
+            <blockquote>La proposition d'intervention sur site est bien structurée. Nous avons pu conserver la production pendant les opérations.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dedecf'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23bcbca8'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23bcbca8'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
               </div>
               <div>
-                <strong>Nathalie B.</strong>
-                <span>Directrice d'usine, Estrie</span>
+                <strong>Sophie T.</strong>
+                <span>Directrice de site, Montérégie</span>
               </div>
             </div>
           </article>
@@ -354,14 +426,14 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
             </div>
-            <blockquote>Nous faisons affaire avec QualitéSûr depuis des années pour tous nos instruments de mesure. Toujours fiables, toujours à l'heure.</blockquote>
+            <blockquote>Excellent exemple de relation fournisseur: suivi constant, rapports détaillés et communication proactive.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e3e3d6'/%3E%3Ccircle cx='50' cy='40' r='18' fill='%23c2c2b2'/%3E%3Cellipse cx='50' cy='92' rx='30' ry='22' fill='%23c2c2b2'/%3E%3C/svg%3E" alt="" loading="lazy" width="42" height="42" />
               </div>
               <div>
-                <strong>Marc D.</strong>
-                <span>Ingénieur, secteur minier</span>
+                <strong>Karim L.</strong>
+                <span>Ingénieur procédé, secteur énergétique</span>
               </div>
             </div>
           </article>
@@ -374,57 +446,57 @@
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
           <span class="eyebrow">Questions</span>
-          <h2>Questions fréquentes</h2>
+          <h2>Questions types pour votre modèle</h2>
         </div>
 
         <div class="faq-list" data-reveal>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              Quel est le délai pour faire étalonner un instrument?
+              Quels sont les délais de traitement habituels?
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>La plupart des étalonnages sont complétés en une à deux semaines, et nous offrons un service prioritaire pour les besoins urgents.</p>
+              <p>Dans ce modèle, les interventions standards sont annoncées sous 5 à 10 jours ouvrables avec option prioritaire.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              Offrez-vous des évaluations gratuites?
+              Proposez-vous une estimation avant mandat?
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Oui. Chaque évaluation est gratuite et fournie par écrit avant que les travaux ne soient planifiés.</p>
+              <p>Oui, une estimation écrite est transmise avant démarrage afin de valider portée, coûts et échéancier.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              Vos certificats sont-ils traçables?
+              Quels documents sont fournis à la livraison?
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Tous nos certificats sont traçables au NIST ou au CNRC, et la documentation est disponible sur demande.</p>
+              <p>Un rapport de service, une feuille de conformité et les données de référence sont remis selon l'offre retenue.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              Quels types d'instruments calibrez-vous?
+              Quels types d'équipements prenez-vous en charge?
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Nous couvrons les instruments mécaniques, électriques, de pression, de température, d'humidité et dimensionnels. Contactez-nous pour toute demande spécifique.</p>
+              <p>Le modèle couvre des équipements mécaniques, électriques et procédés. Ajustez cette liste à votre réalité.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              Offrez-vous un service mobile?
+              Intervenez-vous directement sur les sites clients?
               <span class="faq-icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer">
-              <p>Oui, notre unité mobile se déplace directement sur votre site pour réduire les interruptions de production.</p>
+              <p>Oui, une équipe terrain peut être planifiée pour limiter les interruptions et accélérer la remise en service.</p>
             </div>
           </div>
         </div>
@@ -435,11 +507,11 @@
     <section class="section section--tight">
       <div class="container">
         <div class="cta" data-reveal>
-          <h2>Prêt à faire étalonner vos instruments?</h2>
-          <p>Dites-nous ce dont vous avez besoin et nous vous répondrons avec une évaluation claire, sans engagement, dans un délai d'un jour ouvrable.</p>
+          <h2>Prêt à personnaliser ce modèle pour votre entreprise?</h2>
+          <p>Indiquez vos besoins et adaptez ce texte pour présenter votre promesse de service, vos délais et votre mode de contact.</p>
           <div class="cta-actions">
-            <a href="#contact" class="btn btn-primary">Demandez une évaluation</a>
-            <a href="tel:+18193462115" class="btn btn-secondary">Appelez le 819 346-2115</a>
+            <a href="#contact" class="btn btn-primary">Demandez une soumission</a>
+            <a href="tel:+18193462115" class="btn btn-secondary">Appelez le 514 555-0148</a>
           </div>
         </div>
       </div>
@@ -450,8 +522,8 @@
       <div class="container">
         <div class="contact-info" data-reveal>
           <span class="eyebrow">Contactez-nous</span>
-          <h2>Parlons de votre projet</h2>
-          <p>Contactez-nous directement ou remplissez le formulaire et nous vous répondrons dans un délai d'un jour ouvrable.</p>
+          <h2>Parlons de vos besoins</h2>
+          <p>Utilisez ce bloc de contact comme gabarit et remplacez les informations par celles de votre organisation.</p>
 
           <div class="contact-info-list">
             <div class="contact-info-item">
@@ -460,7 +532,7 @@
               </div>
               <div>
                 <strong>Téléphone</strong>
-                <a href="tel:+18193462115">819 346-2115</a>
+                <a href="tel:+18193462115">514 555-0148</a>
               </div>
             </div>
 
@@ -470,7 +542,7 @@
               </div>
               <div>
                 <strong>Courriel</strong>
-                <a href="mailto:info@qualitesur.com">info@qualitesur.com</a>
+                <a href="mailto:info@qualitesur.com">contact@gabaritnova.ca</a>
               </div>
             </div>
 
@@ -480,7 +552,7 @@
               </div>
               <div>
                 <strong>Adresse</strong>
-                <span>3339 Ch de Sainte-Catherine, Sherbrooke, QC J1N 3X9</span>
+                <span>1250 boul. des Ateliers, Villemodèle, QC H2X 1A0</span>
               </div>
             </div>
 
@@ -490,7 +562,7 @@
               </div>
               <div>
                 <strong>Heures</strong>
-                <span>Lun&ndash;Ven, 8h &agrave; 17h</span>
+                <span>Lun&ndash;Ven, 8h30 &agrave; 17h30</span>
               </div>
             </div>
           </div>
@@ -514,8 +586,8 @@
           </div>
 
           <div class="form-field">
-            <label for="service">Service requis</label>
-            <input type="text" id="service" name="service" placeholder="ex. Étalonnage, Réparation, Unité mobile" />
+              <label for="service">Service demandé</label>
+              <input type="text" id="service" name="service" placeholder="ex. Inspection, Maintenance, Intervention sur site" />
           </div>
 
           <div class="form-field">
@@ -523,8 +595,8 @@
             <textarea id="message" name="message" required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
-          <p class="form-note">Nous répondons à chaque demande dans un délai d'un jour ouvrable.</p>
+          <button type="submit" class="btn btn-primary btn-block">Envoyer votre demande</button>
+          <p class="form-note">Texte exemple: ajustez ce délai selon votre capacité de réponse réelle.</p>
         </form>
       </div>
     </section>
@@ -535,8 +607,8 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="#home" class="nav-logo">QualitéSûr</a>
-          <p>Laboratoire d'étalonnage et de certification en métrologie, au service de l'industrie québécoise.</p>
+          <a href="#home" class="nav-logo">GabaritNova</a>
+          <p>Entreprise fictive de services techniques utilisée comme modèle de contenu pour site professionnel.</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
@@ -549,6 +621,7 @@
           <ul>
             <li><a href="#about">À propos</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#team">Notre équipe</a></li>
             <li><a href="#gallery">Nos installations</a></li>
             <li><a href="#testimonials">Témoignages</a></li>
           </ul>
@@ -557,25 +630,25 @@
         <nav class="footer-col" aria-label="Services">
           <h4>Services</h4>
           <ul>
-            <li><a href="#services">Étalonnage</a></li>
-            <li><a href="#services">Réparation</a></li>
-            <li><a href="#services">Unité mobile</a></li>
-            <li><a href="#services">Certification</a></li>
+            <li><a href="#services">Inspection</a></li>
+            <li><a href="#services">Maintenance</a></li>
+            <li><a href="#services">Intervention terrain</a></li>
+            <li><a href="#services">Documentation</a></li>
           </ul>
         </nav>
 
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="tel:+18193462115">819 346-2115</a></li>
-            <li><a href="mailto:info@qualitesur.com">info@qualitesur.com</a></li>
-            <li><a href="#contact">Demandez une évaluation</a></li>
+            <li><a href="tel:+18193462115">514 555-0148</a></li>
+            <li><a href="mailto:info@qualitesur.com">contact@gabaritnova.ca</a></li>
+            <li><a href="#contact">Demandez une soumission</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; <span data-year>2026</span> QualitéSûr. Tous droits réservés.</span>
+        <span>&copy; <span data-year>2026</span> GabaritNova. Tous droits réservés.</span>
         <div class="footer-bottom-links">
           <a href="#">Politique de confidentialité</a>
           <a href="#">Conditions d'utilisation</a>

@@ -504,3 +504,45 @@ h1, h2, h3, h4 {
 .footer-social a {
   border-radius: var(--radius-sm);
 }
+
+/* --------------------------------------------------------------------------
+   TEAM — added on top of the Team section's shared base styling: a crew
+   roster card with the same left accent stripe used on .feature, a
+   grayscale-until-hover photo like the gallery, and a role rendered as a
+   small ID-badge tag instead of plain text.
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--secondary);
+  padding: var(--spacing-md);
+  text-align: left;
+}
+
+.team-photo {
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--text);
+}
+
+.team-photo img {
+  filter: grayscale(0.6);
+  transition: filter var(--transition-slow);
+}
+
+.team-member:hover .team-photo img {
+  filter: grayscale(0);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1rem;
+}
+
+.team-role {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--accent);
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}

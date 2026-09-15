@@ -548,3 +548,36 @@ h1, h2, h3, h4 {
   color: var(--accent);
   font-family: var(--heading-font);
 }
+
+/* --------------------------------------------------------------------------
+   TEAM — added on top of the Team section's shared base styling: the same
+   tinted rounded "island" card used for About/Features/Testimonials, a
+   thick white polaroid-style photo border, and an alternating teal/orange
+   glow ring so the row doesn't feel uniform.
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--tint);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+}
+
+.team-photo {
+  border: 5px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.team-member:nth-child(odd) .team-photo {
+  box-shadow: var(--shadow), 0 0 0 4px rgba(47, 143, 138, 0.25);
+}
+
+.team-member:nth-child(even) .team-photo {
+  box-shadow: var(--shadow), 0 0 0 4px rgba(242, 153, 74, 0.25);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+}
+
+.team-role {
+  color: var(--secondary);
+}

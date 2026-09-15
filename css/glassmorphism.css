@@ -1,0 +1,490 @@
+/* ==========================================================================
+   THEME: GLASSMORPHISM
+   A clean, modern "app" identity: frosted glass panels floating over a
+   soft blurred gradient-mesh backdrop, gradient-ring portraits, glossy
+   pill buttons, and a bold geometric sans. Sharp where it counts (icons,
+   type), soft everywhere the eye rests (surfaces, shadows, light).
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, plus the new
+   .team-* classes shipped alongside the Team section in components.css.
+   The blurred background blobs live on body::before/::after (fixed,
+   pointer-events:none) so they never interfere with layout or scrolling.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Colors: indigo ink, violet action, magenta highlight ---- */
+  --primary: #221c3f;               /* deep indigo — footer, grounding sections */
+  --primary-contrast: #f4f4fb;
+  --secondary: #6c5ce7;             /* vivid violet — primary actions, links */
+  --secondary-contrast: #ffffff;
+  --background: #f2f3fb;            /* pale lavender-white page ground */
+  --surface: rgba(255, 255, 255, 0.6); /* glass panel fill */
+  --text: #1c1b29;
+  --muted: #6b6980;
+  --accent: #ff5fa2;                /* magenta — ratings, highlights, ring */
+  --border: rgba(255, 255, 255, 0.5);
+
+  /* ---- Typography: geometric display, clean body ---- */
+  --heading-font: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
+  --body-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Inter", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-wide: 0.08em;
+
+  /* ---- Components: large soft radii, diffuse colored shadow ---- */
+  --radius: 22px;
+  --radius-sm: 14px;
+  --radius-full: 999px;
+  --shadow: 0 8px 30px rgba(108, 92, 231, 0.14), 0 1px 1px rgba(255, 255, 255, 0.6) inset;
+  --shadow-hover: 0 16px 44px rgba(108, 92, 231, 0.22), 0 1px 1px rgba(255, 255, 255, 0.7) inset;
+  --transition: 260ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 640ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   BACKDROP — fixed, blurred gradient mesh that every glass panel reveals
+   -------------------------------------------------------------------------- */
+body {
+  background: var(--background);
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+body::before {
+  top: -10%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.35), transparent 70%);
+}
+
+body::after {
+  bottom: -15%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(255, 95, 162, 0.3), transparent 70%);
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — small glass pill tag
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 0.35em 0.9em;
+  border-radius: var(--radius-full);
+  font-family: var(--utility-font);
+  font-size: 0.74rem;
+  margin: 1.5em 0em;
+}
+
+.eyebrow::before {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.section-divider span {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  border-radius: 50%;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — glossy gradient pills
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  font-family: var(--heading-font);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(108, 92, 231, 0.35);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 55% 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.35), transparent);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 34px rgba(108, 92, 231, 0.45);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — a frosted glass bar
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header::before {
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--heading-font);
+  font-weight: 700;
+}
+
+.nav-logo img {
+  filter: drop-shadow(0 2px 6px rgba(108, 92, 231, 0.25));
+}
+
+.nav-links a::after {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+@media (max-width: 980px) {
+  .nav-links {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+.hero-content h1 {
+  font-size: calc(3.4rem * var(--heading-scale));
+}
+
+.hero-meta div {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.hero-meta strong {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-media .img-frame {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.about-stats {
+  border-top-color: var(--border);
+}
+
+.about-stats strong {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — glass tiles with a gradient icon chip
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+.card-icon {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: #fff;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 6px 16px rgba(108, 92, 231, 0.3);
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — gradient-ring portraits, glass info chip
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.team-member:hover {
+  transform: translateY(-6px);
+}
+
+.team-photo {
+  padding: 4px;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  border-radius: 50%;
+  border: none;
+  width: 60%;
+  margin-inline: auto;
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+}
+
+.team-role {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--utility-font);
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — frosted frames with a soft glass sheen
+   -------------------------------------------------------------------------- */
+.gallery-grid .img-frame {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.gallery-grid .img-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.25), transparent 40%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-weight: 500;
+}
+
+.testimonial-avatar {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — glass accordion rows
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top: none;
+}
+
+.faq-item {
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+  overflow: hidden;
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — vivid gradient glass slab
+   -------------------------------------------------------------------------- */
+.cta {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: #fff;
+}
+
+.cta h2,
+.cta p {
+  color: #fff;
+}
+
+.cta .btn-primary {
+  background: #fff;
+  color: var(--secondary);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+}
+
+.cta .btn-primary::before {
+  background: none;
+}
+
+.cta .btn-secondary {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.contact-info-item .card-icon {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: #fff;
+}
+
+.contact-form {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.form-field input,
+.form-field textarea {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER — solid indigo ground with a soft glow
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.35), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.footer-col h4 {
+  color: var(--accent);
+}
