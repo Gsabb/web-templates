@@ -123,7 +123,7 @@
   white-space: nowrap;
 }
 
-.nav-links a::after {
+.nav-links a:not(.btn)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -134,7 +134,7 @@
   transition: width var(--transition);
 }
 
-.nav-links a:hover::after {
+.nav-links a:not(.btn):hover::after {
   width: 100%;
 }
 
@@ -195,22 +195,23 @@
     transform: translateX(0);
   }
 
-  .nav-links a {
+  .nav-links a:not(.btn) {
     width: 100%;
     padding: 10px var(--container-padding);
     font-size: 1.1rem;
   }
 
-  .nav-links a::after {
+  .nav-links a:not(.btn)::after {
     bottom: 8px;
-  }
-
-  .nav-links .btn {
-    margin: var(--spacing-sm) var(--container-padding);
   }
 
   .nav-links-cta {
     display: block;
+    padding: var(--spacing-sm) var(--container-padding) 0;
+  }
+
+  .nav-links-cta .btn {
+    width: 100%;
   }
 
   /* The header row on mobile only has room for the theme toggle and the
@@ -245,6 +246,10 @@
   align-items: center;
 }
 
+.hero-content {
+  min-width: 0;
+}
+
 .hero-content .eyebrow {
   margin-bottom: var(--spacing-sm);
 }
@@ -268,6 +273,8 @@
 
 .hero-meta {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--spacing-sm);
   gap: var(--spacing-lg);
 }
 
@@ -295,8 +302,10 @@
   .hero .container {
     grid-template-columns: 1fr;
   }
-  .hero-media {
-    order: -1;
+  /* Text reads first on mobile — a phone visitor should land on the
+     headline and CTA, not a single photo above an empty-looking fold. */
+  .hero-meta {
+    gap: var(--spacing-md);
   }
 }
 
@@ -308,6 +317,10 @@
   grid-template-columns: 0.9fr 1.1fr;
   gap: var(--spacing-xl);
   align-items: center;
+}
+
+.about-body {
+  min-width: 0;
 }
 
 .about-media .img-frame {
@@ -446,6 +459,7 @@
   flex-direction: column;
   gap: var(--spacing-sm);
   text-align: center;
+  min-width: 0;
 }
 
 .team-photo {
@@ -705,6 +719,11 @@
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: var(--spacing-xl);
+}
+
+.contact-info,
+.contact-form {
+  min-width: 0;
 }
 
 .contact-info-list {

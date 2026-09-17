@@ -1,0 +1,515 @@
+/* ==========================================================================
+   THEME: BENTO GRID
+   A modern "dashboard keynote" identity: every multi-item section becomes
+   a mosaic of rounded tiles at mixed sizes, some flat-colored, most white
+   — the trend popularized by Apple/Linear/Vercel-style product pages.
+   Every mosaic below was hand-verified (via a grid auto-placement
+   simulation) to pack with zero overlap and zero orphan empty cells
+   before being written — the exact class of bug that shipped in an
+   earlier numbered-card theme is deliberately avoided here.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section. Every mosaic
+   collapses to a plain single column below 860px — bento shines with
+   room to breathe, and fighting the mosaic math at phone widths isn't
+   worth it when a clean stack works perfectly.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* ---- Colors: dashboard neutral ground, electric blue, coral pop ---- */
+  --primary: #0a0a0c;                /* ink — footer, dark tiles */
+  --primary-contrast: #f5f5f7;
+  --secondary: #3b5bfd;              /* electric blue — actions, tiles */
+  --secondary-contrast: #ffffff;
+  --background: #f0f0f3;             /* cool dashboard gray */
+  --surface: #ffffff;
+  --text: #0a0a0c;
+  --muted: #6b6b74;
+  --accent: #ff6452;                 /* coral — featured-tile pop */
+  --border: rgba(10, 10, 12, 0.08);
+
+  /* ---- Typography: one confident geometric grotesk, bold headings ---- */
+  --heading-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --body-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Plus Jakarta Sans", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 800;
+  --body-weight: 400;
+  --letter-spacing-tight: -0.03em;
+  --letter-spacing-wide: 0.06em;
+
+  /* ---- Components: big soft radii, quick snappy motion ---- */
+  --radius: 28px;
+  --radius-sm: 18px;
+  --radius-full: 999px;
+  --shadow: 0 1px 2px rgba(10, 10, 12, 0.04), 0 8px 20px rgba(10, 10, 12, 0.06);
+  --shadow-hover: 0 4px 10px rgba(10, 10, 12, 0.06), 0 16px 32px rgba(10, 10, 12, 0.1);
+  --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--background);
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — a small solid pill chip, dashboard-label style
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  padding: 0.3em 0.85em;
+  font-family: var(--utility-font);
+  font-weight: 600;
+  font-size: 0.74rem;
+  box-shadow: var(--shadow);
+}
+
+.eyebrow::before {
+  background: var(--secondary);
+}
+
+.section-divider span {
+  background: var(--accent);
+  border-radius: 50%;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — bold, fully rounded, snappy scale on press
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  box-shadow: 0 8px 20px rgba(59, 91, 253, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 26px rgba(59, 91, 253, 0.4);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: color-mix(in srgb, var(--background) 85%, transparent);
+  border-bottom: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.nav-logo::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: var(--secondary);
+}
+
+.nav-links a {
+  font-weight: 600;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--accent);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--background);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — stat row becomes flat colored bento chips
+   -------------------------------------------------------------------------- */
+.hero-content h1 {
+  font-size: calc(3.6rem * var(--heading-scale));
+}
+
+.hero-meta div {
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.hero-meta div:nth-child(1) {
+  background: var(--secondary);
+}
+
+.hero-meta div:nth-child(1) strong,
+.hero-meta div:nth-child(1) span {
+  color: #fff;
+}
+
+.hero-meta div:nth-child(2) {
+  background: var(--surface);
+}
+
+.hero-meta div:nth-child(3) {
+  background: var(--text);
+}
+
+.hero-meta div:nth-child(3) strong,
+.hero-meta div:nth-child(3) span {
+  color: #fff;
+}
+
+.hero-media .img-frame {
+  box-shadow: var(--shadow);
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow);
+}
+
+.about-stats {
+  border-top-color: var(--border);
+}
+
+.about-stats strong {
+  color: var(--secondary);
+}
+
+@media (max-width: 900px) {
+  .about {
+    padding: var(--spacing-md);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a 6-tile bento mosaic (verified: 4-col grid, zero gaps)
+   Row 1: [ tile1 2x2  ][ tile2 2x1 ]
+   Row 2: [ tile1 cont.][t3 1x1][t4 1x1]
+   Row 3: [ tile5 2x1  ][ tile6 2x1 ]
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.card {
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.services .card:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: var(--secondary);
+  color: #fff;
+}
+
+.services .card:nth-child(1) h3,
+.services .card:nth-child(1) p {
+  color: #fff;
+}
+
+.services .card:nth-child(1) .card-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.services .card:nth-child(2) {
+  grid-column: span 2;
+}
+
+.services .card:nth-child(5) {
+  grid-column: span 2;
+  background: var(--accent);
+  color: #fff;
+}
+
+.services .card:nth-child(5) h3,
+.services .card:nth-child(5) p {
+  color: #fff;
+}
+
+.services .card:nth-child(5) .card-icon {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.services .card:nth-child(6) {
+  grid-column: span 2;
+}
+
+.card-icon {
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 860px) {
+  .services .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .services .card:nth-child(1),
+  .services .card:nth-child(2),
+  .services .card:nth-child(5),
+  .services .card:nth-child(6) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES — a 4-tile mosaic (verified: 3-col grid, zero gaps)
+   -------------------------------------------------------------------------- */
+.features .grid-2 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.feature {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.feature:nth-child(1) {
+  grid-column: span 2;
+  background: var(--text);
+}
+
+.feature:nth-child(1) h4,
+.feature:nth-child(1) p {
+  color: #fff;
+}
+
+.feature:nth-child(4) {
+  grid-column: span 2;
+}
+
+.feature-icon {
+  background: color-mix(in srgb, var(--secondary) 14%, transparent);
+  color: var(--secondary);
+  border-radius: var(--radius-sm);
+}
+
+.feature:nth-child(1) .feature-icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .features .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .feature:nth-child(1),
+  .feature:nth-child(4) {
+    grid-column: span 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — a 4-tile mosaic, one large "lead" portrait (verified: 4-col grid)
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.team-member:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.team-member:nth-child(1) .team-photo {
+  --ratio: 1 / 1.1;
+}
+
+.team-member:nth-child(4) {
+  grid-column: span 2;
+}
+
+.team-photo {
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 860px) {
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .team-member:nth-child(1),
+  .team-member:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — bento tiles, big rounding
+   -------------------------------------------------------------------------- */
+.gallery-grid .img-frame {
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — a 3-tile mosaic (verified: 3-col grid, zero gaps)
+   Row1: [t1 2x1][t2 1x2]   Row2: [t3 2x1][t2 cont.]
+   -------------------------------------------------------------------------- */
+.testimonials .grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.testimonial {
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.testimonial:nth-child(1) {
+  grid-column: span 2;
+}
+
+.testimonial:nth-child(2) {
+  grid-column: span 1;
+  grid-row: span 2;
+  background: var(--secondary);
+}
+
+.testimonial:nth-child(2) blockquote,
+.testimonial:nth-child(2) .testimonial-author strong {
+  color: #fff;
+}
+
+.testimonial:nth-child(2) .testimonial-author span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonial:nth-child(2) .testimonial-rating {
+  color: #fff;
+}
+
+.testimonial:nth-child(3) {
+  grid-column: span 2;
+}
+
+@media (max-width: 860px) {
+  .testimonials .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .testimonial:nth-child(1),
+  .testimonial:nth-child(2),
+  .testimonial:nth-child(3) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — rounded tile rows
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top: none;
+}
+
+.faq-item {
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — a big bold coral tile
+   -------------------------------------------------------------------------- */
+.cta {
+  background: var(--accent);
+  border-radius: var(--radius);
+}
+
+.cta .btn-primary {
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.contact-form {
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.form-field input,
+.form-field textarea {
+  border: none;
+  background: var(--background);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.footer-brand .nav-logo::before {
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.footer-col h4 {
+  color: var(--accent);
+}

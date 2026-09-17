@@ -301,7 +301,7 @@ p {
   font-size: 1.7rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .card:nth-child(3n+1),
   .card:nth-child(3n+2),
   .card:nth-child(3n+3) {
@@ -351,7 +351,7 @@ p {
   letter-spacing: 0.02em;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .team-member:nth-child(odd),
   .team-member:nth-child(even) {
     transform: rotate(0deg);
@@ -378,7 +378,7 @@ p {
   background: var(--secondary);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .gallery-grid .img-frame {
     transform: rotate(0deg) !important;
   }
@@ -419,7 +419,7 @@ p {
   box-shadow: 0 0 0 2px var(--border);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .testimonial:nth-child(odd),
   .testimonial:nth-child(even) {
     transform: rotate(0deg);

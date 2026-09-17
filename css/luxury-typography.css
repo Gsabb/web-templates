@@ -1,0 +1,565 @@
+/* ==========================================================================
+   THEME: LUXURY TYPOGRAPHY
+   A high-fashion / maison-de-luxe identity (think Cartier, Dior, a
+   boutique real-estate house, a private members' club): the headline
+   itself is the hero visual, not a photograph. Photography is reduced to
+   a small, precious, gold-matted accent rather than the dominant element
+   — a deliberate inversion of every image-forward hero used elsewhere in
+   this engine. Ivory paper, ink black, one champagne-gold signal, an
+   ultra-high-contrast display serif at an enormous scale, and a
+   whisper-thin tracked utility face for every label.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap");
+
+:root {
+  /* ---- Colors: ivory paper, ink, champagne gold ---- */
+  --primary: #0a0a0a;               /* ink — dark sections, footer */
+  --primary-contrast: #f7f5ef;
+  --secondary: #ffffff;             /* buttons on dark read white-on-ink */
+  --secondary-contrast: #0a0a0a;
+  --background: #f8f6f0;            /* ivory paper */
+  --surface: #ffffff;
+  --text: #0d0d0d;
+  --muted: #726f68;
+  --accent: #b08d4f;                /* champagne gold — the one signal */
+  --border: rgba(13, 13, 13, 0.12);
+
+  /* ---- Typography: extreme-contrast display serif, whisper-thin sans ---- */
+  --heading-font: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --body-font: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Jost", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 400;
+  --body-weight: 300;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-wide: 0.32em;
+
+  /* ---- Components: sharp corners, no shadow, slow deliberate motion ---- */
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-full: 0px;
+  --shadow: none;
+  --shadow-hover: none;
+  --transition: 420ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--background);
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+p {
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — a whisper-thin tracked micro-label, gold hairline instead of
+   a dot; every eyebrow in this theme reads like a maison's catalog tag.
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 400;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  border-radius: 0;
+  width: 30px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-divider {
+  height: 1px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  background: var(--border);
+  max-width: 200px;
+}
+
+.section-divider span {
+  border-radius: 0;
+  transform: rotate(45deg) scale(0.6);
+  background: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — ghost rectangles, gold hairline, ink fills in slowly on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0;
+  font-family: var(--utility-font);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 1.1em 2.2em;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: #fff;
+  box-shadow: none;
+  border: 1px solid var(--text);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — ultra-minimal, wide tracking, gold underline reveal
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header::before {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--accent);
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--background);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — typography IS the hero. The photo shrinks to a small, precious,
+   gold-matted accent instead of dominating half the viewport.
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: calc(var(--spacing-xl) * 1.2) var(--spacing-xl);
+}
+
+.hero .container {
+  grid-template-columns: 1.7fr 0.3fr;
+  align-items: end;
+  gap: var(--spacing-xl);
+}
+
+.hero-content .eyebrow {
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-content h1 {
+  font-size: calc(5.4rem * var(--heading-scale));
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-md);
+}
+
+.hero-meta {
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-md);
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  color: var(--accent);
+  font-size: 1.6rem;
+}
+
+.hero-meta span {
+  font-family: var(--utility-font);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+}
+
+.hero-media {
+  align-self: end;
+}
+
+.hero-media .img-frame {
+  --ratio: 3 / 4;
+  border: 1px solid var(--accent);
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+  .hero-media {
+    max-width: 220px;
+  }
+  .hero-content h1 {
+    font-size: calc(2.6rem * var(--heading-scale));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT — a quiet, generously spaced editorial pairing
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border-radius: 0;
+  border: 1px solid var(--border);
+}
+
+.about-body h2 {
+  font-size: calc(2.8rem * var(--heading-scale));
+  font-weight: 400;
+}
+
+.about-stats {
+  border-top: 1px solid var(--border);
+}
+
+.about-stats strong {
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.about-stats span {
+  font-family: var(--utility-font);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a look-book list: small tracked numeral, large serif title,
+   no icons, no boxes, generous hairline rules
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  max-width: 880px;
+  margin-inline: auto;
+  gap: 0;
+  counter-reset: svc;
+  border-top: 1px solid var(--border);
+}
+
+.services .card {
+  counter-increment: svc;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  column-gap: var(--spacing-lg);
+  align-items: start;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-lg) 0;
+  transition: background var(--transition);
+}
+
+.services .card:hover {
+  transform: none;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+.services .card::before {
+  content: counter(svc, decimal-leading-zero);
+  grid-row: 1 / -1;
+  font-family: var(--utility-font);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  padding-top: 8px;
+}
+
+.services .card-icon {
+  display: none;
+}
+
+.services .card h3 {
+  grid-column: 2;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.services .card p {
+  grid-column: 2;
+  max-width: 58ch;
+}
+
+@media (max-width: 640px) {
+  .services .card {
+    grid-template-columns: 60px 1fr;
+    column-gap: var(--spacing-md);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — quiet portraits, gold hairline rule beneath the role
+   -------------------------------------------------------------------------- */
+.team-photo {
+  border-radius: 0;
+  filter: grayscale(0.5);
+  transition: filter var(--transition-slow);
+}
+
+.team-photo:hover {
+  filter: grayscale(0);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.team-role {
+  font-family: var(--utility-font);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — a gallery wall: generous negative space, sharp crops, one
+   quiet motion (a slow lift, never a zoom)
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: var(--spacing-lg);
+}
+
+.gallery-grid .img-frame {
+  border-radius: 0;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-grid .img-frame img {
+  transition: none;
+}
+
+.gallery-grid .img-frame:hover {
+  transform: translateY(-6px);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — a single elegant italic line, no card
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--accent);
+  padding: var(--spacing-lg) 0 0;
+  box-shadow: none;
+}
+
+.testimonial-rating {
+  display: none;
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+.testimonial-avatar {
+  display: none;
+}
+
+.testimonial-author strong {
+  font-family: var(--utility-font);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.testimonial-author span {
+  font-size: 0.78rem;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top-color: var(--border);
+}
+
+.faq-item {
+  border-bottom-color: var(--border);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — a black slab, thin serif, a single gold ghost button
+   -------------------------------------------------------------------------- */
+.cta {
+  border-radius: 0;
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: calc(2.8rem * var(--heading-scale));
+}
+
+.cta .btn-primary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+
+.cta .btn-primary:hover {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item .card-icon {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.contact-info-item strong {
+  font-family: var(--utility-font);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.form-field input,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.footer-brand .nav-logo {
+  font-family: var(--heading-font);
+  font-weight: 500;
+}
+
+.footer-brand .nav-logo::before {
+  content: none;
+}
+
+.footer-col h4 {
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.footer-social a {
+  border-radius: 0;
+}

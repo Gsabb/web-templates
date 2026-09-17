@@ -67,6 +67,14 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Belt-and-suspenders: some themes use position:fixed decorative shapes
+     (e.g. Glassmorphism's background blobs) sized in vw units. Per the CSS
+     Overflow spec, fixed-position boxes are measured against the *initial
+     containing block* and can enlarge its scrollable area even though
+     body has overflow-x:hidden — body's overflow does not clip position:fixed
+     descendants, since they aren't contained by body for positioning
+     purposes. Setting it here too closes that gap for every theme. */
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -168,6 +176,11 @@ h4 {
   letter-spacing: var(--letter-spacing-tight);
   line-height: 1.1;
   color: var(--text);
+  /* Some themes push headings to a very large scale; this guarantees a
+     long unbroken word can never be the thing that creates horizontal
+     scroll on a narrow phone. Normal word-spacing breaks are still
+     preferred — this only kicks in if a single word wouldn't fit. */
+  overflow-wrap: anywhere;
 }
 
 h1 {
