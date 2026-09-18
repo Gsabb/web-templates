@@ -1,0 +1,548 @@
+/* ==========================================================================
+   THEME: DOODLE
+   A playful, hand-drawn sketchbook identity: organic "blob" photo frames
+   instead of rectangles, a slowly-spinning hand-drawn seal badge on the
+   eyebrow tag, service cards scattered like sticky notes pinned to a
+   board (alternating vertical offset + pastel color, not a flat grid),
+   and testimonials rendered as comic-style speech bubbles with a tail
+   pointing at the author.
+
+   STRUCTURAL DEPARTURES FROM THE OTHER THEMES (CSS-only, HTML untouched):
+   - Every .img-frame becomes an irregular hand-drawn blob via CSS
+     border-radius trickery (mismatched corner radii — the classic
+     "fake hand-drawn circle" technique), alternating between two blob
+     shapes by nth-of-type so photos don't look copy-pasted.
+   - Services: a staggered "pinned note" wall (pure transform, never
+     touches grid placement) instead of uniform cards, cycling through a
+     small pastel palette with a little pushpin dot on each note.
+   - Testimonials: real comic speech bubbles (a CSS triangle tail via
+     clip-path) instead of a plain quote card.
+   - A continuously-rotating "hand-made ✦" seal badge, per the request for
+     a moving/rotating element where the theme actually calls for one.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section. All staggers/tilts
+   reset at the SAME breakpoint the underlying grid narrows, avoiding the
+   tablet-overlap bug found (and fixed) in an earlier theme.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Comic+Neue:wght@400;700&display=swap");
+
+:root {
+  /* ---- Colors: warm cream paper, coral ink-accent, leaf green ---- */
+  --primary: #2b2320;               /* warm brown-black — dark sections, outlines */
+  --primary-contrast: #fff8ef;
+  --secondary: #ff6f59;             /* coral — primary actions, links */
+  --secondary-contrast: #ffffff;
+  --background: #fff8ef;            /* warm cream paper */
+  --surface: #ffffff;
+  --text: #2b2320;
+  --muted: #7a6f63;
+  --accent: #5b8c5a;                /* leaf green — second accent */
+  --border: rgba(43, 35, 32, 0.28);
+
+  /* ---- Sticky-note palette for the scattered services wall ---- */
+  --note-yellow: #ffe08a;
+  --note-blue: #a8d8ea;
+  --note-pink: #ffc4d6;
+
+  /* ---- Typography: handwritten marker display, clean comic-round body ---- */
+  --heading-font: "Kalam", "Comic Sans MS", cursive;
+  --body-font: "Comic Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Kalam", cursive;
+  --heading-scale: 1.05;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --letter-spacing-tight: 0em;
+  --letter-spacing-wide: 0.04em;
+
+  /* ---- Components: soft rounded, gentle doodle shadow, bouncy motion ---- */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-full: 999px;
+  --shadow: 3px 4px 0 rgba(43, 35, 32, 0.15);
+  --shadow-hover: 5px 6px 0 rgba(43, 35, 32, 0.2);
+  --transition: 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-slow: 500ms cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+body {
+  background: var(--background);
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — a hand-drawn tag with a slowly spinning seal badge
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  transform: rotate(-1deg);
+}
+
+.eyebrow::before {
+  content: "\2726";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: none;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  animation: doodle-spin 9s linear infinite;
+}
+
+@keyframes doodle-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow::before { animation: none; }
+}
+
+.section-divider span {
+  background: var(--secondary);
+  border-radius: 50%;
+  transform: none;
+}
+
+.section-divider::before,
+.section-divider::after {
+  background-image: repeating-linear-gradient(to right, var(--muted) 0 6px, transparent 6px 12px);
+  background-color: transparent;
+  max-width: 200px;
+}
+
+/* --------------------------------------------------------------------------
+   BLOB PHOTO FRAMES — the hand-drawn "not quite a circle/rectangle" shape
+   -------------------------------------------------------------------------- */
+.img-frame {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 3px solid var(--text);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+}
+
+.gallery-grid .img-frame:nth-child(even) {
+  border-radius: 15px 225px 15px 255px / 225px 15px 255px 15px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — chunky, wobbly border-radius, playful bounce on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  font-family: var(--utility-font);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  border: 2px dashed var(--text);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px) rotate(1deg);
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 3px dashed var(--border);
+}
+
+.site-header::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--heading-font);
+  font-size: 1.6rem;
+}
+
+.nav-links a {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--secondary);
+  height: 3px;
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--surface);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — a hand-drawn scribble circle behind a key word, blob photo
+   angled beside the text
+   -------------------------------------------------------------------------- */
+.hero-content h1 {
+  position: relative;
+  font-size: calc(3.3rem * var(--heading-scale));
+}
+
+.hero-content h1::before {
+  content: "";
+  position: absolute;
+  inset: -18% -12%;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M28 100c-6-46 40-78 96-82 70-5 140 10 190 40 34 20 46 48 30 74-20 32-78 46-146 44C110 174 36 152 28 100Z' fill='none' stroke='%23ffe08a' stroke-width='14' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.9;
+}
+
+.hero-media {
+  transform: rotate(-2deg);
+}
+
+.hero-media .img-frame {
+  border-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .hero-media {
+    transform: rotate(-1deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media {
+  transform: rotate(1.6deg);
+}
+
+.about-body h2 {
+  font-size: calc(2.5rem * var(--heading-scale));
+}
+
+.about-stats {
+  border-top: 2px dashed var(--border);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+  font-size: 2rem;
+}
+
+@media (max-width: 900px) {
+  .about-media {
+    transform: rotate(0.8deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — sticky notes scattered on a board: alternating vertical
+   offset (pure transform, never touches grid placement) + pastel color
+   cycling + a little pushpin dot on each note.
+   -------------------------------------------------------------------------- */
+.card {
+  border: 2.5px solid var(--text);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: 2px solid var(--text);
+}
+
+.services .card:nth-child(3n+1) { background: var(--note-yellow); transform: rotate(-1.5deg) translateY(0); }
+.services .card:nth-child(3n+2) { background: var(--note-blue); transform: rotate(1.2deg) translateY(16px); }
+.services .card:nth-child(3n+3) { background: var(--note-pink); transform: rotate(-0.6deg) translateY(-8px); }
+
+.services .card:hover {
+  transform: rotate(0deg) translateY(-4px) scale(1.02);
+}
+
+.card-icon {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid var(--text);
+  color: var(--text);
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .services .card {
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — blob portraits, handwritten role tag with a doodle underline
+   -------------------------------------------------------------------------- */
+.team-member:nth-child(odd) { transform: rotate(-1.2deg); }
+.team-member:nth-child(even) { transform: rotate(1deg); }
+
+.team-member:hover {
+  transform: rotate(0deg);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+}
+
+.team-role {
+  font-family: var(--body-font);
+  font-weight: 700;
+  color: var(--secondary);
+  border-bottom: 2px dashed var(--secondary);
+  padding-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .team-member:nth-child(odd),
+  .team-member:nth-child(even) {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — blob frames, gentle wiggle on hover
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: var(--spacing-md);
+}
+
+.gallery-grid .img-frame:nth-child(3n+1) { transform: rotate(-1.5deg); }
+.gallery-grid .img-frame:nth-child(3n+2) { transform: rotate(1deg); }
+.gallery-grid .img-frame:nth-child(3n+3) { transform: rotate(-0.5deg); }
+
+.gallery-grid .img-frame:hover {
+  animation: doodle-wiggle 500ms ease;
+}
+
+@keyframes doodle-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@media (max-width: 900px) {
+  .gallery-grid .img-frame {
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — comic speech bubbles with a tail pointing at the author
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 2.5px solid var(--text);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  position: relative;
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonial::after {
+  content: "";
+  position: absolute;
+  left: 36px;
+  bottom: -18px;
+  width: 26px;
+  height: 20px;
+  background: var(--surface);
+  border-left: 2.5px solid var(--text);
+  border-bottom: 2.5px solid var(--text);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.testimonial:nth-child(2) {
+  background: var(--note-yellow);
+}
+
+.testimonial:nth-child(2)::after {
+  background: var(--note-yellow);
+}
+
+.testimonial:nth-child(3) {
+  background: var(--note-blue);
+}
+
+.testimonial:nth-child(3)::after {
+  background: var(--note-blue);
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-size: 1.35rem;
+}
+
+.testimonial-avatar {
+  border-radius: 50%;
+  border: 2px solid var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — hand-drawn wobbly plus/minus
+   -------------------------------------------------------------------------- */
+.faq-item {
+  border-bottom: 2px dashed var(--border);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-size: 1.35rem;
+}
+
+.faq-icon {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 2px solid var(--text);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — a big blob shape peeking out behind the panel
+   -------------------------------------------------------------------------- */
+.cta {
+  position: relative;
+  border: 3px solid rgba(255, 248, 239, 0.25);
+  overflow: visible;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  z-index: -1;
+  background: var(--accent);
+  opacity: 0.35;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item .card-icon {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 2.5px solid var(--text);
+  box-shadow: var(--shadow);
+  transform: rotate(0.5deg);
+}
+
+.form-field input,
+.form-field textarea {
+  border: 2px dashed var(--border);
+  background: var(--background);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+  border-style: solid;
+}
+
+@media (max-width: 900px) {
+  .contact-form {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+}
+
+.footer-brand .nav-logo::before {
+  content: "\2726";
+  width: 14px;
+  color: var(--secondary);
+  animation: doodle-spin 9s linear infinite;
+}
+
+.footer-col h4 {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+}
+
+.footer-social a {
+  border-radius: 50%;
+  border-style: dashed;
+}

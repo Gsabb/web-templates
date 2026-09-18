@@ -1,0 +1,653 @@
+/* ==========================================================================
+   THEME: NEOBRUTALISM
+   A raw, loud, "cut-paper-and-tape" identity: thick solid black borders,
+   hard offset shadows with zero blur, flat unapologetic colors, and a
+   deliberately collaged composition — boxes overlap, rotate, and stack
+   like shapes thrown on a table rather than sitting politely in a grid.
+
+   STRUCTURAL DEPARTURES FROM THE OTHER THEMES (CSS-only, HTML untouched):
+   - Hero: the photo is unclipped from the grid and *slapped on top* of the
+     text panel at an angle (position:absolute + rotate), collage-style,
+     the way Cinematic Immersive turns the photo into a full-bleed layer —
+     here it becomes a rotated sticker instead.
+   - About: inverted emphasis. The stat numbers become the dominant giant
+     typographic element and the photo shrinks into a small rotated corner
+     sticker — instead of the usual "photo first" reading order.
+   - Services: a jenga/brick stagger (alternating vertical offset per
+     card, pure CSS transform) instead of a flat uniform grid, each tile a
+     different flat color cycling through a small brutalist palette.
+   - Buttons "press" into their own shadow on hover, like a physical stamp.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section. Every rotation/
+   stagger/absolute-position trick is reset back to a plain stack at the
+   SAME breakpoint the underlying grid changes column count, to avoid the
+   exact tablet-overlap bug found (and fixed) in an earlier theme.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Core tokens ---- */
+  --primary: #0a0a0a;                /* ink — used directly as the border/shadow color */
+  --primary-contrast: #ffffff;
+  --secondary: #2b6dff;              /* electric blue — primary actions */
+  --secondary-contrast: #ffffff;
+  --background: #fdf6e9;             /* warm off-white so flat colors pop */
+  --surface: #ffffff;
+  --text: #0a0a0a;
+  --muted: #4a4a4a;
+  --accent: #fde047;                 /* acid yellow — highlight blocks */
+  --border: #0a0a0a;                 /* solid, not translucent: brutalism uses hard ink lines */
+
+  /* ---- Extra flat palette for the staggered service tiles (kept here,
+     grouped with the other colors, so it's easy to re-tune the set) ---- */
+  --brutal-pink: #ff3ec8;
+  --brutal-lime: #baff29;
+  --brutal-cyan: #37e2e2;
+
+  /* ---- Typography: a single ultra-black display face, technical body ---- */
+  --heading-font: "Archivo Black", "Arial Black", sans-serif;
+  --body-font: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Space Grotesk", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 400;
+  --body-weight: 500;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-wide: 0.06em;
+
+  /* ---- Components: zero radius, hard offset shadow, snappy motion ---- */
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-full: 0px;
+  --shadow: 6px 6px 0 var(--border);
+  --shadow-hover: 9px 9px 0 var(--border);
+  --transition: 140ms ease;
+  --transition-slow: 280ms ease;
+}
+
+body {
+  background: var(--background);
+}
+
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — a flat sticker tag, thick border, no dot
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  background: var(--accent);
+  border: 3px solid var(--border);
+  padding: 0.3em 0.8em;
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--text);
+  transform: rotate(-1.5deg);
+}
+
+.eyebrow::before {
+  content: none;
+}
+
+.section-divider span {
+  border-radius: 0;
+  background: var(--secondary);
+  /*border: 2px solid var(--border);*/
+  transform: rotate(45deg) scale(1.1);
+}
+
+.section-divider::before,
+.section-divider::after {
+  background: var(--border);
+  height: 3px;
+  max-width: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — thick border, hard shadow, "press" into the shadow on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0;
+  font-family: var(--heading-font);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+  border: 3px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--border);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--border);
+  background: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION — flat, thick bottom rule
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 4px solid var(--border);
+}
+
+.site-header::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--heading-font);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--secondary);
+  height: 3px;
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--surface);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — the photo is unclipped from the grid flow and slapped on top of
+   the text panel at an angle, collage-style.
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-bottom: calc(var(--spacing-xl) + 90px);
+}
+
+.hero .container {
+  display: block;
+  position: relative;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  background: var(--surface);
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-lg);
+  transform: rotate(-1deg);
+}
+
+.hero-content h1 {
+  font-size: calc(3.2rem * var(--heading-scale));
+  line-height: 1;
+}
+
+.hero-actions {
+  margin-top: var(--spacing-md);
+}
+
+.hero-meta {
+  border-top: 3px solid var(--border);
+  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  color: var(--secondary);
+  font-size: 1.7rem;
+}
+
+.hero-media {
+  position: absolute;
+  top: -28px;
+  right: 6%;
+  width: 34%;
+  z-index: 3;
+  transform: rotate(6deg);
+}
+
+.hero-media .img-frame {
+  border: 4px solid var(--border);
+  box-shadow: 10px 10px 0 var(--accent);
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-bottom: var(--spacing-xl);
+  }
+  .hero-content {
+    transform: rotate(0deg);
+    max-width: 100%;
+  }
+  .hero-media {
+    position: static;
+    width: 60%;
+    margin: var(--spacing-lg) auto 0;
+    transform: rotate(-2deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT — inverted emphasis: giant stat numbers dominate, the photo
+   shrinks into a small rotated corner sticker instead of leading.
+   -------------------------------------------------------------------------- */
+.about .container {
+  align-items: start;
+}
+
+.about-media {
+  transform: rotate(-3deg);
+  max-width: 70%;
+}
+
+.about-media .img-frame {
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0;
+}
+
+.about-body h2 {
+  font-size: calc(2.4rem * var(--heading-scale));
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  border-top: none;
+  margin-top: var(--spacing-lg);
+}
+
+.about-stats div {
+  background: var(--accent);
+  border: 3px solid var(--border);
+  padding: var(--spacing-sm);
+  box-shadow: 4px 4px 0 var(--border);
+}
+
+.about-stats div:nth-child(2) {
+  background: var(--brutal-cyan);
+}
+
+.about-stats div:nth-child(3) {
+  background: var(--brutal-pink);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 2.2rem;
+  display: block;
+}
+
+.about-stats span {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .about-media {
+    max-width: 55%;
+    transform: rotate(-2deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a brick/jenga stagger: alternating vertical offset (pure
+   transform, never touches grid placement, so it can't create the
+   orphan-cell bug), each tile a different flat color.
+   -------------------------------------------------------------------------- */
+.card {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.services .card:nth-child(6n+1) { background: var(--surface); transform: rotate(-1deg) translateY(0); }
+.services .card:nth-child(6n+2) { background: var(--accent); transform: rotate(1deg) translateY(18px); }
+.services .card:nth-child(6n+3) { background: var(--brutal-cyan); transform: rotate(-0.6deg) translateY(-10px); }
+.services .card:nth-child(6n+4) { background: var(--surface); transform: rotate(0.8deg) translateY(10px); }
+.services .card:nth-child(6n+5) { background: var(--brutal-pink); transform: rotate(-1.2deg) translateY(-6px); }
+.services .card:nth-child(6n+6) { background: var(--brutal-lime); transform: rotate(1deg) translateY(14px); }
+
+.services .card:hover {
+  transform: rotate(0deg) translateY(0);
+}
+
+.card-icon {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  border-radius: 0;
+  color: var(--text);
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 900px) {
+  .services .card {
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES — flat numbered strength tiles
+   -------------------------------------------------------------------------- */
+.feature {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  padding: var(--spacing-md);
+}
+
+.feature-icon {
+  background: var(--secondary);
+  color: #fff;
+  border: 2px solid var(--border);
+  border-radius: 0;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — portrait pasted on a flat color mat, role as a sticker label
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md);
+}
+
+.team-member:nth-child(odd) { transform: rotate(-1deg); }
+.team-member:nth-child(even) { transform: rotate(1deg); }
+
+.team-member:hover {
+  transform: rotate(0deg);
+}
+
+.team-photo {
+  border: 3px solid var(--border);
+  border-radius: 0;
+  background: var(--accent);
+  padding: 6px;
+}
+
+.team-member:nth-child(2n) .team-photo {
+  background: var(--brutal-cyan);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.team-role {
+  display: inline-block;
+  background: var(--secondary);
+  color: #fff;
+  border: 2px solid var(--border);
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .team-member:nth-child(odd),
+  .team-member:nth-child(even) {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — thick-bordered polaroids, alternating tilt, unrotate + lift
+   into the shadow on hover
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: var(--spacing-md);
+}
+
+.gallery-grid .img-frame {
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0;
+}
+
+.gallery-grid .img-frame:nth-child(3n+1) { transform: rotate(-1.5deg); }
+.gallery-grid .img-frame:nth-child(3n+2) { transform: rotate(1deg); }
+.gallery-grid .img-frame:nth-child(3n+3) { transform: rotate(-0.5deg); }
+
+.gallery-grid .img-frame:hover {
+  transform: rotate(0deg) translate(-3px, -3px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 900px) {
+  .gallery-grid .img-frame {
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — a giant blown-up quote mark, flat color card
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0;
+  position: relative;
+}
+
+.testimonial:nth-child(2) {
+  background: var(--accent);
+}
+
+.testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: -18px;
+  left: 12px;
+  font-family: var(--heading-font);
+  font-size: 5rem;
+  color: var(--secondary);
+  -webkit-text-stroke: 2px var(--border);
+}
+
+.testimonial-rating {
+  color: var(--text);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.1rem;
+  text-transform: none;
+}
+
+.testimonial-avatar {
+  border: 3px solid var(--border);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — thick-bordered rows, flat square plus/minus
+   -------------------------------------------------------------------------- */
+.faq-list {
+  border-top: none;
+}
+
+.faq-item {
+  border: 3px solid var(--border);
+  margin-bottom: var(--spacing-sm);
+  background: var(--surface);
+}
+
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.faq-icon {
+  background: var(--accent);
+  border: 2px solid var(--border);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--text);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — solid flat block, huge stroked headline
+   -------------------------------------------------------------------------- */
+.cta {
+  background: var(--brutal-pink);
+  border: 4px solid var(--border);
+  box-shadow: 10px 10px 0 var(--border);
+  border-radius: 0;
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  color: #fff;
+  -webkit-text-stroke: 1.5px var(--border);
+}
+
+.cta p {
+  color: rgba(10, 10, 10, 0.75);
+}
+
+.cta .btn-primary {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.cta .btn-secondary {
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.contact-info-item .card-icon {
+  background: var(--accent);
+  border: 2px solid var(--border);
+  border-radius: 0;
+  color: var(--text);
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0;
+}
+
+.form-field label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.form-field input,
+.form-field textarea {
+  border: 3px solid var(--border);
+  border-radius: 0;
+  background: var(--background);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--secondary);
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--text);
+  border-top: 6px solid var(--secondary);
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border: 2px solid #fff;
+}
+
+.footer-col h4 {
+  color: var(--accent);
+}
+
+.footer-social a {
+  border-radius: 0;
+  border: 2px solid #fff;
+}
