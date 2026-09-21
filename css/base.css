@@ -47,6 +47,13 @@
   --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* The hero headline's max size on a generously tall/wide screen. Themes
+     override this single number instead of writing their own font-size —
+     the actual responsive formula lives once, in the h1 rule below, and
+     shrinks this value on short/narrow viewports so the hero always has
+     a real shot at fitting in one screen. */
+  --hero-heading-max: 3.4rem;
+
   /* Layout */
   --container-max: 1180px;
   --container-padding: var(--spacing-md);
@@ -98,6 +105,7 @@ body {
   line-height: 1.6;
   color: var(--text);
   background: var(--background);
+  padding-top: var(--header-height);
   overflow-x: hidden;
 }
 
@@ -184,7 +192,11 @@ h4 {
 }
 
 h1 {
-  font-size: calc(3rem * var(--heading-scale));
+  /* Scales with both viewport width and height, so a short laptop window
+     shrinks the headline instead of the hero simply growing taller than
+     the screen. Caps at each theme's own --hero-heading-max on generous
+     screens, so nothing loses its intended punch on a normal desktop. */
+  font-size: clamp(2rem, 2.3vw + 4vh, var(--hero-heading-max, calc(3.4rem * var(--heading-scale))));
 }
 
 h2 {
@@ -326,7 +338,8 @@ p {
   aspect-ratio: var(--ratio, 4 / 3);
 }
 
-.img-frame img {
+.img-frame img,
+.img-frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -171,7 +171,7 @@ h1, h2, h3, h4 {
    centered hero block.
    -------------------------------------------------------------------------- */
 .hero {
-  padding-block: var(--spacing-xl) calc(var(--spacing-xl) * 1.4);
+  padding-block: clamp(1.5rem, 5vh, var(--spacing-xl)) clamp(2rem, 7vh, calc(var(--spacing-xl) * 1.4));
 }
 
 .hero .container {
@@ -184,14 +184,14 @@ h1, h2, h3, h4 {
   position: relative;
   z-index: 2;
   background: var(--surface);
-  padding: var(--spacing-xl) var(--spacing-lg);
+  padding: clamp(1.5rem, 6vh, var(--spacing-xl)) var(--spacing-lg);
   margin-right: -72px;
   box-shadow: var(--shadow);
   border-left: 3px solid var(--accent);
 }
 
 .hero-content h1 {
-  font-size: calc(3.4rem * var(--heading-scale));
+  --hero-heading-max: 3.2rem;
 }
 
 .hero-content p {

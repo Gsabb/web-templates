@@ -1,0 +1,419 @@
+/* ==========================================================================
+   THEME: DARK LOFI
+   A cozy, warm-dark "late-night listening room" identity — closer to a
+   candlelit café than a neon nightclub. Warm charcoal-brown grounds,
+   a single terracotta signal, fully rounded modern components, and a
+   hero photo presented as a glowing circular "album art" disc instead
+   of a rectangle — a quiet nod to the lofi/vinyl mood without needing
+   any audio player markup.
+
+   STRUCTURAL DEPARTURE: the hero photo becomes a circular disc with a
+   soft ambient glow that slowly breathes (a subtle looping animation,
+   paused for prefers-reduced-motion), rather than the usual rectangular
+   crop — done purely by reshaping the existing .img-frame.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* ---- Colors: warm charcoal-brown dark, terracotta signal, amber glow ---- */
+  --primary: #0f0d0c;                /* near-black — footer, deepest ground */
+  --primary-contrast: #f2ece2;
+  --secondary: #c97b4a;              /* terracotta — primary actions, links */
+  --secondary-contrast: #0f0d0c;
+  --background: #1c1a17;             /* warm charcoal-brown page ground */
+  --surface: #26221f;                /* card surface, one step lighter */
+  --text: #f2ece2;
+  --muted: #a89f92;
+  --accent: #e8b96a;                 /* warm amber — glow ring, ratings */
+  --border: rgba(242, 236, 226, 0.1);
+
+  /* ---- Typography: rounded confident sans, clean readable body ---- */
+  --heading-font: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --body-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Inter", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-wide: 0.08em;
+
+  /* ---- Components: fully rounded, soft dark shadow, easy motion ---- */
+  --radius: 20px;
+  --radius-sm: 14px;
+  --radius-full: 999px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 16px 44px rgba(0, 0, 0, 0.5);
+  --transition: 220ms ease;
+  --transition-slow: 520ms ease;
+}
+
+body {
+  background: var(--background);
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  background: var(--secondary);
+}
+
+.section-divider span {
+  background: var(--secondary);
+  border-radius: 50%;
+  transform: none;
+}
+
+.section-divider::before,
+.section-divider::after {
+  background: var(--border);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — modern, fully rounded, warm glow on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--radius-full);
+  font-family: var(--heading-font);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(201, 123, 74, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(201, 123, 74, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(242, 236, 226, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: rgba(242, 236, 226, 0.1);
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: color-mix(in srgb, var(--background) 88%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--heading-font);
+  font-weight: 800;
+}
+
+.nav-logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.nav-links a {
+  font-weight: 600;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--background);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — ambient warm glow, photo as a breathing circular disc
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::before {
+  top: -10%;
+  left: -8%;
+  width: 42vw;
+  height: 42vw;
+  background: radial-gradient(circle, rgba(201, 123, 74, 0.22), transparent 70%);
+}
+
+.hero::after {
+  bottom: -14%;
+  right: -6%;
+  width: 38vw;
+  height: 38vw;
+  background: radial-gradient(circle, rgba(232, 185, 106, 0.16), transparent 70%);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  --hero-heading-max: 3.4rem;
+}
+
+.hero-meta div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: clamp(0.5rem, 2vw, var(--spacing-sm)) clamp(0.75rem, 3vw, var(--spacing-md));
+}
+
+.hero-meta strong {
+  color: var(--accent);
+}
+
+.hero-media .img-frame {
+  border-radius: 50%;
+  animation: lofi-breathe 6s ease-in-out infinite;
+}
+
+@keyframes lofi-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 185, 106, 0.28), 0 20px 60px rgba(0, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 0 26px rgba(232, 185, 106, 0), 0 20px 60px rgba(0, 0, 0, 0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media .img-frame {
+    animation: none;
+    box-shadow: 0 0 0 14px rgba(232, 185, 106, 0.12), 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border-radius: var(--radius);
+}
+
+.about-stats {
+  border-top-color: var(--border);
+}
+
+.about-stats strong {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+}
+
+.card-icon {
+  background: rgba(232, 185, 106, 0.14);
+  color: var(--accent);
+}
+
+.card h3 {
+  font-family: var(--heading-font);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: rgba(201, 123, 74, 0.16);
+  color: var(--secondary);
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — rounded portraits, warm ring
+   -------------------------------------------------------------------------- */
+.team-member {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+}
+
+.team-photo {
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+}
+
+.team-role {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — rounded "album cover" grid
+   -------------------------------------------------------------------------- */
+.gallery-grid .img-frame {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.gallery-grid .img-frame img {
+  transition: transform var(--transition-slow);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-weight: 500;
+}
+
+.testimonial-avatar {
+  border-radius: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+  overflow: hidden;
+}
+
+.faq-list {
+  border-top: none;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--accent);
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION
+   -------------------------------------------------------------------------- */
+.cta {
+  background: linear-gradient(135deg, var(--surface), var(--primary));
+  border: 1px solid var(--border);
+}
+
+.cta .btn-primary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.contact-info-item .card-icon {
+  background: rgba(232, 185, 106, 0.14);
+  color: var(--accent);
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.form-field input,
+.form-field textarea {
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+}
+
+.footer-brand .nav-logo::before {
+  background: var(--secondary);
+}
+
+.footer-col h4 {
+  color: var(--accent);
+}

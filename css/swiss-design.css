@@ -169,15 +169,11 @@ h1, h2, h3, h4 {
    HERO — oversized left-aligned type block, image cropped hard right
    -------------------------------------------------------------------------- */
 .hero {
-  padding-block: var(--spacing-xl) calc(var(--spacing-xl) * 0.6);
+  padding-block: clamp(1.5rem, 5vh, var(--spacing-xl)) clamp(1.5rem, 4vh, calc(var(--spacing-xl) * 0.6));
 }
 
 .hero .container {
   align-items: end;
-    display: grid;
-    grid-template-columns: 1.05fr 0.8fr;
-    gap: var(--spacing-xl);
-    align-items: center;
 }
 
 .hero-content .eyebrow {
@@ -185,31 +181,31 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h1 {
-  font-size: calc(4.6rem * var(--heading-scale));
+  --hero-heading-max: 3.6rem;
   letter-spacing: -0.03em;
 }
 
 .hero-content p {
   font-size: 1.05rem;
-  padding-top: var(--spacing-md);
+  padding-top: clamp(0.5rem, 2vh, var(--spacing-md));
   border-top: 3px solid var(--text);
   max-width: 40ch;
 }
 
 .hero-actions {
-  margin-top: var(--spacing-lg);
+  margin-top: clamp(0.5rem, 2vh, var(--spacing-lg));
 }
 
 .hero-meta {
   border-top: 1px solid var(--border);
-  padding-top: var(--spacing-md);
+  padding-top: clamp(0.5rem, 2vh, var(--spacing-md));
 }
 
 .hero-meta strong {
   font-family: var(--heading-font);
   font-weight: 900;
   color: var(--secondary);
-  font-size: 2rem;
+  font-size: clamp(1rem, 2.8vw, 2rem);
 }
 
 .hero-meta span {

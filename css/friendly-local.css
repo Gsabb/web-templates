@@ -110,14 +110,14 @@ h1, h2, h3, h4 {
 }
 
 .btn-secondary {
-  background: var(--secondary);
-  border: 1.5px solid var(--border);
+  background: transparent;
+  border: 1.5px solid var(--secondary);
   color: var(--secondary);
 }
 
 .btn-secondary:hover {
-  border-color: var(--secondary);
-  color: var(--secondary);
+  background: var(--secondary);
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -175,7 +175,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h1 {
-  font-size: calc(3.1rem * var(--heading-scale));
+  --hero-heading-max: 3.1rem;
   color: var(--text);
 }
 
@@ -195,7 +195,7 @@ h1, h2, h3, h4 {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: clamp(0.5rem, 2vw, var(--spacing-sm)) clamp(0.75rem, 3vw, var(--spacing-md));
   box-shadow: var(--shadow);
 }
 
@@ -461,8 +461,28 @@ h1, h2, h3, h4 {
    CALL TO ACTION
    -------------------------------------------------------------------------- */
 .cta {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--secondary), #257c78);
   border-radius: var(--radius);
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(242, 153, 74, 0.28), transparent 45%);
+  pointer-events: none;
+}
+
+.cta h2,
+.cta p,
+.cta-actions {
+  position: relative;
+  z-index: 1;
 }
 
 .cta h2 {
@@ -505,9 +525,38 @@ h1, h2, h3, h4 {
 }
 
 .contact-form {
+  position: relative;
   background: var(--surface);
   border: none;
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: visible;
+}
+
+.contact-form::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 90px;
+  height: 90px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 153, 74, 0.25), transparent 70%);
+}
+
+.contact-form::after {
+  content: "\2709  We reply fast";
+  position: absolute;
+  top: -14px;
+  left: var(--spacing-md);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-full);
   box-shadow: var(--shadow);
 }
 
@@ -580,4 +629,79 @@ h1, h2, h3, h4 {
 
 .team-role {
   color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a swipeable horizontal carousel instead of a fixed grid,
+   fitting the friendly, mobile-app feel of this theme. Native scroll-snap:
+   drag, swipe, or scroll — no JavaScript needed.
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  display: flex;
+  grid-template-columns: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-md);
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) transparent;
+  mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 32px), transparent);
+}
+
+.services .grid-3::-webkit-scrollbar {
+  height: 6px;
+}
+
+.services .grid-3::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+}
+
+.services .card {
+  flex: 0 0 auto;
+  width: min(68vw, 280px);
+  scroll-snap-align: start;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — a slow auto-drifting strip instead of a static mosaic: the
+   row gently pans back and forth on its own, pausing the moment a visitor
+   hovers or touches it, and stopping entirely for reduced-motion users.
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  display: flex;
+  grid-template-columns: none;
+  gap: var(--spacing-md);
+  animation: friendly-drift 26s ease-in-out infinite;
+}
+
+.gallery-grid:hover,
+.gallery-grid:focus-within {
+  animation-play-state: paused;
+}
+
+.gallery-grid .img-frame {
+  flex: 0 0 auto;
+  width: min(56vw, 340px);
+  height: 280px;
+  aspect-ratio: unset;
+}
+
+.gallery-grid .img-frame.gallery-item--wide,
+.gallery-grid .img-frame.gallery-item--tall {
+  width: min(72vw, 440px);
+  height: 280px;
+}
+
+@keyframes friendly-drift {
+  0% { transform: translateX(0); }
+  85% { transform: translateX(-62%); }
+  100% { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-grid {
+    animation: none;
+    overflow-x: auto;
+  }
 }

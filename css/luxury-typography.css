@@ -180,7 +180,7 @@ p {
    gold-matted accent instead of dominating half the viewport.
    -------------------------------------------------------------------------- */
 .hero {
-  padding-block: calc(var(--spacing-xl) * 1.2) var(--spacing-xl);
+  padding-block: clamp(2rem, 7vh, calc(var(--spacing-xl) * 1.2)) clamp(1.5rem, 5vh, var(--spacing-xl));
 }
 
 .hero .container {
@@ -194,7 +194,7 @@ p {
 }
 
 .hero-content h1 {
-  font-size: calc(5.4rem * var(--heading-scale));
+  --hero-heading-max: 4rem;
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: -0.01em;
@@ -204,12 +204,12 @@ p {
   font-size: 1.05rem;
   font-weight: 300;
   border-top: 1px solid var(--border);
-  padding-top: var(--spacing-md);
+  padding-top: clamp(0.5rem, 2vh, var(--spacing-md));
 }
 
 .hero-meta {
   border-top: 1px solid var(--border);
-  padding-top: var(--spacing-md);
+  padding-top: clamp(0.5rem, 2vh, var(--spacing-md));
 }
 
 .hero-meta strong {

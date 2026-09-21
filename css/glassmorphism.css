@@ -193,7 +193,7 @@ body::after {
    HERO
    -------------------------------------------------------------------------- */
 .hero-content h1 {
-  font-size: calc(3.4rem * var(--heading-scale));
+  --hero-heading-max: 3.4rem;
 }
 
 .hero-meta div {
@@ -202,7 +202,7 @@ body::after {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: clamp(0.5rem, 2vw, var(--spacing-sm)) clamp(0.75rem, 3vw, var(--spacing-md));
   box-shadow: var(--shadow);
 }
 
@@ -488,3 +488,79 @@ body::after {
 .footer-col h4 {
   color: var(--accent);
 }
+
+/* --------------------------------------------------------------------------
+   SERVICES — a glass accordion list: icon + title sit on a slim row, and
+   the description reveals on hover (devices with real hover only — on
+   touch/coarse pointers the description just stays visible, so nothing
+   is ever hidden behind a gesture a visitor can't make).
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  gap: var(--spacing-sm);
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.services .card {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  column-gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.services .card-icon {
+  grid-row: 1;
+  grid-column: 1;
+  margin-bottom: 0;
+}
+
+.services .card h3 {
+  grid-row: 1;
+  grid-column: 2;
+  margin-bottom: 0;
+}
+
+.services .card p {
+  grid-row: 2;
+  grid-column: 2;
+  margin-top: var(--spacing-xs);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .services .card p {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+  }
+  .services .card:hover p {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: var(--spacing-xs);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — a true Pinterest-style masonry via CSS columns, with varied
+   aspect ratios so tiles settle at different heights instead of a rigid
+   grid.
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  display: block;
+  grid-template-columns: none;
+  columns: 3 220px;
+  column-gap: var(--spacing-md);
+}
+
+.gallery-grid .img-frame {
+  break-inside: avoid;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.gallery-grid .img-frame:nth-child(3n+1) { --ratio: 3 / 4; }
+.gallery-grid .img-frame:nth-child(3n+2) { --ratio: 1 / 1; }
+.gallery-grid .img-frame:nth-child(3n+3) { --ratio: 4 / 5; }

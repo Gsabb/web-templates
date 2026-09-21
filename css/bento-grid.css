@@ -154,12 +154,12 @@ body {
    HERO — stat row becomes flat colored bento chips
    -------------------------------------------------------------------------- */
 .hero-content h1 {
-  font-size: calc(3.6rem * var(--heading-scale));
+  --hero-heading-max: 3.6rem;
 }
 
 .hero-meta div {
   border-radius: var(--radius-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: clamp(0.5rem, 2vw, var(--spacing-sm)) clamp(0.75rem, 3vw, var(--spacing-md));
   box-shadow: var(--shadow);
 }
 

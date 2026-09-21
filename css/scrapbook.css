@@ -207,7 +207,7 @@ p {
    HERO — pinned photo, hand-lettered headline
    -------------------------------------------------------------------------- */
 .hero-content h1 {
-  font-size: calc(4rem * var(--heading-scale));
+  --hero-heading-max: 4.6rem;
   color: var(--text);
 }
 
@@ -217,7 +217,7 @@ p {
 
 .hero-meta strong {
   font-family: var(--heading-font);
-  font-size: 2rem;
+  font-size: clamp(1rem, 2.8vw, 2rem);
   color: var(--secondary);
 }
 

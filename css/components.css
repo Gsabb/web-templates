@@ -51,14 +51,31 @@
    NAVIGATION
    -------------------------------------------------------------------------- */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   height: var(--header-height);
   display: flex;
   align-items: center;
   background: color-mix(in srgb, var(--background) 88%, transparent);
   border-bottom: 1px solid var(--border);
+  transform: translateY(0);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Semi-sticky behavior (JS-driven): slides fully out of view while
+   scrolling down, and the .is-hidden class is removed — sliding it back
+   in — the instant the user scrolls up, regardless of scroll position. */
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
 }
 
 /* backdrop-filter lives on a pseudo-element, not .site-header itself,
@@ -236,10 +253,15 @@
    HERO
    -------------------------------------------------------------------------- */
 .hero {
-  padding-block: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  padding-block: clamp(1.5rem, 5vh, var(--spacing-xl));
 }
 
 .hero .container {
+  width: 100%;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: var(--spacing-xl);
@@ -255,47 +277,89 @@
 }
 
 .hero-content h1 {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: clamp(0.75rem, 2vh, var(--spacing-md));
 }
 
 .hero-content p {
   font-size: 1.15rem;
   max-width: 46ch;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: clamp(1rem, 3vh, var(--spacing-lg));
 }
 
 .hero-actions {
   display: flex;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: clamp(1rem, 3vh, var(--spacing-lg));
 }
 
 .hero-meta {
   display: flex;
-  flex-wrap: wrap;
-  row-gap: var(--spacing-sm);
-  gap: var(--spacing-lg);
+  flex-wrap: nowrap;
+  gap: clamp(0.5rem, 3vw, var(--spacing-lg));
+  width: 100%;
 }
 
 .hero-meta div {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .hero-meta strong {
   font-family: var(--heading-font);
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  white-space: nowrap;
 }
 
 .hero-meta span {
-  font-size: 0.85rem;
+  font-size: clamp(0.66rem, 1.4vw, 0.85rem);
   color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero-media .img-frame {
   --ratio: 1 / 1;
+  height: min(52vh, 480px);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+@media (max-width: 900px) {
+  .hero-media .img-frame {
+    height: min(38vh, 360px);
+  }
+}
+
+/* Belt-and-suspenders: vw+vh clamps handle most cases, but a laptop with
+   a lot of browser chrome (bookmarks bar, extensions) can still end up
+   with a short *usable* viewport even at a normal width. This targets
+   viewport HEIGHT directly and sheds the least essential hero content
+   (the stat row) so the headline + CTA — the actually important part —
+   always has room. */
+@media (max-height: 720px) {
+  .hero {
+    padding-block: clamp(0.75rem, 3vh, 1.5rem) !important;
+  }
+  .hero-content h1 {
+    margin-bottom: 0.5rem !important;
+  }
+  .hero-content p {
+    margin-bottom: 0.75rem !important;
+    padding-top: 0 !important;
+  }
+  .hero-actions {
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+  }
+  .hero-meta {
+    display: none !important;
+  }
 }
 
 @media (max-width: 900px) {

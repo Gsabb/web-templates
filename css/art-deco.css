@@ -1,0 +1,538 @@
+/* ==========================================================================
+   THEME: ART DECO
+   A 1920s geometric-glamour identity — the visual language this collection
+   was missing: symmetrical ornament, a thin geometric display face, a
+   dark ink-and-gold bookend hero (in the tradition of a Gatsby-era
+   poster), double-line gold photo frames, and small sunburst medallions
+   behind every numbered element instead of a plain numeral.
+
+   STRUCTURAL DEPARTURES: the hero sits on a near-black ground (light body
+   afterward, like a poster's dark top band), photo frames get a true
+   double gold outline (border + offset outline — no extra markup needed),
+   and services numerals sit inside a radiating sunburst medallion.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Colors: ivory paper, ink, deep emerald, gold linework ---- */
+  --primary: #141614;               /* ink — dark hero/footer/CTA bookends */
+  --primary-contrast: #f7f2e7;
+  --secondary: #0e7a6c;             /* deep emerald — actions, links */
+  --secondary-contrast: #ffffff;
+  --background: #f7f2e7;            /* warm ivory paper */
+  --surface: #fffdf6;
+  --text: #141614;
+  --muted: #6b6558;
+  --accent: #c9a227;                /* gold — ornament, rules, medallions */
+  --border: rgba(20, 22, 20, 0.16);
+
+  /* ---- Typography: thin geometric deco display, clean geometric body ---- */
+  --heading-font: "Poiret One", "Futura", sans-serif;
+  --body-font: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Montserrat", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 400;
+  --body-weight: 400;
+  --letter-spacing-tight: 0em;
+  --letter-spacing-wide: 0.22em;
+
+  /* ---- Components: sharp corners, thin gold-line shadow ---- */
+  --radius: 2px;
+  --radius-sm: 2px;
+  --radius-full: 2px;
+  --shadow: 0 0 0 1px var(--border), 0 14px 30px rgba(20, 22, 20, 0.08);
+  --shadow-hover: 0 0 0 1px var(--accent), 0 18px 40px rgba(20, 22, 20, 0.12);
+  --transition: 260ms ease;
+  --transition-slow: 600ms ease;
+}
+
+body {
+  background: var(--background);
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   EYEBROW — wide-tracked, thin gold rule
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  border-radius: 0;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-divider span {
+  border-radius: 0;
+  transform: rotate(45deg) scale(0.75);
+  background: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   DOUBLE GOLD-LINE FRAME — a true 1920s poster border on every photo,
+   using an offset outline so no extra markup is needed.
+   -------------------------------------------------------------------------- */
+.img-frame {
+  border-radius: 0;
+  border: 2px solid var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — rectangular, thin gold hairline, ink fills on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0;
+  font-family: var(--utility-font);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 1em 2em;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: var(--text);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: inherit;
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--heading-font);
+  font-size: 1.6rem;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 600;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--accent);
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: var(--background);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — a dark ink-and-gold bookend, like a poster's title band, with a
+   radiating gold sunburst medallion behind the frame.
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: var(--primary);
+  overflow: hidden;
+}
+
+.hero-content .eyebrow {
+  color: var(--accent);
+}
+
+.hero-content h1 {
+  color: var(--primary-contrast);
+  --hero-heading-max: 4.4rem;
+  font-weight: 400;
+}
+
+.hero-content p {
+  color: rgba(247, 242, 231, 0.75);
+}
+
+.hero-meta {
+  border-top: 1px solid rgba(201, 162, 39, 0.3);
+  padding-top: var(--spacing-md);
+}
+
+.hero-meta strong {
+  font-family: var(--heading-font);
+  color: var(--accent);
+  font-size: clamp(1rem, 2.4vw, 1.7rem);
+}
+
+.hero-meta span {
+  color: rgba(247, 242, 231, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+}
+
+.hero-media {
+  position: relative;
+}
+
+.hero-media::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(201, 162, 39, 0.28) 0deg 4deg,
+    transparent 4deg 16deg
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-media .img-frame {
+  border-color: var(--accent);
+  outline-color: rgba(201, 162, 39, 0.5);
+}
+
+.hero .btn-secondary {
+  color: white;
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-body h2 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: calc(2.6rem * var(--heading-scale));
+}
+
+.about-stats {
+  border-top: 1px solid var(--border);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — numerals sit inside a radiating gold sunburst medallion
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  max-width: 860px;
+  margin-inline: auto;
+  gap: 0;
+  counter-reset: deco;
+  border-top: 1px solid var(--border);
+}
+
+.services .card {
+  counter-increment: deco;
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  align-items: center;
+  column-gap: var(--spacing-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-lg) 0;
+}
+
+.services .card:hover {
+  transform: none;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.services .card::before {
+  content: counter(deco, decimal-leading-zero);
+  grid-row: 1 / -1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--heading-font);
+  font-size: 1.1rem;
+  color: var(--text);
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(201, 162, 39, 0.5) 0deg 6deg,
+    transparent 6deg 18deg
+  );
+}
+
+.services .card-icon {
+  display: none;
+}
+
+.services .card h3 {
+  grid-column: 2;
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.services .card p {
+  grid-column: 2;
+}
+
+@media (max-width: 560px) {
+  .services .card {
+    grid-template-columns: 48px 1fr;
+    column-gap: var(--spacing-md);
+  }
+  .services .card::before {
+    width: 40px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — gold diamond corner accents on each portrait
+   -------------------------------------------------------------------------- */
+.team-photo {
+  position: relative;
+}
+
+.team-photo::before,
+.team-photo::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+.team-photo::before {
+  top: -13px;
+  left: -13px;
+}
+
+.team-photo::after {
+  bottom: -13px;
+  right: -13px;
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.team-role {
+  font-family: var(--utility-font);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  gap: var(--spacing-md);
+}
+
+.gallery-grid .img-frame img {
+  filter: saturate(0.9) contrast(1.05);
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — diamond accent, deco-serif quote
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  position: relative;
+}
+
+.testimonial::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 24px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+}
+
+.testimonial-avatar {
+  border-radius: 0;
+  border: 1px solid var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--accent);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION — the dark bookend returns
+   -------------------------------------------------------------------------- */
+.cta {
+  border-radius: 0;
+  border: 1px solid var(--accent);
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
+.cta .btn-primary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.cta .btn-primary:hover {
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item .card-icon {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.form-field input,
+.form-field textarea {
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+  border-top: 1px solid var(--accent);
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.footer-col h4 {
+  font-family: var(--heading-font);
+  color: var(--accent);
+  font-weight: 400;
+}

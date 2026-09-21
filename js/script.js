@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initScrollReveal();
   initFooterYear();
+  initAutoHideNav();
 });
 
 /* --------------------------------------------------------------------------
@@ -69,7 +70,6 @@ function initFaqAccordion() {
     question.addEventListener("click", () => {
       const isOpen = question.getAttribute("aria-expanded") === "true";
 
-      // Close any other open item (single-open accordion)
       items.forEach((other) => {
         if (other === item) return;
         const otherQuestion = other.querySelector(".faq-question");
@@ -119,4 +119,75 @@ function initScrollReveal() {
 function initFooterYear() {
   const el = document.querySelector("[data-year]");
   if (el) el.textContent = new Date().getFullYear();
+}
+
+/* --------------------------------------------------------------------------
+   Semi-sticky header: stays visible by default, hides while scrolling down,
+   and comes back immediately when scrolling up. Sticky positioning is kept
+   in CSS; this only toggles the visibility class.
+   -------------------------------------------------------------------------- */
+function initAutoHideNav() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  let lastY = window.scrollY;
+  let ticking = false;
+  let isHidden = header.classList.contains("is-hidden");
+  const topRevealOffset = 10;
+
+  const showHeader = () => {
+    if (isHidden) {
+      header.classList.remove("is-hidden");
+      isHidden = false;
+    }
+  };
+
+  const hideHeader = () => {
+    if (!isHidden) {
+      header.classList.add("is-hidden");
+      isHidden = true;
+    }
+  };
+
+  const onScrollStateChange = () => {
+    if (ticking) return;
+
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      const currentY = window.scrollY;
+
+      if (!document.querySelector(".nav-links.is-open")) {
+        if (currentY <= topRevealOffset) {
+          showHeader();
+        } else if (currentY > lastY) {
+          hideHeader();
+        } else if (currentY < lastY) {
+          showHeader();
+        }
+      }
+
+      lastY = currentY;
+      ticking = false;
+    });
+  };
+
+  const onWheel = (event) => {
+    if (document.querySelector(".nav-links.is-open")) return;
+
+    if (window.scrollY <= topRevealOffset) {
+      showHeader();
+      return;
+    }
+
+    if (event.deltaY > 0) {
+      hideHeader();
+    } else if (event.deltaY < 0) {
+      showHeader();
+    }
+  };
+
+  [window, document].forEach((target) => {
+    target.addEventListener("wheel", onWheel, { passive: true });
+    target.addEventListener("scroll", onScrollStateChange, { passive: true });
+  });
 }

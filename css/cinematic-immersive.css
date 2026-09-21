@@ -199,10 +199,11 @@ h1, h2, h3, h4 {
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: calc(92vh - var(--header-height));
+  min-height: calc(92svh - var(--header-height));
   display: flex;
   align-items: center;
-  padding-block: var(--spacing-xl);
+  padding-block: clamp(1.5rem, 5vh, var(--spacing-xl));
   overflow: hidden;
   isolation: isolate;
 }
@@ -227,7 +228,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h1 {
-  font-size: calc(4.2rem * var(--heading-scale) / 1.15);
+  --hero-heading-max: 4.2rem;
   letter-spacing: -0.01em;
   color: var(--text);
   margin-block: var(--spacing-md);

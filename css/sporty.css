@@ -1,0 +1,637 @@
+/* ==========================================================================
+   THEME: SPORTY
+   A bold athletic-brand identity (Nike/Adidas-adjacent): crisp white,
+   ink black, a single sharp red signal and a hot-yellow spark accent,
+   a huge-impact condensed display face, and angled/diagonal geometry
+   throughout instead of soft curves.
+
+   SIGNATURE MOTIF — THE LINE: every section heading gets a horizontal
+   bar that draws itself in (0 → full width) the moment the section
+   scrolls into view, using the engine's existing scroll-reveal wiring
+   (the [data-reveal]/.is-visible class the JS already toggles — no new
+   JS or HTML, just a transition hooked to a class that's already there).
+   The same "line" idea reappears as a diagonal stripe behind the hero,
+   as a divider inside services rows, and as a hover sweep on gallery
+   tiles and buttons.
+
+   Hero and one other section (Gallery's featured tile) use a real,
+   freely licensed action photo as a full-section background, in the
+   same spirit as Nature and per the site owner's request for more
+   background-image sections with bold text over them.
+
+   HTML IS NOT MODIFIED. Only existing classes are restyled, including the
+   .team-* classes shipped alongside the Team section.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- Colors: crisp white, ink, sharp red, hot-yellow spark ---- */
+  --primary: #0d0d0d;                /* ink — dark sections, footer */
+  --primary-contrast: #ffffff;
+  --secondary: #ff2d2d;              /* sharp red — primary actions, lines */
+  --secondary-contrast: #ffffff;
+  --background: #ffffff;
+  --surface: #f5f5f5;
+  --text: #0d0d0d;
+  --muted: #5a5a5a;
+  --accent: #ffcc00;                 /* hot yellow — spark highlights */
+  --border: rgba(13, 13, 13, 0.12);
+
+  /* ---- Typography: huge-impact display, technical condensed body ---- */
+  --heading-font: "Anton", "Arial Narrow", sans-serif;
+  --body-font: "Barlow Condensed", -apple-system, BlinkMacSystemFont, sans-serif;
+  --utility-font: "Barlow Condensed", sans-serif;
+  --heading-scale: 1;
+  --heading-weight: 400;
+  --body-weight: 400;
+  --letter-spacing-tight: 0em;
+  --letter-spacing-wide: 0.14em;
+
+  /* ---- Components: sharp corners, hard shadow, snappy motion ---- */
+  --radius: 2px;
+  --radius-sm: 2px;
+  --radius-full: 2px;
+  --shadow: 0 10px 24px rgba(13, 13, 13, 0.12);
+  --shadow-hover: 0 16px 34px rgba(13, 13, 13, 0.18);
+  --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--background);
+}
+
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   THE SIGNATURE LINE — a horizontal bar that draws itself in on scroll,
+   attached to every section-head (which already carries [data-reveal]).
+   -------------------------------------------------------------------------- */
+.section-head {
+  position: relative;
+  padding-top: 24px;
+}
+
+.section-head::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 0;
+  background: var(--secondary);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.section-head.is-visible::before {
+  width: 72px;
+}
+
+.section-head--center::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.eyebrow {
+  font-family: var(--utility-font);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.eyebrow::before {
+  border-radius: 0;
+  width: 16px;
+  height: 4px;
+  background: var(--secondary);
+}
+
+.section-divider {
+  height: 4px;
+  background: var(--text);
+}
+
+.section-divider::before,
+.section-divider::after,
+.section-divider span {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — angled parallelogram shape, sweeps fill on hover
+   -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0;
+  font-family: var(--heading-font);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--text);
+}
+
+.btn-secondary {
+  background: var(--text);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  background: #fff;
+  border-bottom: 3px solid var(--text);
+}
+
+.site-header::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  font-family: var(--utility-font);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-links a:not(.btn)::after {
+  background: var(--secondary);
+  height: 3px;
+}
+
+@media (max-width: 1400px) {
+  .nav-links {
+    background: #fff;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — full-bleed action photo, bold text anchored bottom-left, a
+   diagonal red/yellow stripe cutting across for speed and energy.
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  display: flex;
+  align-items: flex-end;
+  padding-block: 0;
+}
+
+.hero .container {
+  display: block;
+  width: 100%;
+  padding-bottom: clamp(2.5rem, 9vh, 5.5rem);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+}
+
+.hero-content .eyebrow {
+  color: #fff;
+  background: var(--secondary);
+  padding: 0.3em 0.8em;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+
+.hero-content .eyebrow::before {
+  background: #fff;
+}
+
+.hero-content h1 {
+  color: #fff;
+  --hero-heading-max: 4.6rem;
+  line-height: 0.95;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hero-meta {
+  border-top: 3px solid var(--accent);
+  padding-top: var(--spacing-md);
+}
+
+.hero-meta strong {
+  color: var(--accent);
+  font-family: var(--heading-font);
+}
+
+.hero-meta span {
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media .img-frame {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background:
+    url("https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2000&auto=format&fit=crop")
+    center 30% / cover no-repeat,
+    var(--primary);
+  filter: grayscale(0.25) contrast(1.1);
+}
+
+.hero-media .img-frame img {
+  display: none;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(13, 13, 13, 0.97) 0%, rgba(13, 13, 13, 0.6) 22%, rgba(13, 13, 13, 0.28) 45%, rgba(13, 13, 13, 0.08) 68%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  right: 10%;
+  width: 110px;
+  height: 180%;
+  background: linear-gradient(180deg, var(--secondary), var(--accent));
+  transform: rotate(14deg);
+  z-index: 1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .hero::after {
+    width: 56px;
+    right: 4%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+.about-media .img-frame {
+  border-radius: 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+}
+
+.about-stats {
+  border-top: 3px solid var(--text);
+}
+
+.about-stats strong {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+}
+
+.about-stats span {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES — a scoreboard-style list: bold numerals, a horizontal rule
+   under each row that extends on hover (the signature line again).
+   -------------------------------------------------------------------------- */
+.services .grid-3 {
+  grid-template-columns: 1fr;
+  max-width: 860px;
+  margin-inline: auto;
+  gap: 0;
+  counter-reset: sporty;
+  border-top: 3px solid var(--text);
+}
+
+.services .card {
+  counter-increment: sporty;
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  column-gap: var(--spacing-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-md) 0;
+  overflow: hidden;
+}
+
+.services .card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: var(--secondary);
+  transition: width var(--transition-slow);
+}
+
+.services .card:hover::after {
+  width: 100%;
+}
+
+.services .card:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--surface);
+}
+
+.services .card::before {
+  content: counter(sporty, decimal-leading-zero);
+  grid-row: 1 / -1;
+  font-family: var(--heading-font);
+  font-size: 2.4rem;
+  color: var(--border);
+}
+
+.services .card-icon {
+  display: none;
+}
+
+.services .card h3 {
+  grid-column: 2;
+  font-size: 1.3rem;
+}
+
+.services .card p {
+  grid-column: 2;
+}
+
+.services .grid-3 > .card {
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 560px) {
+  .services .card {
+    grid-template-columns: 56px 1fr;
+    column-gap: var(--spacing-md);
+  }
+  .services .card::before {
+    font-size: 1.7rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FEATURES
+   -------------------------------------------------------------------------- */
+.feature-icon {
+  background: var(--text);
+  color: var(--accent);
+  border-radius: 0;
+}
+
+.feature h4 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   TEAM — angled photo crops
+   -------------------------------------------------------------------------- */
+.team-photo {
+  border-radius: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 16px));
+  filter: grayscale(0.5);
+  transition: filter var(--transition-slow);
+}
+
+.team-photo:hover {
+  filter: grayscale(0);
+}
+
+.team-info h3 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+
+.team-role {
+  display: inline-block;
+  background: var(--text);
+  color: var(--accent);
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY — a diagonal color-wipe reveals on hover, one tile doubles as a
+   background-photo feature panel with overlaid text.
+   -------------------------------------------------------------------------- */
+.gallery-grid .img-frame {
+  border-radius: 0;
+  position: relative;
+}
+
+.gallery-grid .img-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 45%, rgba(255, 45, 45, 0.35) 50%, transparent 55%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.gallery-grid .img-frame:hover::after {
+  transform: translateX(120%);
+}
+
+.gallery-grid .img-frame img {
+  filter: grayscale(0.2);
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.gallery-grid .img-frame:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS
+   -------------------------------------------------------------------------- */
+.testimonial {
+  background: var(--surface);
+  border: none;
+  border-left: 4px solid var(--secondary);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.testimonial-rating {
+  color: var(--accent);
+}
+
+.testimonial blockquote {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.15rem;
+  text-transform: none;
+}
+
+.testimonial-avatar {
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq-question {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  background: var(--secondary);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CALL TO ACTION
+   -------------------------------------------------------------------------- */
+.cta {
+  background: var(--text);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 60px;
+  height: 100%;
+  background: var(--secondary);
+  transform: skewX(-18deg);
+  opacity: 0.5;
+}
+
+.cta h2 {
+  font-family: var(--heading-font);
+  position: relative;
+}
+
+.cta p,
+.cta-actions {
+  position: relative;
+}
+
+.cta .btn-primary {
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.contact-info-item .card-icon {
+  background: var(--text);
+  color: var(--accent);
+  border-radius: 0;
+}
+
+.contact-form {
+  border: none;
+  box-shadow: var(--shadow);
+  border-radius: 0;
+}
+
+.form-field input,
+.form-field textarea {
+  border-radius: 0;
+  border-bottom: 3px solid var(--border);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--primary);
+}
+
+.footer-brand .nav-logo::before {
+  content: "";
+  width: 14px;
+  height: 4px;
+  background: var(--secondary);
+}
+
+.footer-col h4 {
+  color: var(--secondary);
+}
+
+.footer-social a {
+  border-radius: 0;
+}
