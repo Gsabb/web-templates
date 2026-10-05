@@ -1,0 +1,72 @@
+/* THEME: AGENCY_0 — dark, bold creative studio. Purple-washed full-bleed team hero,
+   glass stat chips, bento services grid, gradient accents, rounded portfolio tiles. */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap");
+:root{
+  --primary:#06060c;--primary-contrast:#fff;--secondary:#7c5cff;--secondary-contrast:#fff;
+  --background:#0a0a12;--surface:#14141f;--text:#f3f3f8;--muted:#9c9cb4;--accent:#c6ff3d;--border:rgba(255,255,255,.1);
+  --heading-font:"Syne",system-ui,sans-serif;--body-font:"DM Sans",system-ui,sans-serif;--utility-font:"DM Sans",sans-serif;
+  --heading-weight:800;--letter-spacing-tight:-.02em;--letter-spacing-wide:.16em;
+  --radius:22px;--radius-sm:14px;--radius-full:999px;--shadow:0 12px 40px rgba(0,0,0,.4);--shadow-hover:0 20px 56px rgba(124,92,255,.28);
+  --hero-v:flex-end;--hero-w:760px;--hero-heading-max:5.4rem;
+  --hero-scrim:linear-gradient(180deg,rgba(10,10,18,.3) 0%,rgba(10,10,18,.55) 45%,rgba(10,10,18,.96) 100%),linear-gradient(120deg,rgba(124,92,255,.55),rgba(255,79,163,.18) 60%,transparent);
+  --cta-scrim:rgba(70,36,190,.74);
+}
+.eyebrow{color:var(--accent)}
+.btn{border-radius:var(--radius-full);font-weight:700;padding:.95em 1.8em}
+.btn-primary{background:linear-gradient(120deg,#7c5cff,#ff4fa3);color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.4)}
+.btn-secondary{border-color:rgba(255,255,255,.3);color:var(--text)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.site-header{background:rgba(10,10,18,.72);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:1.45rem;letter-spacing:-.03em;color:#fff}
+.nav-logo::after{content:".";color:var(--accent)}
+.nav-links a{color:var(--text);font-weight:500}
+.nav-links a:not(.btn)::after{background:var(--accent)}
+.nav-toggle span{background:#fff}
+@media(max-width:1400px){.nav-links{background:var(--background)}}
+
+/* Hero */
+.hero-content h1{text-transform:uppercase;line-height:.98}
+.hero-content .eyebrow{background:rgba(198,255,61,.14);color:var(--accent);padding:.45em 1em;border-radius:var(--radius-full);margin-bottom:var(--spacing-sm)}
+.hero-content .eyebrow::before{width:8px;height:8px;border-radius:50%}
+.hero-meta{gap:var(--spacing-sm)}
+.hero-meta div{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);padding:.8rem 1rem}
+.hero-meta strong{color:var(--accent)}
+
+/* About */
+.about-media .img-frame{--ratio:1/1;border-radius:34px;transform:rotate(-3deg);box-shadow:var(--shadow)}
+.about-stats strong{background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Services: bento */
+.services .grid-3 > .card:nth-child(1),.services .grid-3 > .card:nth-child(4),.services .grid-3 > .card:nth-child(6){grid-column:span 2}
+@media(max-width:900px){.services .grid-3 > .card:nth-child(n){grid-column:span 1}}
+.services .card{background:linear-gradient(160deg,var(--surface),#0e0e18);border:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-end;min-height:230px}
+.services .card:hover{border-color:var(--secondary);transform:translateY(-6px)}
+.services .card-icon{background:linear-gradient(135deg,#7c5cff,#ff4fa3);color:#fff;border-radius:14px;margin-bottom:auto}
+.services .card h3{text-transform:uppercase;font-size:1.15rem}
+
+.feature-icon{background:var(--accent);color:#06060c}
+.feature h4{text-transform:uppercase}
+.team-photo{border-radius:26px;transition:transform var(--transition-slow)}
+.team-member:hover .team-photo{transform:translateY(-6px) rotate(-1.5deg)}
+.team-role{color:var(--accent)}
+
+/* Gallery: portfolio tiles with glow hover */
+.gallery-grid .img-frame{border-radius:24px}
+.gallery-grid .img-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,255,.7),rgba(255,79,163,.35));opacity:0;transition:opacity var(--transition)}
+.gallery-grid .img-frame:hover::after{opacity:.65}
+.gallery-grid .img-frame:hover img{transform:scale(1.08)}
+
+.testimonial{background:var(--surface);box-shadow:none}
+.testimonial-rating{color:var(--accent)}
+.testimonial blockquote{font-family:var(--body-font);font-weight:500;font-size:1.05rem}
+.faq-list{border-top:none;display:grid;gap:12px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);padding-inline:var(--spacing-sm)}
+.faq-icon::before,.faq-icon::after{background:var(--accent)}
+.cta{border-radius:34px}
+.cta h2{text-transform:uppercase;font-size:clamp(2rem,5vw,3.6rem)}
+.cta .btn-primary{background:var(--accent);color:#06060c;box-shadow:none}
+.contact-form{background:var(--surface)}
+.form-field input,.form-field textarea{background:#0d0d17}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--accent)}
+.site-footer{background:var(--primary)}.footer-col h4{color:var(--accent)}

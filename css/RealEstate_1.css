@@ -1,0 +1,35 @@
+/* THEME: REALESTATE_1 — modern urban property brand. White + deep slate + fresh green,
+   one geometric sans, a floating white stats card over a full-bleed city/home photo. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+:root{
+  --primary:#12263a;--primary-contrast:#fff;--secondary:#1fa37a;--secondary-contrast:#fff;
+  --background:#fff;--surface:#f4f7f6;--text:#12263a;--muted:#5f6f7d;--accent:#1fa37a;--border:rgba(18,38,58,.1);
+  --heading-font:"Plus Jakarta Sans",system-ui,sans-serif;--body-font:"Plus Jakarta Sans",system-ui,sans-serif;--utility-font:"Plus Jakarta Sans",sans-serif;
+  --heading-weight:800;--letter-spacing-tight:-.03em;--letter-spacing-wide:.1em;
+  --radius:22px;--radius-sm:14px;--radius-full:999px;--shadow:0 12px 34px rgba(18,38,58,.1);--shadow-hover:0 20px 48px rgba(18,38,58,.18);
+  --hero-v:flex-end;--hero-w:680px;--hero-heading-max:4.6rem;
+  --hero-scrim:linear-gradient(0deg,rgba(10,24,38,.82),rgba(10,24,38,.25) 55%,rgba(10,24,38,.1));--cta-scrim:rgba(18,38,58,.78);
+}
+.eyebrow{font-weight:700}
+.btn{font-weight:700}.btn-primary{box-shadow:0 10px 26px rgba(31,163,122,.35)}
+.site-header{background:rgba(255,255,255,.9)}.nav-logo{font-size:1.4rem;color:var(--primary)}
+.nav-logo::before{content:"";display:inline-block;width:.8em;height:.8em;border-radius:30% 70% 30% 70%;background:var(--secondary);margin-right:.4em}
+.nav-links a{font-weight:600;font-size:.85rem}@media(max-width:1400px){.nav-links{background:#fff}}
+.hero-content .eyebrow{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;padding:.4em 1em;border-radius:999px}
+.hero-meta{background:#fff;border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.28);padding:1.1rem 1.5rem;margin-top:var(--spacing-sm);max-width:560px}
+html[data-hero="cover"] .hero-meta strong{color:var(--secondary)}
+html[data-hero="cover"] .hero-meta span{color:var(--muted)}
+.about-media .img-frame{--ratio:1/1;border-radius:32px}
+.about-stats{background:#fff;box-shadow:var(--shadow);border-radius:var(--radius);padding:var(--spacing-md);border-top:none;position:relative}
+.about-stats strong{color:var(--secondary)}
+.services .card{border:none;box-shadow:var(--shadow)}
+.services .card-icon{background:var(--secondary);color:#fff;border-radius:50%}
+.feature-icon{background:var(--primary);color:#fff}
+.team-photo{border-radius:var(--radius)}.team-role{color:var(--secondary)}
+.gallery-grid{gap:14px}.gallery-grid .img-frame{border-radius:var(--radius)}
+.testimonial{border:none;box-shadow:var(--shadow)}.testimonial-rating{color:#f5b301}
+.testimonial blockquote{font-size:1.05rem;font-weight:600}
+.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+.cta{border-radius:32px}.cta h2{font-size:clamp(2rem,5vw,3.4rem)}
+.cta .btn-primary{background:var(--secondary)}
+.site-footer{background:var(--primary)}.footer-col h4{color:#7be0bd}

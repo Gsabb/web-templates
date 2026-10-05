@@ -1,0 +1,35 @@
+/* THEME: FITNESS_1 — boutique studio (yoga / pilates / wellness). Soft sage + terracotta,
+   organic blob shapes, glass stat pills over a calm full-bleed hero. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Nunito+Sans:wght@400;600;700&display=swap");
+:root{
+  --primary:#2f3a34;--primary-contrast:#f6f1ea;--secondary:#e07a5f;--secondary-contrast:#fff;
+  --background:#f6f1ea;--surface:#fff;--text:#2b312d;--muted:#6c7770;--accent:#81a38b;--border:rgba(43,49,45,.12);
+  --heading-font:"Fraunces",Georgia,serif;--body-font:"Nunito Sans",system-ui,sans-serif;--utility-font:"Nunito Sans",sans-serif;
+  --heading-weight:400;--letter-spacing-wide:.14em;
+  --radius:30px;--radius-sm:18px;--radius-full:999px;--shadow:0 12px 34px rgba(47,58,52,.1);--shadow-hover:0 20px 46px rgba(47,58,52,.18);
+  --hero-v:center;--hero-w:600px;--hero-heading-max:4.6rem;
+  --hero-scrim:linear-gradient(90deg,rgba(30,42,35,.72),rgba(30,42,35,.2) 70%,rgba(30,42,35,.05));--cta-scrim:rgba(47,58,52,.7);
+}
+.eyebrow{color:var(--secondary);font-weight:700}
+.btn{font-weight:700}.btn-primary{box-shadow:0 10px 26px rgba(224,122,95,.35)}
+.site-header{background:rgba(246,241,234,.88)}.nav-logo{font-style:italic;font-size:1.6rem}
+@media(max-width:1400px){.nav-links{background:var(--background)}}
+.hero-content h1{font-style:italic}
+.hero-content .eyebrow{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;padding:.4em 1em;border-radius:999px}
+.hero-meta{gap:var(--spacing-sm)}
+.hero-meta div{background:rgba(255,255,255,.14);backdrop-filter:blur(10px);border-radius:var(--radius-sm);padding:.8rem 1.1rem}
+.about-media .img-frame{--ratio:1/1;border-radius:48% 52% 46% 54% / 58% 44% 56% 42%}
+.about-stats strong{color:var(--secondary);font-style:italic}
+.services .card{border:none;box-shadow:none;text-align:center}
+.services .card:nth-child(3n+1){background:#e4ece5}.services .card:nth-child(3n+2){background:#f8e3da}.services .card:nth-child(3n){background:#efe6d3}
+.services .card-icon{margin:0 auto var(--spacing-sm);background:#fff;color:var(--secondary);border-radius:50%;width:60px;height:60px}
+.feature-icon{background:var(--accent);color:#fff}
+.team-photo{border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--accent),var(--secondary))}.team-photo img{border-radius:50%}
+.team-role{color:var(--secondary)}
+.gallery-grid{gap:14px}.gallery-grid .img-frame{border-radius:var(--radius)}
+.gallery-grid .img-frame:first-child{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%}
+.testimonial{border:none;background:var(--surface)}.testimonial-rating{color:var(--secondary)}
+.testimonial blockquote{font-style:italic;font-size:1.2rem}
+.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+.cta h2{font-style:italic;font-size:clamp(2rem,5vw,3.4rem)}.cta{border-radius:var(--radius)}
+.site-footer{background:var(--primary)}.footer-col h4{color:#e4ece5}

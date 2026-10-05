@@ -1,0 +1,49 @@
+/* THEME: AGENCY_1 — pop / colorful shapes. Sunny yellow, thick black outlines, hard shadows,
+   yellow-washed full-bleed hero with black type and a pink sticker circle. */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+:root{
+  --primary:#111;--primary-contrast:#fff9e3;--secondary:#111;--secondary-contrast:#fff;
+  --background:#fff9e3;--surface:#fff;--text:#111;--muted:#444;--accent:#ff5ea8;--border:#111;
+  --heading-font:"Space Grotesk",system-ui,sans-serif;--body-font:"Space Grotesk",system-ui,sans-serif;--utility-font:"Space Grotesk",sans-serif;
+  --heading-weight:700;--letter-spacing-tight:-.03em;--letter-spacing-wide:.1em;
+  --radius:16px;--radius-sm:10px;--radius-full:999px;--shadow:6px 6px 0 #111;--shadow-hover:10px 10px 0 #111;
+  --hero-v:flex-end;--hero-w:720px;--hero-heading-max:5.6rem;
+  --hero-scrim:linear-gradient(0deg,rgba(255,226,60,.97) 0%,rgba(255,226,60,.72) 32%,rgba(255,226,60,0) 66%);--cta-scrim:rgba(255,226,60,.86);
+}
+.eyebrow{background:#fff;border:2px solid #111;border-radius:999px;padding:.3em .9em;color:#111}
+.eyebrow::before{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.btn{border:2px solid #111;box-shadow:4px 4px 0 #111;font-weight:700;border-radius:999px}
+.btn-primary:hover,.btn-secondary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn-secondary{background:#fff;color:#111}.btn-secondary:hover{color:#111;border-color:#111}
+.site-header{background:#ffe23c;border-bottom:2px solid #111}
+.nav-logo{font-size:1.5rem}.nav-logo::after{content:"●";color:var(--accent);margin-left:.15em}
+.nav-links a{font-weight:700}
+@media(max-width:1400px){.nav-links{background:#ffe23c}}
+/* Hero: black type on yellow wash + sticker */
+html[data-hero="cover"] .hero-content h1,html[data-hero="cover"] .hero-content p,html[data-hero="cover"] .hero-meta span,html[data-hero="cover"] .hero-meta strong{color:#111}
+html[data-hero="cover"] .hero .btn-secondary{color:#111;border-color:#111;background:#fff}
+html[data-hero="cover"] .hero .btn-secondary:hover{background:#fff;color:#111;border-color:#111}
+.hero-content h1{text-transform:uppercase;line-height:.95}
+.hero-meta{border-top:2px solid #111;padding-top:var(--spacing-sm)}
+.hero::after{content:"";position:absolute;z-index:1;right:7%;top:14%;width:clamp(70px,11vw,140px);aspect-ratio:1;border-radius:50%;background:var(--accent);border:3px solid #111;box-shadow:6px 6px 0 #111}
+.about-media .img-frame{border:3px solid #111;border-radius:var(--radius);box-shadow:10px 10px 0 var(--accent);--ratio:1/1}
+.about-stats{border-top:2px solid #111}.about-stats strong{color:#111;background:#ffe23c;padding:0 .2em}
+/* Cards */
+.card,.testimonial,.contact-form{border:2px solid #111;box-shadow:var(--shadow)}
+.card:hover{transform:translate(-4px,-4px);box-shadow:var(--shadow-hover);border-color:#111}
+.services .card:nth-child(4n+1) .card-icon{background:var(--accent)}.services .card:nth-child(4n+2) .card-icon{background:#ffe23c}.services .card:nth-child(4n+3) .card-icon{background:#8fd3ff}.services .card:nth-child(4n) .card-icon{background:#a6f0a0}
+.card-icon{color:#111;border:2px solid #111;border-radius:50%}
+.feature-icon{background:#ffe23c;color:#111;border:2px solid #111}
+.team-photo{border:2px solid #111;box-shadow:6px 6px 0 #111}.team-role{color:var(--accent);font-weight:700}
+.gallery-grid{gap:16px}.gallery-grid .img-frame{border:2px solid #111;border-radius:var(--radius);box-shadow:5px 5px 0 #111}
+.testimonial:nth-child(2){background:#ffe23c}.testimonial:nth-child(3){background:#ffd1e6}
+.testimonial-rating{color:#111}.testimonial blockquote{font-family:var(--body-font);font-size:1.05rem;font-weight:500}
+.faq-list{border-top:none;display:grid;gap:12px}
+.faq-item{border:2px solid #111;border-radius:var(--radius-sm);background:#fff;box-shadow:4px 4px 0 #111;padding-inline:var(--spacing-sm)}
+.faq-icon::before,.faq-icon::after{background:#111}
+.cta{border:3px solid #111;box-shadow:10px 10px 0 #111}
+html[data-hero="cover"] .cta h2,html[data-hero="cover"] .cta p{color:#111}
+.cta h2{text-transform:uppercase;font-size:clamp(2rem,5vw,3.6rem)}
+.cta .btn-primary{background:#111;color:#fff}
+.form-field input,.form-field textarea{border:2px solid #111;background:#fff}
+.site-footer{background:#111}.footer-col h4{color:#ffe23c}

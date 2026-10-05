@@ -1,0 +1,71 @@
+/* THEME: FASHION_0 — quiet editorial luxury. Airy ivory, hairlines, thin serif display,
+   full-bleed model hero, numbered "universes", monochrome portraits. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap");
+:root{
+  --primary:#121212;--primary-contrast:#faf8f5;--secondary:#121212;--secondary-contrast:#fff;
+  --background:#faf8f5;--surface:#fff;--text:#161616;--muted:#6f6a64;--accent:#a58a6f;--border:rgba(18,18,18,.16);
+  --heading-font:"Cormorant Garamond",Georgia,serif;--body-font:"Jost",system-ui,sans-serif;--utility-font:"Jost",sans-serif;
+  --heading-weight:500;--body-weight:300;--letter-spacing-wide:.28em;
+  --radius:0;--radius-sm:0;--radius-full:0;--shadow:none;--shadow-hover:0 18px 40px rgba(0,0,0,.1);
+  --hero-v:center;--hero-w:620px;--hero-heading-max:5.6rem;
+  --hero-scrim:linear-gradient(90deg,rgba(10,10,10,.62) 0%,rgba(10,10,10,.2) 55%,rgba(10,10,10,0) 80%);--cta-scrim:rgba(10,10,10,.45);
+}
+h1,h2{letter-spacing:.02em}
+.eyebrow{color:var(--accent);font-weight:500}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:500;padding:1.15em 2.2em;box-shadow:none}
+.btn-primary:hover{box-shadow:none;background:var(--accent)}
+.btn-secondary{border-color:var(--text)}
+
+.site-header{background:rgba(250,248,245,.9);border-bottom:1px solid var(--border)}
+.nav-logo{text-transform:uppercase;letter-spacing:.32em;font-size:1.05rem;font-weight:600}
+.nav-links a{text-transform:uppercase;letter-spacing:.18em;font-size:.68rem}
+.nav-links a:not(.btn)::after{height:1px}
+@media(max-width:1400px){.nav-links{background:var(--background)}}
+
+/* Hero */
+.hero-content h1{font-weight:400;line-height:1;font-style:italic}
+.hero-content .eyebrow{color:#fff}
+.hero .btn-primary{background:#fff;color:var(--primary)}
+.hero .btn-primary:hover{background:var(--accent);color:#fff}
+.hero-meta{display:none}
+
+/* About: image with offset hairline frame */
+.about-media{position:relative;isolation:isolate}
+.about-media::after{content:"";position:absolute;inset:26px -26px -26px 26px;border:1px solid var(--accent);z-index:-1}
+.about-media .img-frame{--ratio:3/4}
+.about-stats strong{font-style:italic;font-weight:400;font-size:2.4rem}
+@media(max-width:900px){.about-media::after{inset:16px -10px -16px 10px}}
+
+/* Services: numbered editorial columns */
+.services .grid-3{counter-reset:n;gap:var(--spacing-lg)}
+.services .card{counter-increment:n;background:transparent;border:none;border-top:1px solid var(--text);padding:var(--spacing-md) 0 0;box-shadow:none}
+.services .card:hover{transform:none;box-shadow:none;border-color:var(--accent)}
+.services .card-icon{display:none}
+.services .card::before{content:counter(n,decimal-leading-zero);font-family:var(--heading-font);font-style:italic;font-size:2.4rem;color:var(--accent);display:block;margin-bottom:var(--spacing-sm)}
+.services .card h3{text-transform:uppercase;letter-spacing:.14em;font-size:.95rem;font-family:var(--body-font);font-weight:500}
+
+.feature-icon{background:transparent;border:1px solid var(--text);color:var(--text);border-radius:0}
+.team-photo{--ratio:3/4;filter:grayscale(1);transition:filter var(--transition-slow)}
+.team-photo:hover{filter:none}
+.team-info h3{font-size:1.5rem;font-style:italic;font-weight:500}
+.team-role{color:var(--accent);letter-spacing:.2em}
+
+/* Gallery: lookbook with portrait tiles */
+.gallery-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(260px,30vw,420px);gap:8px}
+.gallery-grid .gallery-item--wide{grid-column:span 1}
+.gallery-grid .gallery-item--tall{grid-row:span 2}
+.gallery-grid .gallery-item--wide:last-child{grid-column:span 2}
+@media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid .gallery-item--wide:last-child{grid-column:span 2}}
+@media(max-width:560px){.gallery-grid{grid-template-columns:1fr}.gallery-grid .gallery-item--wide:last-child,.gallery-grid .gallery-item--tall{grid-column:span 1;grid-row:span 1}}
+
+.testimonial{background:var(--surface);border:none}
+.testimonial blockquote{font-style:italic;font-size:1.45rem;font-weight:400}
+.testimonial-rating{color:var(--accent)}
+.faq-question{font-size:1.3rem;font-weight:500}
+.faq-icon::before,.faq-icon::after{background:var(--text)}
+.cta{border-radius:0}
+.cta h2{font-style:italic;font-weight:400;font-size:clamp(2.2rem,5.5vw,4rem)}
+.cta .btn-primary{background:#fff;color:var(--primary)}
+.contact-form{border:none;background:var(--surface)}
+.form-field input,.form-field textarea{border:none;border-bottom:1px solid var(--text);background:transparent;padding-inline:0}
+.site-footer{background:var(--primary)}.footer-col h4{color:var(--accent)}.footer-social a{border-radius:0}

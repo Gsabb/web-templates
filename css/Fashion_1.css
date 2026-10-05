@@ -1,0 +1,43 @@
+/* THEME: FASHION_1 — blush & burgundy editorial. High-contrast Didone display, hero text on the
+   RIGHT, arch-shaped cards and portraits. */
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&family=Karla:wght@400;500;700&display=swap");
+:root{
+  --primary:#3b1f26;--primary-contrast:#f6e9e4;--secondary:#3b1f26;--secondary-contrast:#fff;
+  --background:#f6e9e4;--surface:#fff;--text:#3b1f26;--muted:#8a6a6e;--accent:#c1476b;--border:rgba(59,31,38,.16);
+  --heading-font:"Bodoni Moda",Georgia,serif;--body-font:"Karla",system-ui,sans-serif;--utility-font:"Karla",sans-serif;
+  --heading-weight:500;--letter-spacing-wide:.24em;
+  --radius:0;--radius-sm:0;--radius-full:0;--shadow:none;--shadow-hover:0 20px 44px rgba(59,31,38,.16);
+  --hero-v:center;--hero-w:560px;--hero-mx:auto 0;--hero-heading-max:5rem;
+  --hero-scrim:linear-gradient(270deg,rgba(40,15,22,.74),rgba(40,15,22,.15) 70%,transparent);--cta-scrim:rgba(193,71,107,.62);
+}
+.eyebrow{color:var(--accent)}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;padding:1.15em 2.1em;box-shadow:none}
+.btn-primary:hover{background:var(--accent);box-shadow:none}
+.site-header{background:rgba(246,233,228,.92)}
+.nav-logo{font-style:italic;font-size:1.6rem}
+.nav-links a{text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;font-weight:700}
+@media(max-width:1400px){.nav-links{background:var(--background)}}
+.hero-content h1{text-transform:uppercase;letter-spacing:.03em;line-height:1.02}
+.hero-content .eyebrow{color:#f6c4d2}
+.hero .btn-primary{background:#fff;color:var(--primary)}.hero .btn-primary:hover{background:var(--accent);color:#fff}
+.hero-meta{border-top:1px solid rgba(255,255,255,.4);padding-top:var(--spacing-md)}
+.about-media .img-frame{--ratio:3/4;box-shadow:22px 22px 0 var(--accent)}
+.about-stats strong{font-style:italic;color:var(--accent)}
+/* Arch cards */
+.services .card{background:#efd5d0;border:none;border-radius:999px 999px 0 0;text-align:center;padding:4rem var(--spacing-md) var(--spacing-lg)}
+.services .card:nth-child(even){background:#e9c3c3}
+.services .card:hover{transform:translateY(-8px)}
+.services .card-icon{margin:0 auto var(--spacing-sm);background:#fff;color:var(--accent);border-radius:50%;width:56px;height:56px}
+.services .card h3{font-style:italic;font-size:1.5rem}
+.feature-icon{background:var(--text);color:var(--background);border-radius:0}
+.team-photo{--ratio:3/4;border-radius:999px 999px 0 0}
+.team-info h3{font-style:italic}.team-role{color:var(--accent)}
+.gallery-grid{gap:10px}.gallery-grid .img-frame:first-child{border-radius:999px 999px 0 0}
+.testimonial{background:var(--surface);border:none;text-align:center;align-items:center}
+.testimonial blockquote{font-style:italic;font-size:1.3rem}.testimonial-rating{color:var(--accent)}
+.faq-question{font-size:1.25rem}.faq-icon::before,.faq-icon::after{background:var(--accent)}
+.cta{border-radius:0}.cta h2{font-style:italic;font-size:clamp(2.2rem,5.5vw,4rem)}
+.cta .btn-primary{background:#fff;color:var(--primary)}
+.contact-form{background:var(--surface);border:none}
+.form-field input,.form-field textarea{border:none;border-bottom:1px solid var(--text);background:transparent;padding-inline:0}
+.site-footer{background:var(--primary)}.footer-col h4{color:#f6c4d2}.footer-social a{border-radius:0}

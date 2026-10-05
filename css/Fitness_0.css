@@ -1,0 +1,49 @@
+/* THEME: FITNESS_0 — raw power gym. Black + signal orange + lime, condensed display caps, angled geometry. */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap");
+:root{
+  --primary:#0b0b0b;--primary-contrast:#fff;--secondary:#ff5a1f;--secondary-contrast:#fff;
+  --background:#0f0f10;--surface:#1a1a1c;--text:#f5f5f5;--muted:#a0a0a8;--accent:#d7ff1f;--border:rgba(255,255,255,.12);
+  --heading-font:"Bebas Neue","Arial Narrow",sans-serif;--body-font:"Inter",system-ui,sans-serif;--utility-font:"Inter",sans-serif;
+  --heading-weight:400;--letter-spacing-tight:.01em;--letter-spacing-wide:.16em;
+  --radius:4px;--radius-sm:3px;--radius-full:4px;--shadow:0 12px 30px rgba(0,0,0,.5);--shadow-hover:0 18px 44px rgba(255,90,31,.25);
+  --hero-v:flex-end;--hero-w:800px;--hero-heading-max:8rem;
+  --hero-scrim:linear-gradient(90deg,rgba(0,0,0,.86),rgba(0,0,0,.45) 60%,rgba(0,0,0,.2)),linear-gradient(0deg,#0f0f10,transparent 32%);--cta-scrim:rgba(255,90,31,.84);
+}
+h1,h2,h3,h4{text-transform:uppercase}h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+.eyebrow{color:var(--accent);font-weight:700}.eyebrow::before{height:4px;width:18px}
+.btn{font-family:var(--heading-font);font-size:1.15rem;letter-spacing:.06em;font-weight:400;padding:.8em 2em;border-radius:0;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.btn-primary{box-shadow:none}.btn-primary:hover{background:var(--accent);color:#000;box-shadow:none}
+.site-header{background:rgba(11,11,11,.9);border-bottom:2px solid var(--secondary)}
+.nav-logo{font-size:1.8rem;color:#fff}.nav-logo::after{content:"/";color:var(--secondary);margin-left:.1em}
+.nav-links a{color:#fff;text-transform:uppercase;font-weight:600;letter-spacing:.08em;font-size:.72rem}
+.nav-links a:not(.btn)::after{background:var(--secondary);height:3px}
+.nav-toggle span{background:#fff}@media(max-width:1400px){.nav-links{background:#0b0b0b}}
+.hero{clip-path:polygon(0 0,100% 0,100% calc(100% - 44px),0 100%)}
+.hero-content h1{line-height:.9}
+.hero-meta{border-top:none;gap:var(--spacing-lg)}
+.hero-meta div{border-left:4px solid var(--secondary);padding-left:var(--spacing-sm)}
+.hero-meta strong{color:var(--accent);font-size:clamp(1.8rem,4vw,3rem);font-weight:400}
+.hero-meta span{text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.about-media .img-frame{--ratio:4/5;clip-path:polygon(0 0,100% 0,100% calc(100% - 40px),calc(100% - 40px) 100%,0 100%)}
+.about-stats strong{font-family:var(--heading-font);font-weight:400;font-size:3rem;color:var(--secondary)}
+.about-stats span{text-transform:uppercase;letter-spacing:.08em;font-size:.75rem}
+/* Programs: numbered, orange bar grows on hover */
+.services .grid-3{counter-reset:n}
+.services .card{counter-increment:n;background:var(--surface);border:none;border-top:4px solid #333;position:relative;overflow:hidden}
+.services .card::after{content:"";position:absolute;left:0;top:-4px;height:4px;width:0;background:var(--secondary);transition:width var(--transition-slow)}
+.services .card:hover::after{width:100%}.services .card:hover{transform:translateY(-6px)}
+.services .card::before{content:counter(n,decimal-leading-zero);position:absolute;right:1rem;top:.4rem;font-family:var(--heading-font);font-size:3.6rem;color:rgba(255,255,255,.07)}
+.card-icon{background:var(--secondary);color:#fff;border-radius:0}
+.feature-icon{background:var(--secondary);color:#fff;border-radius:0}
+.team-photo{border-radius:0;filter:grayscale(1) contrast(1.1);transition:filter var(--transition-slow);clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)}
+.team-photo:hover{filter:none}.team-role{color:var(--accent)}
+.gallery-grid{gap:6px}.gallery-grid .img-frame{border-radius:0;filter:grayscale(.7) contrast(1.1);transition:filter var(--transition-slow)}
+.gallery-grid .img-frame:hover{filter:none}
+.testimonial{background:var(--surface);border:none;border-left:4px solid var(--secondary)}
+.testimonial-rating{color:var(--accent)}.testimonial blockquote{font-family:var(--body-font);font-size:1.05rem;text-transform:none}
+.faq-question{font-size:1.5rem}.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+.cta{border-radius:0}.cta h2{font-size:clamp(2.6rem,7vw,5rem)}
+.cta .btn-primary{background:#000;color:#fff}.cta .btn-primary:hover{background:var(--accent);color:#000}
+.form-field input,.form-field textarea{background:#111;color:#fff}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--secondary)}
+.site-footer{background:#000}.footer-col h4{color:var(--secondary)}

@@ -1,0 +1,44 @@
+/* THEME: REALESTATE_0 — luxury estates. Midnight navy + champagne gold, Roman-style serif,
+   hero with a glass stat bar, gold hairlines, two-column service index. */
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Hanken+Grotesk:wght@300;400;500;600&display=swap");
+:root{
+  --primary:#0e1a2b;--primary-contrast:#f7f5f0;--secondary:#c8a45d;--secondary-contrast:#0e1a2b;
+  --background:#f7f5f0;--surface:#fff;--text:#17202e;--muted:#66707f;--accent:#c8a45d;--border:rgba(14,26,43,.14);
+  --heading-font:"Marcellus",Georgia,serif;--body-font:"Hanken Grotesk",system-ui,sans-serif;--utility-font:"Hanken Grotesk",sans-serif;
+  --heading-weight:400;--letter-spacing-wide:.22em;
+  --radius:2px;--radius-sm:2px;--radius-full:2px;--shadow:0 14px 40px rgba(14,26,43,.12);--shadow-hover:0 22px 52px rgba(14,26,43,.2);
+  --hero-v:center;--hero-w:720px;--hero-heading-max:4.8rem;
+  --hero-scrim:linear-gradient(90deg,rgba(8,16,30,.88),rgba(8,16,30,.4) 68%,rgba(8,16,30,.15));--cta-scrim:rgba(14,26,43,.78);
+}
+.eyebrow{color:var(--secondary);font-weight:600}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;font-weight:600;padding:1.1em 2.1em;box-shadow:none}
+.btn-primary:hover{background:#fff;box-shadow:none}
+.site-header{background:rgba(14,26,43,.94);border-bottom:1px solid rgba(200,164,93,.4)}
+.nav-logo{color:var(--secondary);letter-spacing:.12em;text-transform:uppercase;font-size:1.2rem}
+.nav-links a{color:#f7f5f0;text-transform:uppercase;letter-spacing:.14em;font-size:.68rem}
+.nav-toggle span{background:#fff}@media(max-width:1400px){.nav-links{background:var(--primary)}}
+.hero-content h1{line-height:1.05}
+.hero-meta{background:rgba(255,255,255,.09);backdrop-filter:blur(10px);border:1px solid rgba(200,164,93,.45);padding:1.1rem 1.4rem;margin-top:var(--spacing-md)}
+.hero-meta strong{color:var(--secondary)}
+.about-media .img-frame{--ratio:4/5;outline:1px solid var(--secondary);outline-offset:14px}
+.about-stats strong{color:var(--secondary)}
+/* Services index */
+.services .grid-3{grid-template-columns:1fr 1fr;column-gap:clamp(2rem,6vw,5rem);row-gap:0}
+.services .card{display:grid;grid-template-columns:56px 1fr;column-gap:var(--spacing-md);background:transparent;border:none;border-top:1px solid var(--secondary);border-radius:0;box-shadow:none;padding:var(--spacing-md) 0}
+.services .card:hover{transform:none;box-shadow:none;border-color:var(--primary)}
+.services .card-icon{grid-row:1/-1;background:transparent;border:1px solid var(--secondary);color:var(--secondary);border-radius:50%;margin:0}
+.services .card h3,.services .card p{grid-column:2}
+@media(max-width:700px){.services .grid-3{grid-template-columns:1fr}}
+.feature-icon{background:var(--primary);color:var(--secondary);border-radius:0}
+.team-photo{--ratio:4/5;border-radius:0}.team-role{color:var(--secondary)}
+/* Properties */
+.gallery-grid{gap:10px}.gallery-grid .img-frame{border-radius:0;position:relative}
+.gallery-grid .img-frame::after{content:"";position:absolute;left:0;bottom:0;width:48px;height:3px;background:var(--secondary);transition:width var(--transition-slow)}
+.gallery-grid .img-frame:hover::after{width:100%}
+.testimonial{border:none;border-top:2px solid var(--secondary);background:var(--surface)}
+.testimonial-rating{color:var(--secondary)}.testimonial blockquote{font-size:1.15rem}
+.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+.cta{border-radius:0}.cta h2{font-size:clamp(2rem,5vw,3.4rem)}
+.cta .btn-primary{background:var(--secondary)}
+.form-field input,.form-field textarea{background:#fff}
+.site-footer{background:var(--primary)}.footer-col h4{color:var(--secondary)}.footer-social a{border-radius:0}

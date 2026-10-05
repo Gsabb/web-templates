@@ -1,0 +1,42 @@
+/* THEME: RESTAURANT_1 — bright bistro/café. Cream + olive + tomato, rounded pastel cards,
+   hero text sits on a floating cream card over a full-bleed photo. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap");
+:root{
+  --primary:#2b3320;--primary-contrast:#fff8ee;--secondary:#d9532f;--secondary-contrast:#fff;
+  --background:#fff8ee;--surface:#fff;--text:#2b2a22;--muted:#6b6a5c;--accent:#5b6b3a;--border:rgba(43,42,34,.12);
+  --heading-font:"DM Serif Display",Georgia,serif;--body-font:"Manrope",system-ui,sans-serif;--utility-font:"Manrope",sans-serif;
+  --heading-weight:400;--letter-spacing-wide:.14em;
+  --radius:28px;--radius-sm:18px;--radius-full:999px;--shadow:0 10px 30px rgba(43,51,32,.1);--shadow-hover:0 18px 40px rgba(43,51,32,.18);
+  --hero-v:flex-end;--hero-w:580px;--hero-heading-max:4.4rem;
+  --hero-scrim:linear-gradient(0deg,rgba(20,24,10,.65),rgba(20,24,10,.08) 65%);--cta-scrim:rgba(43,51,32,.72);
+}
+.eyebrow{color:var(--secondary);font-weight:700}
+.btn{font-weight:700;padding:.95em 1.9em}
+.btn-primary{box-shadow:0 10px 24px rgba(217,83,47,.3)}
+.site-header{background:rgba(255,248,238,.9)}
+.nav-logo{font-size:1.6rem;color:var(--secondary)}
+.nav-links a{font-weight:600;font-size:.85rem}
+@media(max-width:1400px){.nav-links{background:var(--background)}}
+/* Hero card */
+html[data-hero="cover"] .hero-content{background:var(--background);padding:clamp(1.5rem,4vw,2.75rem);border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.25)}
+html[data-hero="cover"] .hero-content h1{color:var(--text)}
+html[data-hero="cover"] .hero-content p,html[data-hero="cover"] .hero-meta span{color:var(--muted)}
+html[data-hero="cover"] .hero-meta strong{color:var(--accent)}
+html[data-hero="cover"] .hero .btn-secondary{color:var(--text);border-color:var(--border)}
+html[data-hero="cover"] .hero .btn-secondary:hover{color:var(--secondary);border-color:var(--secondary);background:transparent}
+.hero-meta{border-top:1px dashed var(--border);padding-top:var(--spacing-md)}
+.about-media .img-frame{border-radius:240px 28px 240px 28px;--ratio:4/5}
+.about-stats strong{color:var(--secondary)}
+/* Pastel service cards */
+.services .card{border:none;box-shadow:none}
+.services .card:nth-child(3n+1){background:#f6e0cc}.services .card:nth-child(3n+2){background:#e4e9d0}.services .card:nth-child(3n){background:#fbe7a6}
+.services .card-icon{background:#fff;color:var(--accent);border-radius:50%;width:56px;height:56px}
+.feature-icon{background:var(--accent);color:#fff}
+.team-photo{border-radius:50% 50% var(--radius) var(--radius)}
+.team-role{color:var(--secondary)}
+.gallery-grid{gap:14px}.gallery-grid .img-frame{border-radius:var(--radius)}
+.testimonial{background:#fbe7a6;border:none}.testimonial:nth-child(2){background:#e4e9d0}.testimonial:nth-child(3){background:#f6e0cc}
+.testimonial-rating{color:var(--secondary)}
+.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+.cta h2{font-size:clamp(2rem,5vw,3.4rem)}.cta{border-radius:var(--radius)}
+.site-footer{background:var(--primary)}.footer-col h4{color:#fbe7a6}
