@@ -1,0 +1,54 @@
+/* THEME: RESTAURANT_3 — Coffee House. Dark roast, inset-frame centered hero, coupon-ticket services,
+   numbered features, row-style team, scroll-snap film strip gallery, featured review, framed CTA. */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap");
+:root{--primary:#120c08;--primary-contrast:#f1e7db;--secondary:#d8b48a;--secondary-contrast:#120c08;--background:#1a120d;--surface:#241a14;--text:#f1e7db;--muted:#b4a392;--accent:#d8b48a;--border:rgba(241,231,219,.14);
+--heading-font:"Josefin Sans",sans-serif;--body-font:"Lora",Georgia,serif;--utility-font:"Josefin Sans",sans-serif;--heading-weight:600;--letter-spacing-wide:.24em;
+--radius:10px;--radius-sm:6px;--radius-full:4px;--shadow:0 14px 34px rgba(0,0,0,.45);--shadow-hover:0 20px 46px rgba(0,0,0,.6);--hero-heading-max:3.8rem}
+h1,h2,h3{text-transform:uppercase;letter-spacing:.1em}h2{font-size:clamp(1.6rem,3.2vw,2.3rem)}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-family:var(--utility-font);padding:1.1em 2em}
+.btn-primary{box-shadow:none}.btn-secondary{color:var(--text)}
+.site-header{background:rgba(18,12,8,.92)}.nav-logo{letter-spacing:.2em;text-transform:uppercase;font-size:1.05rem;color:var(--accent)}
+.nav-links a{font-family:var(--utility-font);text-transform:uppercase;letter-spacing:.16em;font-size:.68rem}.nav-toggle span{background:var(--text)}
+@media(max-width:1400px){.nav-links{background:var(--primary)}}
+/* HERO: centered, inset frame */
+.hero{position:relative;isolation:isolate;text-align:center;background:var(--hero-image) center/cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(18,12,8,.7)}
+.hero::after{content:"";position:absolute;inset:clamp(14px,3vw,34px);border:1px solid rgba(216,180,138,.6);pointer-events:none}
+.hero .container{grid-template-columns:1fr}.hero-media{display:none}
+.hero-content{max-width:720px;margin-inline:auto}.hero-content p{margin-inline:auto}.hero-actions,.hero-meta{justify-content:center}
+.hero-content h1{letter-spacing:.16em}.hero-meta span{color:var(--muted)}.hero-meta strong{color:var(--accent)}
+.hero-meta{border-top:1px solid var(--border);padding-top:var(--spacing-md)}
+/* ABOUT */
+.about .container{grid-template-columns:1.1fr .9fr}.about-media{order:2}
+.about-media .img-frame{--ratio:4/5;outline:1px solid var(--accent);outline-offset:14px}
+@media(max-width:900px){.about .container{grid-template-columns:1fr}.about-media{order:-1}}
+.about-stats strong{color:var(--accent)}
+/* SERVICES: coupons */
+.services .card{text-align:center;padding:2.6rem 2rem;border:1px dashed rgba(216,180,138,.45);border-radius:12px;
+background:radial-gradient(circle at 0 50%,var(--background) 14px,transparent 15px),radial-gradient(circle at 100% 50%,var(--background) 14px,transparent 15px),var(--surface)}
+.services .card-icon{margin-inline:auto;border-radius:50%;background:var(--accent);color:var(--primary)}
+/* FEATURES: numbered list */
+.features .grid-2{counter-reset:f}.feature{counter-increment:f;border-bottom:1px solid var(--border);padding-bottom:var(--spacing-md)}
+.feature-icon{display:none}.feature::before{content:counter(f,decimal-leading-zero);font:600 2.4rem/1 var(--heading-font);color:var(--accent);opacity:.7;min-width:2.4ch}
+/* TEAM: rows */
+@media(min-width:561px){.team .grid-4{grid-template-columns:1fr 1fr}}
+.team-member{flex-direction:row;text-align:left;align-items:center;gap:var(--spacing-md);background:var(--surface);padding:var(--spacing-sm);border-radius:var(--radius)}
+.team-photo{flex:0 0 96px;border-radius:50%}.team-role{color:var(--accent)}
+/* GALLERY: film strip */
+.gallery-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--accent) transparent}
+.gallery-grid .img-frame{flex:0 0 min(340px,78vw);height:420px;scroll-snap-align:center;border-radius:8px}
+.gallery-grid .img-frame:nth-child(even){height:340px;align-self:flex-end}
+/* TESTIMONIALS: featured first */
+@media(min-width:901px){.testimonials .grid-3[data-count="3"]{grid-template-columns:1.4fr 1fr}.grid-3[data-count="3"] .testimonial:first-child{grid-row:span 2;justify-content:center;padding:var(--spacing-xl)}.grid-3[data-count="3"] .testimonial:first-child blockquote{font-size:1.7rem}}
+.testimonial{background:var(--surface);border:none}.testimonial blockquote{font-family:var(--body-font);font-style:italic;font-weight:400}
+.faq-icon::before,.faq-icon::after{background:var(--accent)}.faq-question{text-transform:uppercase;letter-spacing:.08em;font-size:.95rem}
+/* CTA: framed */
+.cta{background:linear-gradient(rgba(18,12,8,.72),rgba(18,12,8,.72)),var(--cta-image) center/cover;border:1px solid var(--accent);outline:1px solid rgba(216,180,138,.4);outline-offset:-14px;border-radius:0;padding-block:clamp(4rem,9vw,6.5rem)}
+.contact-form{background:#f1e7db;color:#1a120d;border:none}.contact-form .form-note{color:#6b5a4b}
+.form-field input,.form-field textarea{background:#fff;color:#1a120d}
+.site-footer{background:var(--primary)}.footer-col h4{color:var(--accent)}
+/* SERVICES + PHOTOS: photo banner on top of each coupon (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{padding:0 0 2rem;overflow:hidden}
+html:not([data-svc="off"]) .services .card-media{display:block;aspect-ratio:16/9;margin-bottom:0;border-bottom:1px dashed rgba(216,180,138,.5)}
+html:not([data-svc="off"]) .services .card-icon{margin:-30px auto .9rem;position:relative;border:4px solid var(--surface)}
+html:not([data-svc="off"]) .services .card h3,html:not([data-svc="off"]) .services .card p{padding-inline:1.5rem}

@@ -47,3 +47,8 @@ h1,h2,h3,h4{text-transform:uppercase}h2{font-size:clamp(2.2rem,5vw,3.6rem)}
 .form-field input,.form-field textarea{background:#111;color:#fff}
 .form-field input:focus,.form-field textarea:focus{border-color:var(--secondary)}
 .site-footer{background:#000}.footer-col h4{color:var(--secondary)}
+/* SERVICES + PHOTOS: photo as card background under a black scrim (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{position:relative;overflow:hidden;isolation:isolate;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+html:not([data-svc="off"]) .services .card-media{display:block;position:absolute;inset:0;z-index:-1;filter:grayscale(.6) contrast(1.1)}
+html:not([data-svc="off"]) .services .card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.95) 15%,rgba(0,0,0,.25))}
+html:not([data-svc="off"]) .services .card:hover .card-media{filter:none}

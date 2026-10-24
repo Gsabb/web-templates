@@ -1,0 +1,54 @@
+/* THEME: REALESTATE_2 — Marketplace. Centered city hero with a working-looking SEARCH BAR, about card that
+   overlaps the photo, arrow-tile services, trust-bar features, agent cards, listing gallery with price + status
+   badges, white card floating on a photo CTA, flipped contact. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+:root{--primary:#0b1f33;--primary-contrast:#fff;--secondary:#2563eb;--secondary-contrast:#fff;--background:#f6f8fb;--surface:#fff;--text:#0b1f33;--muted:#5b6b7c;--accent:#f59e0b;--border:rgba(11,31,51,.1);
+--heading-font:"Inter",sans-serif;--body-font:"Inter",sans-serif;--utility-font:"Inter",sans-serif;--heading-weight:800;--letter-spacing-tight:-.035em;--letter-spacing-wide:.1em;
+--radius:20px;--radius-sm:12px;--radius-full:999px;--shadow:0 12px 34px rgba(11,31,51,.08);--shadow-hover:0 20px 48px rgba(11,31,51,.16);--hero-heading-max:4.8rem}
+.btn{font-weight:700}.btn-primary{box-shadow:0 10px 24px rgba(37,99,235,.35)}.site-header{background:rgba(255,255,255,.92)}.nav-logo{color:var(--secondary)}@media(max-width:1400px){.nav-links{background:#fff}}
+/* HERO: centered + search bar */
+.hero{position:relative;isolation:isolate;text-align:center;background:var(--hero-image) center/cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(11,31,51,.62),rgba(11,31,51,.75))}
+.hero .container{grid-template-columns:1fr}.hero-media{display:none}.hero-content{max-width:820px;margin-inline:auto}.hero-content p{margin-inline:auto}
+.hero-content h1,.hero-content p,.hero-content .eyebrow,.hero-meta strong,.hero-meta span{color:#fff}.hero-content .eyebrow{background:rgba(255,255,255,.14);padding:.4em 1em;border-radius:999px}
+.hero-actions{background:#fff;border-radius:999px;padding:8px;max-width:680px;margin-inline:auto;align-items:center;flex-wrap:nowrap;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.hero-actions::before{content:"Ville, quartier ou adresse…";flex:1;text-align:left;padding-left:1.2rem;color:#8795a5;font-size:.95rem;white-space:nowrap;overflow:hidden}
+.hero .btn-secondary{border:none;color:var(--secondary)}.hero .btn-secondary:hover{background:var(--background);color:var(--secondary)}.hero-actions .btn-primary{order:2}
+@media(max-width:600px){.hero-actions::before{display:none}.hero-actions{flex-wrap:wrap;border-radius:24px;justify-content:center}}
+.hero-meta{justify-content:center;max-width:640px;margin-inline:auto}
+/* ABOUT: overlapping card */
+@media(min-width:901px){.about .container{grid-template-columns:repeat(12,1fr);gap:0}.about-media{grid-column:1/9;grid-row:1}.about-media .img-frame{--ratio:16/11}
+.about-body{grid-column:7/13;grid-row:1;z-index:2;background:#fff;padding:var(--spacing-lg);border-radius:var(--radius);box-shadow:0 30px 70px rgba(11,31,51,.18)}}
+.about-media .img-frame{border-radius:var(--radius)}.about-stats strong{color:var(--secondary)}
+/* SERVICES: arrow tiles */
+.services .card{display:grid;grid-template-columns:52px 1fr auto;column-gap:1rem;align-items:center;border:none;border-left:4px solid var(--secondary);border-radius:14px;box-shadow:var(--shadow);padding:1.4rem}
+.services .card-icon{grid-row:1/3;margin:0;border-radius:12px}.services .card h3{grid-column:2}.services .card p{grid-column:2/-1}
+.services .card::after{content:"→";grid-column:3;grid-row:1;color:var(--secondary);font-size:1.3rem;transition:transform var(--transition)}.services .card:hover::after{transform:translateX(6px)}
+/* FEATURES: trust bar */
+.features{background:#fff;border-block:1px solid var(--border)}
+@media(min-width:901px){.features .grid-2{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0}.feature+.feature{border-left:1px solid var(--border)}}
+.feature{flex-direction:column;padding:0 var(--spacing-md)}.feature-icon{background:var(--secondary);color:#fff;border-radius:12px}
+/* TEAM: agent cards */
+.team-member{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);text-align:left;gap:0}.team-photo{border-radius:0}.team-info{padding:var(--spacing-sm) var(--spacing-md) var(--spacing-md)}
+.team-role{display:inline-block;background:rgba(37,99,235,.1);color:var(--secondary);padding:2px 10px;border-radius:999px}
+/* GALLERY: listings w/ price + badge */
+.gallery-grid{gap:14px}.gallery-grid .img-frame{border-radius:var(--radius)}
+.gallery-grid .img-frame::before{content:"À vendre";position:absolute;top:12px;left:12px;z-index:2;background:var(--accent);color:#2b1b00;font:700 .7rem var(--utility-font);padding:.35em .8em;border-radius:999px}
+.gallery-grid .img-frame:nth-child(2)::before{content:"Nouveau";background:var(--secondary);color:#fff}.gallery-grid .img-frame:nth-child(4)::before{content:"Vendu";background:#111;color:#fff}
+.gallery-grid .img-frame::after{content:"749 000 $";position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(11,31,51,.88);color:#fff;font:700 .85rem var(--utility-font);padding:.4em .9em;border-radius:10px}
+.gallery-grid .img-frame:nth-child(2)::after{content:"1 120 000 $"}.gallery-grid .img-frame:nth-child(3)::after{content:"539 000 $"}.gallery-grid .img-frame:nth-child(4)::after{content:"885 000 $"}.gallery-grid .img-frame:nth-child(5)::after{content:"2 450 $ / mois"}
+/* TESTIMONIALS */
+.testimonial{border:none;box-shadow:var(--shadow);position:relative}.testimonial::before{content:"“";position:absolute;right:1.2rem;top:.4rem;font:800 5rem/1 var(--heading-font);color:rgba(37,99,235,.15)}
+.testimonial-rating{color:var(--accent)}.testimonial blockquote{font-family:var(--body-font);font-weight:600;font-size:1.02rem}
+.faq-list{background:#fff;border-radius:var(--radius);padding:.5rem 1.5rem;box-shadow:var(--shadow);border-top:none}.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+/* CTA: white card on photo */
+.cta-section{background:linear-gradient(rgba(11,31,51,.55),rgba(11,31,51,.55)),var(--cta-image) center/cover;padding-block:clamp(4rem,10vw,8rem)}
+.cta{background:#fff;color:var(--text);max-width:720px;box-shadow:0 40px 90px rgba(0,0,0,.35)}.cta h2{color:var(--primary)}.cta p{color:var(--muted)}.cta .btn-secondary{color:var(--text);border-color:var(--border)}
+/* CONTACT: form first */
+@media(min-width:901px){.contact .container{grid-template-columns:1.2fr .8fr}.contact-form{order:-1}}
+.contact-info{background:var(--primary);color:#fff;padding:var(--spacing-lg);border-radius:var(--radius)}.contact-info h2{color:#fff}.contact-info p,.contact-info-item span,.contact-info-item a{color:#b9c6d4}.contact-info .eyebrow{color:#7aa2ff}
+.contact-form{border:none;box-shadow:var(--shadow)}.site-footer{background:var(--primary)}.footer-col h4{color:#7aa2ff}
+/* SERVICES + PHOTOS: rounded thumbnail replaces the icon */ (auto-off when the form's «photos in services» is unchecked)
+html:not([data-svc="off"]) .services .card{grid-template-columns:68px 1fr auto}
+html:not([data-svc="off"]) .services .card-icon{display:none}
+html:not([data-svc="off"]) .services .card-media{display:block;grid-row:1/3;width:68px;height:68px;border-radius:12px}

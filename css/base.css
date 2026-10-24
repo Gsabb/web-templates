@@ -54,3 +54,52 @@ main{padding-top:var(--header-height)}
 /* switcher wraps on narrow screens (6 categories) */
 .ts{flex-wrap:wrap;justify-content:center;border-radius:22px}
 .ts .ts-var span{min-width:3.2em;padding-inline:.4em}
+
+/* Optional service image slot: hidden everywhere unless a theme shows it (.services .card-media{display:block}) */
+.card-media{display:none;position:relative;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-slow)}
+.card:hover .card-media img{transform:scale(1.06)}
+
+/* Cookie banner — token-driven so it matches every theme (incl. older ones). Themes may override .cookie-banner. */
+.cookie-banner{position:fixed;left:16px;bottom:calc(var(--ts-h,0px) + 16px);z-index:9998;width:min(400px,calc(100vw - 32px));display:flex;flex-direction:column;gap:12px;padding:18px 20px;
+background:var(--surface,#fff);color:var(--text,#111);border:1px solid var(--border,rgba(0,0,0,.15));border-radius:var(--radius,12px);box-shadow:0 14px 44px rgba(0,0,0,.28);
+font-family:var(--body-font,system-ui,sans-serif);line-height:1.45;opacity:0;transform:translateY(24px);transition:opacity .3s ease,transform .3s ease}
+.cookie-banner.is-in{opacity:1;transform:none}
+.cookie-banner p{margin:0;font-size:.9rem;color:var(--text,#111)}
+.cookie-banner a{text-decoration:underline;color:var(--secondary,#2563eb)}
+.cookie-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cookie-banner .btn{padding:.7em 1.5em;font-size:.85rem;white-space:nowrap}
+.cookie-decline{font:inherit;font-size:.85rem;color:var(--muted,#666);text-decoration:underline;padding:.6em .5em;cursor:pointer}
+.cookie-decline:hover{color:var(--text,#111)}
+@media(max-width:520px){.cookie-banner{left:10px;width:calc(100vw - 20px);padding:14px 16px}}
+@media(prefers-reduced-motion:reduce){.cookie-banner{transition:none}}
+
+/* Logo image (set by the editor / config). Hidden unless a logo exists. */
+.nav-logo{display:inline-flex;align-items:center;gap:.6em}
+.logo-img{display:block;height:34px;width:auto;max-width:170px;object-fit:contain}
+.logo-img[hidden]{display:none}
+.logo-only>[data-c="brand"]{display:none}
+.footer-brand .logo-img{height:40px}
+
+/* Header logo keeps a stable footprint so nav links don't slide while the name is typed.
+   Only names longer than this push the links. */
+.site-header .nav-logo{min-width:min(15rem,52vw);white-space:nowrap}
+
+/* GENERIC service-photo layout, used only by themes without a dedicated one (the Random set):
+   the photo becomes a soft tinted background behind each card. */
+html[data-svc="on"][data-svcfx="generic"] .services .card{position:relative;overflow:hidden;isolation:isolate}
+html[data-svc="on"][data-svcfx="generic"] .services .card-media{display:block;position:absolute;inset:0;z-index:-1;opacity:.3;transition:opacity var(--transition)}
+html[data-svc="on"][data-svcfx="generic"] .services .card:hover .card-media{opacity:.55}
+
+/* ---- LIST SIZES — the editor can add/remove items; script.js stamps data-count / --n / --cols on each list.
+   Low specificity on purpose: any theme rule overrides these. Special fixed-count layouts in themes are
+   scoped to the default count (e.g. [data-count="5"]); other counts fall back to these. ---- */
+@media(min-width:901px){
+  .grid-3[data-count="1"]{grid-template-columns:minmax(0,520px);justify-content:center}
+  .grid-3[data-count="2"],.grid-3[data-count="4"]{grid-template-columns:repeat(2,1fr)}
+  .grid-4[data-count="1"]{grid-template-columns:minmax(0,300px);justify-content:center}
+  .grid-4[data-count="2"]{grid-template-columns:repeat(2,minmax(0,300px));justify-content:center}
+  .grid-4[data-count="3"],.grid-4[data-count="5"],.grid-4[data-count="6"]{grid-template-columns:repeat(3,1fr)}
+  .gallery-grid[data-count="3"],.gallery-grid[data-count="6"],.gallery-grid[data-count="9"]{grid-template-columns:repeat(3,1fr)}
+}
+.gallery-grid.is-uniform .img-frame{grid-column:auto!important;grid-row:auto!important}

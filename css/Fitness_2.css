@@ -1,0 +1,52 @@
+/* THEME: FITNESS_2 — Trail & Run Club (dark adventure). Left-aligned hero with stat boxes docked bottom-right
+   + vertical tagline, outlined-number stats, horizontal scroll-snap program cards, parallelogram gallery. */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap");
+:root{--primary:#0a0f0d;--primary-contrast:#eef3ef;--secondary:#ff7a1a;--secondary-contrast:#0a0f0d;--background:#0d1411;--surface:#141d19;--text:#eef3ef;--muted:#93a39a;--accent:#9be15d;--border:rgba(238,243,239,.14);
+--heading-font:"Oswald",sans-serif;--body-font:"Work Sans",system-ui,sans-serif;--utility-font:"Work Sans",sans-serif;--heading-weight:700;--letter-spacing-wide:.2em;
+--radius:2px;--radius-sm:2px;--radius-full:2px;--shadow:0 14px 34px rgba(0,0,0,.5);--shadow-hover:0 18px 44px rgba(255,122,26,.25);--hero-heading-max:6.6rem}
+h1,h2,h3,h4{text-transform:uppercase;letter-spacing:.01em}.eyebrow{color:var(--accent)}.eyebrow::before{background:var(--secondary)}
+.btn{border-radius:0;font-family:var(--heading-font);letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.9em 2em}.btn-primary:hover{background:var(--accent)}
+.site-header{background:rgba(10,15,13,.9);border-bottom:1px solid var(--border)}.nav-logo{text-transform:uppercase;letter-spacing:.06em}.nav-toggle span{background:#fff}
+.nav-links a{text-transform:uppercase;letter-spacing:.1em;font-size:.7rem}@media(max-width:1400px){.nav-links{background:var(--primary)}}
+/* HERO */
+.hero{position:relative;isolation:isolate;align-items:flex-end;background:var(--hero-image) center/cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,12,9,.92),rgba(7,12,9,.3) 72%),linear-gradient(0deg,var(--background),transparent 26%)}
+.hero::after{content:"COURIR · EXPLORER · RECOMMENCER";position:absolute;right:18px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;letter-spacing:.45em;font:600 .7rem var(--utility-font);color:rgba(255,255,255,.55)}
+.hero .container{grid-template-columns:1fr;position:relative;padding-bottom:clamp(2.5rem,8vh,4.5rem)}.hero-media{display:none}.hero-content{max-width:640px}
+.hero-content h1{line-height:.92;color:#fff}.hero-content p{color:rgba(255,255,255,.85)}.hero .btn-secondary{color:#fff;border-color:rgba(255,255,255,.6)}
+.hero-meta{gap:var(--spacing-sm);margin-top:var(--spacing-md)}.hero-meta div{border:1px solid rgba(255,255,255,.25);background:rgba(10,15,13,.55);backdrop-filter:blur(6px);padding:.7rem .9rem}.hero-meta strong{color:var(--secondary)}.hero-meta span{color:#fff}
+@media(min-width:1000px){.hero-meta{position:absolute;right:calc(var(--container-padding) + 36px);bottom:clamp(2.5rem,8vh,4.5rem);width:auto;max-width:440px;margin:0}}
+/* ABOUT: outlined numbers */
+.about-media .img-frame{--ratio:4/5;clip-path:polygon(0 0,100% 0,100% 100%,14% 100%,0 86%)}
+.about-stats strong{font-size:3.2rem;color:transparent;-webkit-text-stroke:1.5px var(--secondary)}
+/* SERVICES: horizontal snap carousel */
+.services .grid-3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--spacing-md);padding-bottom:1rem;counter-reset:n;scrollbar-width:thin;scrollbar-color:var(--secondary) transparent}
+.services .card{flex:0 0 min(310px,80vw);min-height:320px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;position:relative;counter-increment:n;border:1px solid var(--border);border-top:4px solid var(--secondary);background:var(--surface)}
+.services .card::before{content:counter(n,decimal-leading-zero);position:absolute;top:.6rem;right:1rem;font:700 4.4rem/1 var(--heading-font);color:rgba(255,255,255,.07)}
+.card-icon{background:var(--secondary);color:#0a0f0d;border-radius:0;margin-top:auto}
+/* FEATURES */
+.feature{border-top:3px solid var(--secondary);padding-top:var(--spacing-md);flex-direction:column}.feature-icon{background:var(--accent);color:#0a0f0d;border-radius:0}
+@media(min-width:901px){.features .grid-2{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}}
+/* TEAM */
+.team-member{text-align:left;position:relative;border-bottom:4px solid transparent;transition:border-color var(--transition)}.team-member:hover{border-color:var(--secondary)}
+.team-photo{--ratio:3/4;border-radius:0;filter:grayscale(1) contrast(1.1);transition:filter var(--transition-slow)}.team-member:hover .team-photo{filter:none}.team-role{color:var(--accent)}
+/* GALLERY: parallelograms */
+@media(min-width:901px){.gallery-grid{grid-template-columns:repeat(var(--cols,5),1fr);grid-auto-rows:clamp(260px,34vw,460px);gap:0;padding-inline:3%}
+.gallery-grid .img-frame:nth-child(n){grid-column:auto;grid-row:auto;border-radius:0;clip-path:polygon(16% 0,100% 0,84% 100%,0 100%);margin-inline:-2.2%;transition:transform var(--transition-slow)}.gallery-grid .img-frame:hover{transform:scale(1.07);z-index:2}}
+.gallery-grid .img-frame{border-radius:0}
+/* TESTIMONIALS */
+.testimonial{background:var(--surface);border:none;border-top:3px solid var(--accent);position:relative}.testimonial::before{content:"“";font:700 4.4rem/.7 var(--heading-font);color:var(--secondary)}
+.testimonial-rating{color:var(--secondary)}.testimonial blockquote{font-family:var(--body-font);font-size:1.02rem}
+/* FAQ: left rail that lights up when open */
+.faq-item{border-left:3px solid transparent;padding-left:var(--spacing-sm);transition:border-color var(--transition)}.faq-item:has([aria-expanded="true"]){border-left-color:var(--secondary)}
+.faq-question{font-size:1.35rem;text-transform:uppercase}.faq-question[aria-expanded="true"]{color:var(--secondary)}.faq-icon::before,.faq-icon::after{background:var(--secondary)}
+/* CTA: photo band, text left */
+.cta{background:linear-gradient(90deg,rgba(10,15,13,.94),rgba(10,15,13,.35)),var(--cta-image) center/cover;border-radius:0;text-align:left;clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%);padding-block:clamp(4rem,9vw,6.5rem)}
+.cta h2{font-size:clamp(2.4rem,6vw,4.6rem)}.cta p{margin-inline:0}.cta-actions{justify-content:flex-start}
+.form-field input,.form-field textarea{background:#0b110e;color:#fff}.contact-form{border-top:4px solid var(--secondary)}
+.site-footer{background:#050807}.footer-col h4{color:var(--secondary)}
+/* SERVICES + PHOTOS: full-bleed photo behind each carousel card */ (auto-off when the form's «photos in services» is unchecked)
+html:not([data-svc="off"]) .services .card{overflow:hidden;isolation:isolate}
+html:not([data-svc="off"]) .services .card-media{display:block;position:absolute;inset:0;z-index:-1}
+html:not([data-svc="off"]) .services .card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,15,13,.96) 12%,rgba(10,15,13,.3))}
+html:not([data-svc="off"]) .services .card:hover .card-media img{transform:scale(1.08)}

@@ -40,3 +40,8 @@ html[data-hero="cover"] .hero .btn-secondary:hover{color:var(--secondary);border
 .faq-icon::before,.faq-icon::after{background:var(--secondary)}
 .cta h2{font-size:clamp(2rem,5vw,3.4rem)}.cta{border-radius:var(--radius)}
 .site-footer{background:var(--primary)}.footer-col h4{color:#fbe7a6}
+/* SERVICES + PHOTOS: banner on top, icon bubble overlaps its edge */ (auto-off when the form's «photos in services» is unchecked)
+html:not([data-svc="off"]) .services .card{padding:0 0 var(--spacing-md);overflow:hidden}
+html:not([data-svc="off"]) .services .card-media{display:block;aspect-ratio:16/10}
+html:not([data-svc="off"]) .services .card-icon{margin:-28px 0 var(--spacing-xs) var(--spacing-md);position:relative;box-shadow:var(--shadow)}
+html:not([data-svc="off"]) .services .card h3,html:not([data-svc="off"]) .services .card p{margin-inline:var(--spacing-md)}

@@ -1,0 +1,53 @@
+/* THEME: AGENCY_2 — Studio Split (yellow). Half yellow panel / half photo hero, outline service cards,
+   black features band, yellow-tag team, greyscale-to-color gallery, post-it reviews, two-column FAQ, banner CTA. */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
+:root{--primary:#111;--primary-contrast:#fff;--secondary:#ffd23f;--secondary-contrast:#111;--background:#fff;--surface:#fff;--text:#111;--muted:#5c5c5c;--accent:#ffd23f;--border:rgba(0,0,0,.16);
+--heading-font:"Outfit",sans-serif;--body-font:"Outfit",sans-serif;--utility-font:"Outfit",sans-serif;--heading-weight:700;--letter-spacing-tight:-.03em;--letter-spacing-wide:.14em;
+--radius:4px;--radius-sm:2px;--radius-full:4px;--shadow:none;--shadow-hover:8px 8px 0 #111;--hero-heading-max:4.6rem}
+.eyebrow{color:#111;font-weight:700}.eyebrow::before{background:#111}
+.btn{border-radius:0;font-weight:700;padding:1em 1.8em}.btn-primary{background:#111;color:#fff;box-shadow:none}.btn-primary:hover{background:#fff;color:#111;box-shadow:inset 0 0 0 2px #111}
+.btn-secondary{border:2px solid #111;color:#111}.btn-secondary:hover{background:#111;color:#fff}
+.site-header{background:#fff;border-bottom:1px solid var(--border)}.nav-logo{text-transform:uppercase;letter-spacing:.04em}@media(max-width:1400px){.nav-links{background:#fff}}
+/* HERO: yellow | photo */
+.hero{padding:0;align-items:stretch}.hero .container{max-width:none;padding:0;gap:0;align-items:stretch}
+.hero-content{background:var(--secondary);padding:clamp(2rem,7vw,6rem) clamp(1.25rem,6vw,5rem);display:flex;flex-direction:column;justify-content:center;max-width:none}
+.hero-content p{color:#222}.hero-meta{border-top:2px solid #111;padding-top:var(--spacing-md)}.hero-meta span{color:#222}
+.hero-media{min-height:340px;position:relative}.hero-media .img-frame{width:100%;height:100%;min-height:340px;aspect-ratio:auto;border-radius:0;max-width:none;background:var(--hero-image) center/cover no-repeat,#c9a400}.hero-media .img-frame img{display:none}
+@media(min-width:901px){.hero .container{grid-template-columns:1fr 1fr}.hero-media::before{content:"";position:absolute;left:-60px;top:12%;width:120px;aspect-ratio:1;border-radius:50%;border:2px solid #111;background:var(--secondary);z-index:2}}
+/* ABOUT */
+@media(min-width:901px){.about .container{grid-template-columns:1.1fr .9fr}.about-media{order:2}}
+.about-media{position:relative}.about-media::before{content:"";position:absolute;inset:-18px 18px 18px -18px;background:var(--secondary)}.about-media .img-frame{position:relative;border-radius:0}
+.about-stats>div{border-left:4px solid var(--secondary);padding-left:var(--spacing-sm)}.about-stats{border-top:none}
+/* SERVICES: outline cards */
+.services .card{background:#fff;border:1px solid #111;border-radius:0}.services .card:hover{background:var(--secondary);transform:translate(-4px,-4px);box-shadow:var(--shadow-hover);border-color:#111}
+.card-icon{background:var(--secondary);color:#111;border-radius:0}.services .card:hover .card-icon{background:#111;color:var(--secondary)}.services .card:hover p{color:#222}
+/* FEATURES: black band */
+.features{background:#111;color:#fff}.features h2,.features h4{color:#fff}.features p{color:#bdbdbd}.features .eyebrow{color:var(--secondary)}.features .eyebrow::before{background:var(--secondary)}
+.feature-icon{background:var(--secondary);color:#111;border-radius:0}
+@media(min-width:901px){.features .grid-2{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}.feature{flex-direction:column}}
+/* TEAM: yellow tags */
+.team-photo{--ratio:4/5;border-radius:0}.team-member{gap:0;text-align:left}.team-info{margin:-2rem .8rem 0;background:var(--secondary);padding:.8rem 1rem;position:relative}.team-info p{display:none}.team-role{color:#111}
+/* GALLERY */
+.gallery-grid .img-frame{border-radius:0}.gallery-grid .img-frame img{filter:grayscale(1);transition:filter var(--transition-slow),transform var(--transition-slow)}
+.gallery-grid .img-frame:hover img{filter:none}.gallery-grid .img-frame::after{content:"";position:absolute;inset:0;border:0 solid var(--secondary);transition:border-width var(--transition)}.gallery-grid .img-frame:hover::after{border-width:10px}
+/* TESTIMONIALS: post-its */
+.testimonial{background:#ffe680;border:none;border-radius:2px;box-shadow:0 16px 26px rgba(0,0,0,.16);transform:rotate(-2deg)}
+.testimonial:nth-child(2){background:#fff;border:1px solid #111;transform:rotate(1.5deg)}.testimonial:nth-child(3){background:var(--secondary);transform:rotate(-1deg)}
+.testimonial-rating{color:#111}.testimonial blockquote{font-family:var(--body-font);font-size:1.05rem;font-weight:500}
+/* FAQ: two columns */
+@media(min-width:801px){.faq-list{max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:0 var(--spacing-xl);align-items:start;border-top:none}.faq-item:first-child,.faq-item:nth-child(2){border-top:1px solid var(--border)}}
+.faq-icon::before,.faq-icon::after{background:#111}
+/* CTA: banner */
+.cta{background:var(--secondary);border-radius:0;text-align:left;display:grid;gap:var(--spacing-sm) var(--spacing-lg);align-items:center}
+.cta h2{color:#111;font-size:clamp(2rem,5vw,3.8rem)}.cta p{color:#222;margin:0}.cta .btn-secondary{border-color:#111;color:#111}.cta .btn-secondary:hover{background:#111;color:#fff}
+@media(min-width:801px){.cta{grid-template-columns:1fr auto;grid-template-areas:"h a" "p a"}.cta h2{grid-area:h}.cta p{grid-area:p}.cta-actions{grid-area:a;flex-direction:column}}
+/* CONTACT: black info panel */
+.contact-info{background:#111;color:#fff;padding:var(--spacing-lg)}.contact-info h2{color:#fff}.contact-info p,.contact-info-item span,.contact-info-item a{color:#c8c8c8}.contact-info .eyebrow{color:var(--secondary)}.contact-info .eyebrow::before{background:var(--secondary)}
+.contact-form{border:1px solid #111;border-radius:0}.form-field input,.form-field textarea{border-radius:0;border-color:#111}
+.site-footer{background:#111}.footer-col h4{color:var(--secondary)}.footer-social a{border-radius:0}
+/* SERVICES + PHOTOS: greyscale banner, yellow square overlaps (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{padding:0 0 1.5rem;overflow:hidden}
+html:not([data-svc="off"]) .services .card-media{display:block;aspect-ratio:3/2;filter:grayscale(1);transition:filter var(--transition-slow)}
+html:not([data-svc="off"]) .services .card:hover .card-media{filter:none}
+html:not([data-svc="off"]) .services .card-icon{margin:-24px 0 .6rem 1.25rem;position:relative}
+html:not([data-svc="off"]) .services .card h3,html:not([data-svc="off"]) .services .card p{margin-inline:1.25rem}

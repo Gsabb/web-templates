@@ -42,3 +42,7 @@
 .cta .btn-primary{background:var(--secondary)}
 .form-field input,.form-field textarea{background:#fff}
 .site-footer{background:var(--primary)}.footer-col h4{color:var(--secondary)}.footer-social a{border-radius:0}
+/* SERVICES + PHOTOS: square thumbnail with gold outline replaces the icon (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{grid-template-columns:84px 1fr}
+html:not([data-svc="off"]) .services .card-icon{display:none}
+html:not([data-svc="off"]) .services .card-media{display:block;grid-row:1/3;width:84px;height:84px;outline:1px solid var(--secondary);outline-offset:3px}

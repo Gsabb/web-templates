@@ -69,3 +69,8 @@ h1,h2{letter-spacing:.02em}
 .contact-form{border:none;background:var(--surface)}
 .form-field input,.form-field textarea{border:none;border-bottom:1px solid var(--text);background:transparent;padding-inline:0}
 .site-footer{background:var(--primary)}.footer-col h4{color:var(--accent)}.footer-social a{border-radius:0}
+/* SERVICES + PHOTOS: tall portrait above each numbered column */ (auto-off when the form's «photos in services» is unchecked)
+html:not([data-svc="off"]) .services .card{display:flex;flex-direction:column}
+html:not([data-svc="off"]) .services .card-media{display:block;order:-2;aspect-ratio:4/5;margin-bottom:var(--spacing-sm);filter:grayscale(.55);transition:filter var(--transition-slow)}
+html:not([data-svc="off"]) .services .card:hover .card-media{filter:none}
+html:not([data-svc="off"]) .services .card::before{order:-1}

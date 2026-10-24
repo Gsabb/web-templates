@@ -47,3 +47,8 @@ html[data-hero="cover"] .cta h2,html[data-hero="cover"] .cta p{color:#111}
 .cta .btn-primary{background:#111;color:#fff}
 .form-field input,.form-field textarea{border:2px solid #111;background:#fff}
 .site-footer{background:#111}.footer-col h4{color:#ffe23c}
+/* SERVICES + PHOTOS: banner with thick outline, sticker icon overlaps (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{padding:0 0 var(--spacing-md);overflow:hidden}
+html:not([data-svc="off"]) .services .card-media{display:block;aspect-ratio:16/10;border-bottom:2px solid #111}
+html:not([data-svc="off"]) .services .card-icon{margin:-30px 0 .5rem 1.25rem;position:relative;background:#fff}
+html:not([data-svc="off"]) .services .card h3,html:not([data-svc="off"]) .services .card p{margin-inline:1.25rem}

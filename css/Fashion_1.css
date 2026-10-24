@@ -41,3 +41,8 @@
 .contact-form{background:var(--surface);border:none}
 .form-field input,.form-field textarea{border:none;border-bottom:1px solid var(--text);background:transparent;padding-inline:0}
 .site-footer{background:var(--primary)}.footer-col h4{color:#f6c4d2}.footer-social a{border-radius:0}
+/* SERVICES + PHOTOS: photo fills the arch (auto-off when «photos in services» is unchecked) */
+html:not([data-svc="off"]) .services .card{padding:0 0 var(--spacing-lg);overflow:hidden}
+html:not([data-svc="off"]) .services .card-media{display:block;aspect-ratio:1/1.1;margin-bottom:var(--spacing-md)}
+html:not([data-svc="off"]) .services .card-icon{display:none}
+html:not([data-svc="off"]) .services .card h3,html:not([data-svc="off"]) .services .card p{padding-inline:var(--spacing-md)}
